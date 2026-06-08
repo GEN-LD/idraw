@@ -56,8 +56,6 @@ public class ColorAdapter extends RecyclerView.Adapter<ColorAdapter.ViewHolder> 
 
         if (position == selectedPosition) {
             drawable.setStroke(3, 0xFFFFFFFF);
-            FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) swatch.getLayoutParams();
-            // slightly larger for selected state
         } else {
             drawable.setStroke(1, 0x33888888);
         }
