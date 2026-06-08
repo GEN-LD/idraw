@@ -15,6 +15,7 @@ public class ColorAdapter extends RecyclerView.Adapter<ColorAdapter.ViewHolder> 
 
     private final int[] colors;
     private int selectedPosition = 2; // Default: red
+    private int itemHeightPx = -1;
 
     public interface OnColorSelectedListener {
         void onColorSelected(int color, int position);
@@ -24,6 +25,11 @@ public class ColorAdapter extends RecyclerView.Adapter<ColorAdapter.ViewHolder> 
 
     public ColorAdapter(int[] colors) {
         this.colors = colors;
+    }
+
+    public void setItemHeight(int px) {
+        this.itemHeightPx = px;
+        notifyDataSetChanged();
     }
 
     public void setOnColorSelectedListener(OnColorSelectedListener listener) {
@@ -59,6 +65,12 @@ public class ColorAdapter extends RecyclerView.Adapter<ColorAdapter.ViewHolder> 
             drawable.setStroke(3, 0xFFFFFFFF);
         } else {
             drawable.setStroke(1, 0x33888888);
+        }
+
+        if (itemHeightPx > 0) {
+            ViewGroup.LayoutParams params = swatch.getLayoutParams();
+            params.height = itemHeightPx;
+            swatch.setLayoutParams(params);
         }
 
         swatch.setBackground(drawable);

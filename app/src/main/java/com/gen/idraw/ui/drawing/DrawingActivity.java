@@ -95,6 +95,15 @@ public class DrawingActivity extends AppCompatActivity {
 
         binding.rvColors.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         binding.rvColors.setAdapter(adapter);
+
+        // 布局完成后计算每种颜色高度，均分颜色栏高度
+        binding.rvColors.post(() -> {
+            if (binding.rvColors.getHeight() > 0) {
+                int availableHeight = binding.rvColors.getHeight();
+                int itemHeight = availableHeight / CHILD_FRIENDLY_COLORS.length;
+                adapter.setItemHeight(itemHeight);
+            }
+        });
     }
 
     private void initSizeSlider() {
@@ -120,7 +129,7 @@ public class DrawingActivity extends AppCompatActivity {
 
         // Show/hide color panel for eraser
         int colorPanelVisibility = (currentBrush == BrushType.ERASER) ? View.GONE : View.VISIBLE;
-        binding.colorPanelScroll.setVisibility(colorPanelVisibility);
+        binding.rvColors.setVisibility(colorPanelVisibility);
 
         // Update slider range for current brush type
         binding.sliderBrushSize.setValueFrom(BrushFactory.getMinSizeDp(currentBrush));
