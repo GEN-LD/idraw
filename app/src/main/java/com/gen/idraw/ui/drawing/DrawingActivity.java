@@ -96,6 +96,20 @@ public class DrawingActivity extends AppCompatActivity {
         binding.rvColors.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         binding.rvColors.setAdapter(adapter);
 
+        // 添加 2dp item 间距（前 11 个 item 底部，最后一个不加）
+        final float spacingPx = 2f * getResources().getDisplayMetrics().density;
+        binding.rvColors.addItemDecoration(new androidx.recyclerview.widget.RecyclerView.ItemDecoration() {
+            @Override
+            public void getItemOffsets(android.graphics.Rect outRect, android.view.View view,
+                                       androidx.recyclerview.widget.RecyclerView parent,
+                                       androidx.recyclerview.widget.RecyclerView.State state) {
+                int position = parent.getChildAdapterPosition(view);
+                if (position != adapter.getItemCount() - 1) {
+                    outRect.bottom = (int) spacingPx;
+                }
+            }
+        });
+
         // 布局完成后计算每种颜色高度，均分颜色栏高度
         binding.rvColors.getViewTreeObserver().addOnGlobalLayoutListener(
             new android.view.ViewTreeObserver.OnGlobalLayoutListener() {
@@ -106,8 +120,9 @@ public class DrawingActivity extends AppCompatActivity {
                         int paddingTop = binding.rvColors.getPaddingTop();
                         int paddingBottom = binding.rvColors.getPaddingBottom();
                         int availableHeight = height - paddingTop - paddingBottom;
-                        int itemHeight = availableHeight / CHILD_FRIENDLY_COLORS.length;
-                        adapter.setItemHeight(itemHeight);
+                        int totalSpacing = (int) (spacingPx * (CHILD_FRIENDLY_COLORS.length - 1));
+                        int itemHeight = (availableHeight - totalSpacing) / CHILD_FRIENDLY_COLORS.length;
+                        adapter.setItemHeight(Math.max(1, itemHeight));
                         binding.rvColors.getViewTreeObserver().removeOnGlobalLayoutListener(this);
                     }
                 }
