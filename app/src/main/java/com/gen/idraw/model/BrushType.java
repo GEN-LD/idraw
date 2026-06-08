@@ -2,7 +2,7 @@ package com.gen.idraw.model;
 
 public enum BrushType {
     PENCIL,
-    MARKER,
+    PEN,
     CRAYON,
     ERASER
 }

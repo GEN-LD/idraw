@@ -299,7 +299,7 @@ public class DrawingView extends View {
     }
 
     /**
-     * 构建 Path 对象（用于 MARKER 和 ERASER）
+     * 构建 Path 对象（用于 PEN 和 ERASER）
      */
     private Path buildPath(Stroke stroke) {
         int count = stroke.getPointCount();

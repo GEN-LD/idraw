@@ -209,12 +209,11 @@ public class BrushFactory {
                 paint.setStrokeJoin(Paint.Join.ROUND);
                 break;
 
-            case MARKER:
+            case PEN:
                 paint.setColor(color);
-                paint.setAlpha(140);
-                paint.setStrokeCap(Paint.Cap.SQUARE);
-                paint.setStrokeJoin(Paint.Join.BEVEL);
-                paint.setStrokeMiter(1f);
+                paint.setAlpha(255);
+                paint.setStrokeCap(Paint.Cap.ROUND);
+                paint.setStrokeJoin(Paint.Join.ROUND);
                 break;
 
             case CRAYON:
@@ -241,7 +240,7 @@ public class BrushFactory {
     public static float getDefaultSizeDp(BrushType type) {
         switch (type) {
             case PENCIL: return 4f;
-            case MARKER: return 16f;
+            case PEN: return 16f;
             case CRAYON: return 10f;
             case ERASER: return 20f;
             default: return 4f;
@@ -251,7 +250,7 @@ public class BrushFactory {
     public static float getMinSizeDp(BrushType type) {
         switch (type) {
             case PENCIL: return 1f;
-            case MARKER: return 8f;
+            case PEN: return 8f;
             case CRAYON: return 4f;
             case ERASER: return 8f;
             default: return 1f;
@@ -261,7 +260,7 @@ public class BrushFactory {
     public static float getMaxSizeDp(BrushType type) {
         switch (type) {
             case PENCIL: return 12f;
-            case MARKER: return 40f;
+            case PEN: return 40f;
             case CRAYON: return 24f;
             case ERASER: return 50f;
             default: return 12f;
@@ -276,9 +275,9 @@ public class BrushFactory {
     }
 
     /**
-     * 判断是否为 Path 绘制方式（MARKER 和 ERASER）
+     * 判断是否为 Path 绘制方式（PEN 和 ERASER）
      */
     public static boolean isPathBrush(BrushType type) {
-        return type == BrushType.MARKER || type == BrushType.ERASER;
+        return type == BrushType.PEN || type == BrushType.ERASER;
     }
 }
