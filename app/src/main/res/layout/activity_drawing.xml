@@ -152,6 +152,8 @@
         android:layout_marginBottom="20dp"
         android:background="@drawable/bg_toolbar_panel"
         android:paddingHorizontal="4dp"
+        android:overScrollMode="never"
+        android:scrollbars="none"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />

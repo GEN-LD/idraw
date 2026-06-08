@@ -48,6 +48,11 @@ public class ColorAdapter extends RecyclerView.Adapter<ColorAdapter.ViewHolder> 
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_color_swatch, parent, false);
+        if (itemHeightPx > 0) {
+            ViewGroup.LayoutParams params = view.getLayoutParams();
+            params.height = itemHeightPx;
+            view.setLayoutParams(params);
+        }
         return new ViewHolder(view);
     }
 

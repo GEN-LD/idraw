@@ -97,13 +97,22 @@ public class DrawingActivity extends AppCompatActivity {
         binding.rvColors.setAdapter(adapter);
 
         // 布局完成后计算每种颜色高度，均分颜色栏高度
-        binding.rvColors.post(() -> {
-            if (binding.rvColors.getHeight() > 0) {
-                int availableHeight = binding.rvColors.getHeight();
-                int itemHeight = availableHeight / CHILD_FRIENDLY_COLORS.length;
-                adapter.setItemHeight(itemHeight);
+        binding.rvColors.getViewTreeObserver().addOnGlobalLayoutListener(
+            new android.view.ViewTreeObserver.OnGlobalLayoutListener() {
+                @Override
+                public void onGlobalLayout() {
+                    int height = binding.rvColors.getHeight();
+                    if (height > 0) {
+                        int paddingTop = binding.rvColors.getPaddingTop();
+                        int paddingBottom = binding.rvColors.getPaddingBottom();
+                        int availableHeight = height - paddingTop - paddingBottom;
+                        int itemHeight = availableHeight / CHILD_FRIENDLY_COLORS.length;
+                        adapter.setItemHeight(itemHeight);
+                        binding.rvColors.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                    }
+                }
             }
-        });
+        );
     }
 
     private void initSizeSlider() {

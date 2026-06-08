@@ -2,6 +2,5 @@
 <View xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/swatch_view"
     android:layout_width="match_parent"
-    android:layout_height="28dp"
-    android:layout_margin="@dimen/color_swatch_margin"
+    android:layout_height="0dp"
     android:background="@drawable/bg_color_swatch" />
