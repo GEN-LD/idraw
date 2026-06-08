@@ -5,25 +5,14 @@
     android:layout_height="match_parent"
     android:background="@android:color/white">
 
-    <com.gen.idraw.view.DrawingView
-        android:id="@+id/drawing_view"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/toolbar_scroll"
-        app:layout_constraintBottom_toBottomOf="parent" />
-
+    <!-- Left Toolbar -->
     <ScrollView
         android:id="@+id/toolbar_scroll"
-        android:layout_width="@dimen/toolbar_width"
+        android:layout_width="64dp"
         android:layout_height="0dp"
         android:fillViewport="true"
         android:scrollbars="none"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent">
 
@@ -101,20 +90,6 @@
                 android:background="@color/divider"
                 android:layout_marginVertical="4dp" />
 
-            <!-- Color picker -->
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_colors"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp" />
-
-            <View
-                android:id="@+id/divider_color_size"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/divider"
-                android:layout_marginVertical="4dp" />
-
             <!-- Size slider -->
             <com.google.android.material.slider.Slider
                 android:id="@+id/slider_brush_size"
@@ -171,6 +146,48 @@
                 android:contentDescription="Clear"
                 android:background="@drawable/bg_brush_button"
                 android:padding="8dp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Drawing Canvas -->
+    <com.gen.idraw.view.DrawingView
+        android:id="@+id/drawing_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        app:layout_constraintStart_toEndOf="@id/toolbar_scroll"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/color_panel_scroll"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <!-- Right Color Panel -->
+    <ScrollView
+        android:id="@+id/color_panel_scroll"
+        android:layout_width="48dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        android:scrollbars="none"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@drawable/bg_toolbar_panel">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:paddingVertical="8dp"
+            android:paddingHorizontal="4dp">
+
+            <!-- Color picker -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_colors"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
     </ScrollView>

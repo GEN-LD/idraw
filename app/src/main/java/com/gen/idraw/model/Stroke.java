@@ -8,6 +8,7 @@ import java.util.List;
 public class Stroke {
     private final List<Float> pointsX;
     private final List<Float> pointsY;
+    private final List<BrushStamp> stamps;
     private final BrushType brushType;
     private final int color;
     private final float strokeWidth;
@@ -16,6 +17,7 @@ public class Stroke {
     public Stroke(BrushType brushType, int color, float strokeWidth) {
         this.pointsX = new ArrayList<>();
         this.pointsY = new ArrayList<>();
+        this.stamps = new ArrayList<>();
         this.brushType = brushType;
         this.color = color;
         this.strokeWidth = strokeWidth;
@@ -36,6 +38,18 @@ public class Stroke {
 
     public float getPointY(int index) {
         return pointsY.get(index);
+    }
+
+    public void addStamp(BrushStamp stamp) {
+        stamps.add(stamp);
+    }
+
+    public List<BrushStamp> getStamps() {
+        return stamps;
+    }
+
+    public boolean hasStamps() {
+        return !stamps.isEmpty();
     }
 
     public BrushType getBrushType() {

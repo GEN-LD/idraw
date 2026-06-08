@@ -51,7 +51,8 @@ public class ColorAdapter extends RecyclerView.Adapter<ColorAdapter.ViewHolder> 
         View swatch = holder.swatchView;
 
         GradientDrawable drawable = new GradientDrawable();
-        drawable.setShape(GradientDrawable.OVAL);
+        drawable.setShape(GradientDrawable.RECTANGLE);
+        drawable.setCornerRadius(6f);
         drawable.setColor(color);
 
         if (position == selectedPosition) {

@@ -7,7 +7,7 @@ import android.widget.ImageButton;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.gen.idraw.R;
@@ -95,7 +95,7 @@ public class DrawingActivity extends AppCompatActivity {
             updateSizePreview();
         });
 
-        binding.rvColors.setLayoutManager(new GridLayoutManager(this, 3));
+        binding.rvColors.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         binding.rvColors.setAdapter(adapter);
     }
 
@@ -124,10 +124,9 @@ public class DrawingActivity extends AppCompatActivity {
         updateBrushIconTint(binding.btnCrayon, currentBrush == BrushType.CRAYON);
         updateBrushIconTint(binding.btnEraser, currentBrush == BrushType.ERASER);
 
-        // Show/hide color picker for eraser
-        int colorVisibility = (currentBrush == BrushType.ERASER) ? View.GONE : View.VISIBLE;
-        binding.rvColors.setVisibility(colorVisibility);
-        binding.dividerColorSize.setVisibility(colorVisibility);
+        // Show/hide color panel for eraser
+        int colorPanelVisibility = (currentBrush == BrushType.ERASER) ? View.GONE : View.VISIBLE;
+        binding.colorPanelScroll.setVisibility(colorPanelVisibility);
 
         // Update slider range for current brush type
         binding.sliderBrushSize.setValueFrom(BrushFactory.getMinSizeDp(currentBrush));
