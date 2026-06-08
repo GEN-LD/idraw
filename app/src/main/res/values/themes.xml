@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.Idraw" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorPrimaryVariant">@color/primary_variant</item>
+        <item name="colorOnPrimary">@color/on_primary</item>
+        <item name="colorSecondary">@color/secondary</item>
+        <item name="colorOnSecondary">@color/on_secondary</item>
+        <item name="colorSurface">@color/surface</item>
+        <item name="colorOnSurface">@color/on_surface</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">#FFE8E8E8</item>
+        <item name="android:windowBackground">@color/background</item>
+    </style>
+
+    <style name="IdrawButton.Home" parent="Widget.MaterialComponents.Button">
+        <item name="android:textAllCaps">false</item>
+        <item name="cornerRadius">@dimen/home_button_corner</item>
+        <item name="android:minHeight">@dimen/home_button_height</item>
+        <item name="android:minWidth">@dimen/home_button_width</item>
+        <item name="android:textSize">@dimen/home_button_text</item>
+        <item name="android:letterSpacing">0.02</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">@color/on_primary</item>
+        <item name="elevation">4dp</item>
+    </style>
+
+    <style name="IdrawButton.Home.Coloring">
+        <item name="backgroundTint">@color/primary</item>
+    </style>
+
+    <style name="IdrawButton.Home.Drawing">
+        <item name="backgroundTint">@color/secondary</item>
+    </style>
+</resources>

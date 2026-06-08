@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Spacing -->
+    <dimen name="spacing_xs">4dp</dimen>
+    <dimen name="spacing_sm">8dp</dimen>
+    <dimen name="spacing_md">16dp</dimen>
+    <dimen name="spacing_lg">24dp</dimen>
+    <dimen name="spacing_xl">32dp</dimen>
+
+    <!-- Home screen -->
+    <dimen name="home_button_width">240dp</dimen>
+    <dimen name="home_button_height">140dp</dimen>
+    <dimen name="home_button_corner">24dp</dimen>
+    <dimen name="home_button_text">28sp</dimen>
+    <dimen name="home_button_margin">24dp</dimen>
+
+    <!-- Toolbar -->
+    <dimen name="toolbar_width">80dp</dimen>
+    <dimen name="toolbar_icon_size">36dp</dimen>
+    <dimen name="toolbar_button_size">48dp</dimen>
+
+    <!-- Color swatch -->
+    <dimen name="color_swatch_size">20dp</dimen>
+    <dimen name="color_swatch_margin">3dp</dimen>
+    <dimen name="color_swatch_border">2dp</dimen>
+
+    <!-- Size preview -->
+    <dimen name="size_preview_max">40dp</dimen>
+</resources>
