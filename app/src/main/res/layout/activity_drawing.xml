@@ -45,31 +45,11 @@
 
             <!-- Brush type buttons -->
             <ImageButton
-                android:id="@+id/btn_pencil"
-                android:layout_width="@dimen/toolbar_button_size"
-                android:layout_height="@dimen/toolbar_button_size"
-                android:src="@drawable/ic_pencil"
-                android:contentDescription="Pencil"
-                android:background="@drawable/bg_brush_button"
-                android:padding="8dp"
-                android:layout_marginBottom="4dp" />
-
-            <ImageButton
                 android:id="@+id/btn_pen"
                 android:layout_width="@dimen/toolbar_button_size"
                 android:layout_height="@dimen/toolbar_button_size"
                 android:src="@drawable/ic_pen"
                 android:contentDescription="Pen"
-                android:background="@drawable/bg_brush_button"
-                android:padding="8dp"
-                android:layout_marginBottom="4dp" />
-
-            <ImageButton
-                android:id="@+id/btn_crayon"
-                android:layout_width="@dimen/toolbar_button_size"
-                android:layout_height="@dimen/toolbar_button_size"
-                android:src="@drawable/ic_crayon"
-                android:contentDescription="Crayon"
                 android:background="@drawable/bg_brush_button"
                 android:padding="8dp"
                 android:layout_marginBottom="4dp" />

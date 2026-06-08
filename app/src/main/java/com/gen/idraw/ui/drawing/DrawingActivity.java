@@ -18,7 +18,7 @@ import com.gen.idraw.util.BrushFactory;
 public class DrawingActivity extends AppCompatActivity {
 
     private ActivityDrawingBinding binding;
-    private BrushType currentBrush = BrushType.PENCIL;
+    private BrushType currentBrush = BrushType.PEN;
     private int currentColor = 0xFFEF4444; // Red default
     private float currentSizeDp;
 
@@ -58,9 +58,7 @@ public class DrawingActivity extends AppCompatActivity {
     private void initToolbar() {
         binding.btnBack.setOnClickListener(v -> finish());
 
-        binding.btnPencil.setOnClickListener(v -> selectBrush(BrushType.PENCIL));
         binding.btnPen.setOnClickListener(v -> selectBrush(BrushType.PEN));
-        binding.btnCrayon.setOnClickListener(v -> selectBrush(BrushType.CRAYON));
         binding.btnEraser.setOnClickListener(v -> selectBrush(BrushType.ERASER));
 
         binding.btnUndo.setOnClickListener(v -> {
@@ -113,15 +111,11 @@ public class DrawingActivity extends AppCompatActivity {
 
     private void updateBrushUI() {
         // Update brush button selection state
-        binding.btnPencil.setActivated(currentBrush == BrushType.PENCIL);
         binding.btnPen.setActivated(currentBrush == BrushType.PEN);
-        binding.btnCrayon.setActivated(currentBrush == BrushType.CRAYON);
         binding.btnEraser.setActivated(currentBrush == BrushType.ERASER);
 
         // Update icon tint for selected/unselected
-        updateBrushIconTint(binding.btnPencil, currentBrush == BrushType.PENCIL);
         updateBrushIconTint(binding.btnPen, currentBrush == BrushType.PEN);
-        updateBrushIconTint(binding.btnCrayon, currentBrush == BrushType.CRAYON);
         updateBrushIconTint(binding.btnEraser, currentBrush == BrushType.ERASER);
 
         // Show/hide color panel for eraser
