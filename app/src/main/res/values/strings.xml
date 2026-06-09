@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Idraw</string>
+    <string name="app_name">小画家</string>
     <string name="coloring_mode">涂色模式</string>
     <string name="drawing_mode">画画模式</string>
     <string name="coloring_coming_soon">涂色模式即将上线！</string>
