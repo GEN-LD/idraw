@@ -1,6 +1,5 @@
 package com.gen.idraw.ui.drawing;
 
-import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -8,19 +7,21 @@ import android.widget.ImageButton;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.gen.idraw.R;
 import com.gen.idraw.databinding.ActivityDrawingBinding;
 import com.gen.idraw.model.BrushType;
-import com.gen.idraw.util.BrushFactory;
 
 public class DrawingActivity extends AppCompatActivity {
 
     private ActivityDrawingBinding binding;
     private BrushType currentBrush = BrushType.PEN;
-    private int currentColor = 0xFFEF4444; // Red default
+    private int currentColor = 0xFFEF4444;
     private float currentSizeDp;
+    private int currentSizeIndex = 1;
+
+    private static final float[] PEN_SIZES = {20f, 30f, 40f};
+    private static final float[] ERASER_SIZES = {25f, 35f, 45f};
 
     private static final int[] CHILD_FRIENDLY_COLORS = {
             0xFFEF4444, // Red
@@ -42,10 +43,10 @@ public class DrawingActivity extends AppCompatActivity {
 
         hideSystemBars();
 
-        currentSizeDp = BrushFactory.getDefaultSizeDp(currentBrush);
+        currentSizeDp = getCurrentSizes()[currentSizeIndex];
         initToolbar();
         initColorPicker();
-        initSizeSlider();
+        initSizeButtons();
         updateBrushUI();
         applyBrushToDrawingView();
 
@@ -69,7 +70,8 @@ public class DrawingActivity extends AppCompatActivity {
 
     private void selectBrush(BrushType type) {
         currentBrush = type;
-        currentSizeDp = BrushFactory.getDefaultSizeDp(type);
+        currentSizeIndex = 1;
+        currentSizeDp = getCurrentSizes()[1];
         updateBrushUI();
         applyBrushToDrawingView();
     }
@@ -83,7 +85,6 @@ public class DrawingActivity extends AppCompatActivity {
         adapter.setOnColorSelectedListener((color, position) -> {
             currentColor = color;
             applyBrushToDrawingView();
-            updateSizePreview();
         });
 
         binding.rvColors.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
@@ -123,65 +124,46 @@ public class DrawingActivity extends AppCompatActivity {
         );
     }
 
-    private void initSizeSlider() {
-        binding.sliderBrushSize.setValueFrom(BrushFactory.getMinSizeDp(currentBrush));
-        binding.sliderBrushSize.setValueTo(BrushFactory.getMaxSizeDp(currentBrush));
-        binding.sliderBrushSize.setValue(currentSizeDp);
+    private void initSizeButtons() {
+        binding.btnSizeS.setOnClickListener(v -> selectSize(0));
+        binding.btnSizeM.setOnClickListener(v -> selectSize(1));
+        binding.btnSizeL.setOnClickListener(v -> selectSize(2));
+    }
 
-        binding.sliderBrushSize.addOnChangeListener((slider, value, fromUser) -> {
-            currentSizeDp = value;
-            applyBrushToDrawingView();
-            updateSizePreview();
-        });
+    private void selectSize(int index) {
+        currentSizeIndex = index;
+        currentSizeDp = getCurrentSizes()[index];
+        updateBrushUI();
+        applyBrushToDrawingView();
+    }
+
+    private float[] getCurrentSizes() {
+        return currentBrush == BrushType.ERASER ? ERASER_SIZES : PEN_SIZES;
     }
 
     private void updateBrushUI() {
-        // Update brush button selection state
         binding.btnPen.setActivated(currentBrush == BrushType.PEN);
         binding.btnEraser.setActivated(currentBrush == BrushType.ERASER);
 
-        // Update icon tint for selected/unselected
         updateBrushIconTint(binding.btnPen, currentBrush == BrushType.PEN);
         updateBrushIconTint(binding.btnEraser, currentBrush == BrushType.ERASER);
 
-        // Show/hide color panel for eraser
         int colorPanelVisibility = (currentBrush == BrushType.ERASER) ? View.GONE : View.VISIBLE;
         binding.rvColors.setVisibility(colorPanelVisibility);
 
-        // Update slider range for current brush type
-        binding.sliderBrushSize.setValueFrom(BrushFactory.getMinSizeDp(currentBrush));
-        binding.sliderBrushSize.setValueTo(BrushFactory.getMaxSizeDp(currentBrush));
-        binding.sliderBrushSize.setValue(currentSizeDp);
+        binding.btnSizeS.setActivated(currentSizeIndex == 0);
+        binding.btnSizeM.setActivated(currentSizeIndex == 1);
+        binding.btnSizeL.setActivated(currentSizeIndex == 2);
 
-        updateSizePreview();
+        updateBrushIconTint(binding.btnSizeS, currentSizeIndex == 0);
+        updateBrushIconTint(binding.btnSizeM, currentSizeIndex == 1);
+        updateBrushIconTint(binding.btnSizeL, currentSizeIndex == 2);
     }
 
     private void updateBrushIconTint(ImageButton button, boolean selected) {
         button.setImageTintList(android.content.res.ColorStateList.valueOf(
                 selected ? 0xFFFFFFFF : 0xFF64748B
         ));
-    }
-
-    private void updateSizePreview() {
-        float previewSizeDp = Math.min(currentSizeDp, 40f);
-        float scale = getResources().getDisplayMetrics().density;
-        int sizePx = Math.max((int) (previewSizeDp * scale), 8);
-
-        View preview = binding.viewSizePreview;
-        android.view.ViewGroup.LayoutParams params = preview.getLayoutParams();
-        params.width = sizePx;
-        params.height = sizePx;
-        preview.setLayoutParams(params);
-
-        GradientDrawable drawable = new GradientDrawable();
-        drawable.setShape(GradientDrawable.OVAL);
-        if (currentBrush == BrushType.ERASER) {
-            drawable.setColor(0xFFCCCCCC);
-            drawable.setStroke(1, 0xFF888888);
-        } else {
-            drawable.setColor(currentColor);
-        }
-        preview.setBackground(drawable);
     }
 
     private void updateUndoRedoState() {

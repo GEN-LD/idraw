@@ -70,25 +70,35 @@
                 android:background="@color/divider"
                 android:layout_marginVertical="4dp" />
 
-            <!-- Size slider -->
-            <com.google.android.material.slider.Slider
-                android:id="@+id/slider_brush_size"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:valueFrom="1"
-                android:valueTo="12"
-                android:stepSize="1"
-                app:thumbColor="@color/primary"
-                app:trackColorActive="@color/primary"
-                app:trackHeight="4dp"
+            <!-- Size buttons -->
+            <ImageButton
+                android:id="@+id/btn_size_s"
+                android:layout_width="@dimen/toolbar_button_size"
+                android:layout_height="@dimen/toolbar_button_size"
+                android:src="@drawable/ic_size_s"
+                android:contentDescription="Size S"
+                android:background="@drawable/bg_brush_button"
+                android:padding="8dp"
                 android:layout_marginBottom="4dp" />
 
-            <!-- Size preview -->
-            <View
-                android:id="@+id/view_size_preview"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:background="@color/brush_red"
+            <ImageButton
+                android:id="@+id/btn_size_m"
+                android:layout_width="@dimen/toolbar_button_size"
+                android:layout_height="@dimen/toolbar_button_size"
+                android:src="@drawable/ic_size_m"
+                android:contentDescription="Size M"
+                android:background="@drawable/bg_brush_button"
+                android:padding="8dp"
+                android:layout_marginBottom="4dp" />
+
+            <ImageButton
+                android:id="@+id/btn_size_l"
+                android:layout_width="@dimen/toolbar_button_size"
+                android:layout_height="@dimen/toolbar_button_size"
+                android:src="@drawable/ic_size_l"
+                android:contentDescription="Size L"
+                android:background="@drawable/bg_brush_button"
+                android:padding="8dp"
                 android:layout_marginBottom="4dp" />
 
             <View
