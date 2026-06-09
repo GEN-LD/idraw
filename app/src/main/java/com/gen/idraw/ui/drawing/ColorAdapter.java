@@ -57,9 +57,9 @@ public class ColorAdapter extends RecyclerView.Adapter<ColorAdapter.ViewHolder> 
         GradientDrawable drawable = new GradientDrawable();
         drawable.setShape(GradientDrawable.RECTANGLE);
         drawable.setColor(color);
+        drawable.setCornerRadii(new float[]{20f, 20f, 0f, 0f, 0f, 0f, 20f, 20f});
 
         if (selected) {
-            drawable.setCornerRadii(new float[]{20f, 20f, 0f, 0f, 0f, 0f, 20f, 20f});
             drawable.setStroke(3, 0xFFFFFFFF);
         } else {
             drawable.setStroke(1, 0x33888888);
