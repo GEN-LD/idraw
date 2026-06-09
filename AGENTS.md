@@ -36,3 +36,63 @@
 - ConstraintLayout
 - RecyclerView
 - Material Slider
+- Material SwitchMaterial
+
+## 导航流程
+
+```
+首页
+  ├── 画画模式 → 类别选择 (CategoryActivity)
+  │     ├── 动物 → 主题选择 (SubjectActivity)
+  │     │     ├── 熊猫 → 画画 (DrawingActivity)
+  │     │     ├── 小兔子 → 画画
+  │     │     ├── 小鸡 → 画画
+  │     │     └── 长颈鹿 → 画画
+  │     ├── 交通工具 → 主题选择
+  │     │     ├── 挖掘机 → 画画
+  │     │     ├── 消防车 → 画画
+  │     │     ├── 救护车 → 画画
+  │     │     ├── 警车 → 画画
+  │     │     └── 自行车 → 画画
+  │     └── 空白画布 → 画画
+  └── 设置按钮 → 设置 (SettingsActivity)
+        ├── 背景音乐开关
+        ├── 音效开关
+        └── 音量滑动条
+```
+
+## 画笔工具
+
+- **钢笔 (PEN)**: 20/30/40 三档尺寸
+- **橡皮擦 (ERASER)**: 25/35/45 三档尺寸
+- 颜色: 9种儿童友好色（红、橙、黄、绿、青、蓝、紫、粉、棕）
+
+## 项目结构
+
+```
+app/src/main/java/com/gen/idraw/
+├── model/
+│   ├── BrushType.java          # 画笔类型枚举
+│   ├── DrawingCategory.java    # 类别枚举
+│   ├── DrawingSubject.java     # 主题数据类
+│   ├── SubjectRepository.java  # 主题仓库
+│   └── Stroke.java             # 笔画数据
+├── view/
+│   └── DrawingView.java        # 画布视图
+├── ui/
+│   ├── main/
+│   │   └── MainActivity.java   # 首页
+│   ├── category/
+│   │   ├── CategoryActivity.java    # 类别选择
+│   │   ├── SubjectActivity.java     # 主题选择
+│   │   └── SubjectAdapter.java      # 主题适配器
+│   ├── drawing/
+│   │   ├── DrawingActivity.java     # 画画页
+│   │   └── ColorAdapter.java        # 颜色适配器
+│   └── settings/
+│       └── SettingsActivity.java    # 设置页
+├── util/
+│   ├── BrushFactory.java       # 画笔工厂
+│   └── SettingsManager.java    # 设置管理器
+└── IdrawApplication.java       # 应用入口
+```
