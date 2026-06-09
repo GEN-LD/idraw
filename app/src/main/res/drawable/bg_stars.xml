@@ -1,32 +1,8 @@
-<!-- res/drawable/bg_stars.xml -->
+<?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <!-- 第1层：浅黄底色 -->
     <item>
         <shape android:shape="rectangle">
             <solid android:color="#FFF3D0" />
         </shape>
     </item>
-
-    <!-- 第2层：金色圆点 -->
-    <item>
-        <bitmap
-            android:src="@drawable/dot_gold"
-            android:tileMode="repeat" />
-    </item>
-
-    <!-- 第3层：粉色圆点（偏移） -->
-    <item android:top="20dp" android:left="20dp">
-        <bitmap
-            android:src="@drawable/dot_pink"
-            android:tileMode="repeat" />
-    </item>
-
-    <!-- 第4层：白色小圆点（偏移） -->
-    <item android:top="40dp" android:left="40dp">
-        <bitmap
-            android:src="@drawable/dot_white"
-            android:tileMode="repeat" />
-    </item>
-
 </layer-list>
