@@ -95,8 +95,8 @@ public class DrawingActivity extends AppCompatActivity {
         binding.rvColors.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         binding.rvColors.setAdapter(adapter);
 
-        // 添加 2dp item 间距（前 11 个 item 底部，最后一个不加）
         final float spacingPx = 4f * getResources().getDisplayMetrics().density;
+        final float density = getResources().getDisplayMetrics().density;
         binding.rvColors.addItemDecoration(new androidx.recyclerview.widget.RecyclerView.ItemDecoration() {
             @Override
             public void getItemOffsets(android.graphics.Rect outRect, android.view.View view,
@@ -109,7 +109,6 @@ public class DrawingActivity extends AppCompatActivity {
             }
         });
 
-        // 布局完成后计算每种颜色高度，均分颜色栏高度
         binding.rvColors.getViewTreeObserver().addOnGlobalLayoutListener(
             new android.view.ViewTreeObserver.OnGlobalLayoutListener() {
                 @Override
@@ -120,8 +119,15 @@ public class DrawingActivity extends AppCompatActivity {
                         int paddingBottom = binding.rvColors.getPaddingBottom();
                         int availableHeight = height - paddingTop - paddingBottom;
                         int totalSpacing = (int) (spacingPx * (CHILD_FRIENDLY_COLORS.length - 1));
-                        int itemHeight = (availableHeight - totalSpacing) / CHILD_FRIENDLY_COLORS.length;
-                        adapter.setItemHeight(Math.max(1, itemHeight));
+                        int n = CHILD_FRIENDLY_COLORS.length;
+                        float normalH = (availableHeight - totalSpacing) / (float) n;
+                        int selectedH = (int) (normalH * 1.5f);
+                        int unselectedH = (int) ((availableHeight - totalSpacing - selectedH) / (float) (n - 1));
+                        int contentWidth = binding.rvColors.getWidth()
+                                - binding.rvColors.getPaddingLeft()
+                                - binding.rvColors.getPaddingRight();
+                        int widthOverflow = (int) (contentWidth * 0.25f);
+                        adapter.setItemSizes(unselectedH, selectedH, widthOverflow);
                         binding.rvColors.getViewTreeObserver().removeOnGlobalLayoutListener(this);
                     }
                 }
