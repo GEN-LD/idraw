@@ -121,12 +121,12 @@ public class DrawingActivity extends AppCompatActivity {
                         int totalSpacing = (int) (spacingPx * (CHILD_FRIENDLY_COLORS.length - 1));
                         int n = CHILD_FRIENDLY_COLORS.length;
                         float normalH = (availableHeight - totalSpacing) / (float) n;
-                        int selectedH = (int) (normalH * 1.5f);
+                        int selectedH = (int) (normalH * 1.2f);
                         int unselectedH = (int) ((availableHeight - totalSpacing - selectedH) / (float) (n - 1));
                         int contentWidth = binding.rvColors.getWidth()
                                 - binding.rvColors.getPaddingLeft()
                                 - binding.rvColors.getPaddingRight();
-                        int widthOverflow = (int) (contentWidth * 0.25f);
+                        int widthOverflow = (int) (contentWidth * 0.5f);
                         adapter.setItemSizes(unselectedH, selectedH, widthOverflow);
                         binding.rvColors.getViewTreeObserver().removeOnGlobalLayoutListener(this);
                     }
