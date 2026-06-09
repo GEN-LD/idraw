@@ -23,8 +23,6 @@ public class DrawingActivity extends AppCompatActivity {
     private float currentSizeDp;
 
     private static final int[] CHILD_FRIENDLY_COLORS = {
-            0xFF000000, // Black
-            0xFFFFFFFF, // White
             0xFFEF4444, // Red
             0xFFF97316, // Orange
             0xFFEAB308, // Yellow
@@ -34,7 +32,6 @@ public class DrawingActivity extends AppCompatActivity {
             0xFF8B5CF6, // Purple
             0xFFEC4899, // Pink
             0xFF92400E, // Brown
-            0xFF6B7280, // Gray
     };
 
     @Override
@@ -63,10 +60,6 @@ public class DrawingActivity extends AppCompatActivity {
 
         binding.btnUndo.setOnClickListener(v -> {
             binding.drawingView.undo();
-            updateUndoRedoState();
-        });
-        binding.btnRedo.setOnClickListener(v -> {
-            binding.drawingView.redo();
             updateUndoRedoState();
         });
         binding.btnClear.setOnClickListener(v -> showClearConfirmDialog());
@@ -193,10 +186,8 @@ public class DrawingActivity extends AppCompatActivity {
 
     private void updateUndoRedoState() {
         binding.btnUndo.setEnabled(binding.drawingView.canUndo());
-        binding.btnRedo.setEnabled(binding.drawingView.canRedo());
         float alpha = 0.4f;
         binding.btnUndo.setAlpha(binding.drawingView.canUndo() ? 1f : alpha);
-        binding.btnRedo.setAlpha(binding.drawingView.canRedo() ? 1f : alpha);
     }
 
     private void hideSystemBars() {
