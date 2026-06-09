@@ -72,12 +72,6 @@ public class ColorAdapter extends RecyclerView.Adapter<ColorAdapter.ViewHolder> 
             drawable.setStroke(1, 0x33888888);
         }
 
-        if (itemHeightPx > 0) {
-            ViewGroup.LayoutParams params = swatch.getLayoutParams();
-            params.height = itemHeightPx;
-            swatch.setLayoutParams(params);
-        }
-
         swatch.setBackground(drawable);
         swatch.setOnClickListener(v -> {
             int oldPos = selectedPosition;

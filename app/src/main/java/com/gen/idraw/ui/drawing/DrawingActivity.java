@@ -93,6 +93,7 @@ public class DrawingActivity extends AppCompatActivity {
         });
 
         binding.rvColors.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        binding.rvColors.setNestedScrollingEnabled(false);
         binding.rvColors.setAdapter(adapter);
 
         // 添加 2dp item 间距（前 11 个 item 底部，最后一个不加）
