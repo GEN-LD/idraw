@@ -14,7 +14,7 @@ import com.gen.idraw.R;
 public class ColorAdapter extends RecyclerView.Adapter<ColorAdapter.ViewHolder> {
 
     private final int[] colors;
-    private int selectedPosition = 2;
+    private int selectedPosition = -1;
     private int unselectedHeightPx = -1;
     private int selectedHeightPx = -1;
     private int widthOverflowPx;
@@ -56,10 +56,10 @@ public class ColorAdapter extends RecyclerView.Adapter<ColorAdapter.ViewHolder> 
 
         GradientDrawable drawable = new GradientDrawable();
         drawable.setShape(GradientDrawable.RECTANGLE);
-        drawable.setCornerRadius(6f);
         drawable.setColor(color);
 
         if (selected) {
+            drawable.setCornerRadius(20f);
             drawable.setStroke(3, 0xFFFFFFFF);
         } else {
             drawable.setStroke(1, 0x33888888);
@@ -79,7 +79,9 @@ public class ColorAdapter extends RecyclerView.Adapter<ColorAdapter.ViewHolder> 
         swatch.setOnClickListener(v -> {
             int oldPos = selectedPosition;
             selectedPosition = holder.getAdapterPosition();
-            notifyItemChanged(oldPos);
+            if (oldPos >= 0) {
+                notifyItemChanged(oldPos);
+            }
             notifyItemChanged(selectedPosition);
             if (listener != null) {
                 listener.onColorSelected(colors[selectedPosition], selectedPosition);
