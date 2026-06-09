@@ -63,8 +63,8 @@
                 android:gravity="center">
 
                 <ImageView
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:src="@drawable/ic_category_animal"
                     android:contentDescription="Animal" />
 
@@ -72,10 +72,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/category_animal"
-                    android:textSize="22sp"
+                    android:textSize="16sp"
                     android:textColor="#FF2E7D32"
                     android:fontFamily="sans-serif-medium"
-                    android:layout_marginTop="12dp" />
+                    android:layout_marginTop="8dp" />
 
             </LinearLayout>
 
@@ -100,8 +100,8 @@
                 android:gravity="center">
 
                 <ImageView
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:src="@drawable/ic_category_vehicle"
                     android:contentDescription="Vehicle" />
 
@@ -109,10 +109,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/category_vehicle"
-                    android:textSize="22sp"
+                    android:textSize="16sp"
                     android:textColor="#FF1565C0"
                     android:fontFamily="sans-serif-medium"
-                    android:layout_marginTop="12dp" />
+                    android:layout_marginTop="8dp" />
 
             </LinearLayout>
 
@@ -136,8 +136,8 @@
                 android:gravity="center">
 
                 <ImageView
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:src="@drawable/ic_category_blank"
                     android:contentDescription="Blank" />
 
@@ -145,10 +145,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/category_blank"
-                    android:textSize="22sp"
+                    android:textSize="16sp"
                     android:textColor="#FFF57F17"
                     android:fontFamily="sans-serif-medium"
-                    android:layout_marginTop="12dp" />
+                    android:layout_marginTop="8dp" />
 
             </LinearLayout>
 
