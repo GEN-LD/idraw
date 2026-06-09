@@ -2,13 +2,16 @@ package com.gen.idraw.ui.main;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.gen.idraw.R;
 import com.gen.idraw.databinding.ActivityMainBinding;
+import com.gen.idraw.ui.category.CategoryActivity;
 import com.gen.idraw.ui.drawing.DrawingActivity;
+import com.gen.idraw.ui.settings.SettingsActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,7 +26,11 @@ public class MainActivity extends AppCompatActivity {
         );
 
         binding.btnDrawingMode.setOnClickListener(v ->
-                startActivity(new Intent(this, DrawingActivity.class))
+                startActivity(new Intent(this, CategoryActivity.class))
+        );
+
+        binding.btnSettings.setOnClickListener(v ->
+                startActivity(new Intent(this, SettingsActivity.class))
         );
     }
 }

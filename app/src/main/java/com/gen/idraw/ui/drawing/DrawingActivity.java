@@ -14,6 +14,8 @@ import com.gen.idraw.model.BrushType;
 
 public class DrawingActivity extends AppCompatActivity {
 
+    public static final String EXTRA_LINE_ART_RES_ID = "extra_line_art_res_id";
+
     private ActivityDrawingBinding binding;
     private BrushType currentBrush = BrushType.PEN;
     private int currentColor = 0xFFEF4444;
@@ -49,6 +51,9 @@ public class DrawingActivity extends AppCompatActivity {
         initSizeButtons();
         updateBrushUI();
         applyBrushToDrawingView();
+
+        int lineArtResId = getIntent().getIntExtra(EXTRA_LINE_ART_RES_ID, 0);
+        binding.drawingView.setReferenceImage(lineArtResId);
 
         binding.drawingView.setOnDrawingChangedListener(this::updateUndoRedoState);
     }

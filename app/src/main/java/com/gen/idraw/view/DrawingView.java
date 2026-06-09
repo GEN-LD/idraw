@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.util.AttributeSet;
@@ -27,10 +28,12 @@ public class DrawingView extends View {
     private int currentColor = 0xFFEF4444;
     private float currentStrokeWidthPx;
 
-    // 双缓冲 Bitmap
     private Bitmap mCanvasBitmap;
     private Canvas mCanvas;
     private final Paint mBitmapPaint = new Paint();
+    private final Paint mWhitePaint = new Paint();
+
+    private Drawable referenceDrawable;
 
     public DrawingView(Context context) {
         super(context);
@@ -50,6 +53,8 @@ public class DrawingView extends View {
     private void init() {
         float defaultDp = BrushFactory.getDefaultSizeDp(currentBrushType);
         currentStrokeWidthPx = dpToPx(defaultDp);
+        mWhitePaint.setColor(Color.WHITE);
+        mWhitePaint.setStyle(Paint.Style.FILL);
     }
 
     private float dpToPx(float dp) {
@@ -70,7 +75,23 @@ public class DrawingView extends View {
         }
         mCanvasBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
         mCanvas = new Canvas(mCanvasBitmap);
-        mCanvas.drawColor(Color.WHITE);
+        mCanvas.drawColor(Color.TRANSPARENT);
+
+        if (referenceDrawable != null) {
+            referenceDrawable.setBounds(0, 0, w, h);
+        }
+    }
+
+    public void setReferenceImage(int resId) {
+        if (resId != 0) {
+            referenceDrawable = getResources().getDrawable(resId, null);
+            if (getWidth() > 0 && getHeight() > 0) {
+                referenceDrawable.setBounds(0, 0, getWidth(), getHeight());
+            }
+        } else {
+            referenceDrawable = null;
+        }
+        invalidate();
     }
 
     public void setBrush(BrushType type, int color, float sizeDp) {
@@ -101,7 +122,7 @@ public class DrawingView extends View {
         strokes.clear();
         undoneStrokes.clear();
         if (mCanvas != null) {
-            mCanvas.drawColor(Color.WHITE);
+            mCanvas.drawColor(Color.TRANSPARENT, android.graphics.PorterDuff.Mode.CLEAR);
         }
         invalidate();
         if (onDrawingChangedListener != null) {
@@ -137,7 +158,6 @@ public class DrawingView extends View {
             case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_CANCEL:
                 if (currentStroke != null) {
-                    // 绘制到双缓冲 Bitmap
                     drawStrokeToBitmap(currentStroke);
 
                     strokes.add(currentStroke);
@@ -155,9 +175,6 @@ public class DrawingView extends View {
         return true;
     }
 
-    /**
-     * 将 Stroke 绘制到双缓冲 Bitmap
-     */
     private void drawStrokeToBitmap(Stroke stroke) {
         if (mCanvas == null) return;
 
@@ -168,22 +185,16 @@ public class DrawingView extends View {
         }
     }
 
-    /**
-     * 重绘所有 stroke（用于 undo/redo/clear）
-     */
     private void redrawAll() {
         if (mCanvas == null) return;
 
-        mCanvas.drawColor(Color.WHITE);
+        mCanvas.drawColor(Color.TRANSPARENT, android.graphics.PorterDuff.Mode.CLEAR);
         for (Stroke stroke : strokes) {
             drawStrokeToBitmap(stroke);
         }
         invalidate();
     }
 
-    /**
-     * 构建 Path 对象
-     */
     private Path buildPath(Stroke stroke) {
         int count = stroke.getPointCount();
         if (count < 2) return null;
@@ -212,14 +223,16 @@ public class DrawingView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        // 绘制双缓冲 Bitmap
-        if (mCanvasBitmap != null && !mCanvasBitmap.isRecycled()) {
-            canvas.drawBitmap(mCanvasBitmap, 0, 0, mBitmapPaint);
-        } else {
-            canvas.drawColor(Color.WHITE);
+        canvas.drawRect(0, 0, getWidth(), getHeight(), mWhitePaint);
+
+        if (referenceDrawable != null) {
+            referenceDrawable.draw(canvas);
         }
 
-        // 绘制当前正在画的 stroke（实时预览）
+        if (mCanvasBitmap != null && !mCanvasBitmap.isRecycled()) {
+            canvas.drawBitmap(mCanvasBitmap, 0, 0, mBitmapPaint);
+        }
+
         if (currentStroke != null) {
             Path path = buildPath(currentStroke);
             if (path != null) {
