@@ -35,6 +35,8 @@ public class DrawingView extends View {
 
     private Drawable referenceDrawable;
 
+    private boolean drawingEnabled = false;
+
     public DrawingView(Context context) {
         super(context);
         init();
@@ -94,6 +96,10 @@ public class DrawingView extends View {
         invalidate();
     }
 
+    public void setDrawingEnabled(boolean enabled) {
+        this.drawingEnabled = enabled;
+    }
+
     public void setBrush(BrushType type, int color, float sizeDp) {
         this.currentBrushType = type;
         this.currentColor = color;
@@ -140,6 +146,13 @@ public class DrawingView extends View {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        if (!drawingEnabled) {
+            if (event.getActionMasked() == MotionEvent.ACTION_DOWN && tryDrawListener != null) {
+                tryDrawListener.onTryDrawWithoutColor();
+            }
+            return true;
+        }
+
         float x = event.getX();
         float y = event.getY();
 
@@ -253,6 +266,16 @@ public class DrawingView extends View {
 
     public void setOnDrawingChangedListener(OnDrawingChangedListener listener) {
         this.onDrawingChangedListener = listener;
+    }
+
+    public interface OnTryDrawWithoutColorListener {
+        void onTryDrawWithoutColor();
+    }
+
+    private OnTryDrawWithoutColorListener tryDrawListener;
+
+    public void setOnTryDrawWithoutColorListener(OnTryDrawWithoutColorListener listener) {
+        this.tryDrawListener = listener;
     }
 
     @Override

@@ -59,7 +59,7 @@ public class ColorAdapter extends RecyclerView.Adapter<ColorAdapter.ViewHolder> 
         drawable.setColor(color);
 
         if (selected) {
-            drawable.setCornerRadius(20f);
+            drawable.setCornerRadii(new float[]{20f, 20f, 0f, 0f, 0f, 0f, 20f, 20f});
             drawable.setStroke(3, 0xFFFFFFFF);
         } else {
             drawable.setStroke(1, 0x33888888);
@@ -72,7 +72,6 @@ public class ColorAdapter extends RecyclerView.Adapter<ColorAdapter.ViewHolder> 
                 LinearLayout.LayoutParams.MATCH_PARENT, height);
         if (selected && widthOverflowPx > 0) {
             params.leftMargin = -widthOverflowPx;
-            params.rightMargin = -widthOverflowPx;
         }
         swatch.setLayoutParams(params);
 

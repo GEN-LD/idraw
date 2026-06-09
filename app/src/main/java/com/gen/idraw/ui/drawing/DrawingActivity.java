@@ -3,6 +3,7 @@ package com.gen.idraw.ui.drawing;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +20,7 @@ public class DrawingActivity extends AppCompatActivity {
     private ActivityDrawingBinding binding;
     private BrushType currentBrush = BrushType.PEN;
     private int currentColor = 0xFFEF4444;
+    private boolean colorSelected = false;
     private float currentSizeDp;
     private int currentSizeIndex = 1;
 
@@ -50,10 +52,12 @@ public class DrawingActivity extends AppCompatActivity {
         initColorPicker();
         initSizeButtons();
         updateBrushUI();
-        applyBrushToDrawingView();
 
         int lineArtResId = getIntent().getIntExtra(EXTRA_LINE_ART_RES_ID, 0);
         binding.drawingView.setReferenceImage(lineArtResId);
+
+        binding.drawingView.setOnTryDrawWithoutColorListener(() ->
+                Toast.makeText(this, "选取颜色后开始画画^-^", Toast.LENGTH_SHORT).show());
 
         binding.drawingView.setOnDrawingChangedListener(this::updateUndoRedoState);
     }
@@ -82,13 +86,17 @@ public class DrawingActivity extends AppCompatActivity {
     }
 
     private void applyBrushToDrawingView() {
-        binding.drawingView.setBrush(currentBrush, currentColor, currentSizeDp);
+        if (colorSelected) {
+            binding.drawingView.setBrush(currentBrush, currentColor, currentSizeDp);
+            binding.drawingView.setDrawingEnabled(true);
+        }
     }
 
     private void initColorPicker() {
         ColorAdapter adapter = new ColorAdapter(CHILD_FRIENDLY_COLORS);
         adapter.setOnColorSelectedListener((color, position) -> {
             currentColor = color;
+            colorSelected = true;
             applyBrushToDrawingView();
         });
 
