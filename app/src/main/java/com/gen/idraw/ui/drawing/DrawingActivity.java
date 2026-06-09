@@ -96,7 +96,7 @@ public class DrawingActivity extends AppCompatActivity {
         binding.rvColors.setAdapter(adapter);
 
         // 添加 2dp item 间距（前 11 个 item 底部，最后一个不加）
-        final float spacingPx = 2f * getResources().getDisplayMetrics().density;
+        final float spacingPx = 4f * getResources().getDisplayMetrics().density;
         binding.rvColors.addItemDecoration(new androidx.recyclerview.widget.RecyclerView.ItemDecoration() {
             @Override
             public void getItemOffsets(android.graphics.Rect outRect, android.view.View view,
