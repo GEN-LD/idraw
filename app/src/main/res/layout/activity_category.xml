@@ -64,8 +64,8 @@
                 android:paddingVertical="16dp">
 
                 <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
                     android:src="@drawable/ic_category_animal"
                     android:contentDescription="Animal" />
 
@@ -102,8 +102,8 @@
                 android:paddingVertical="16dp">
 
                 <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
                     android:src="@drawable/ic_category_vehicle"
                     android:contentDescription="Vehicle" />
 
@@ -139,8 +139,8 @@
                 android:paddingVertical="16dp">
 
                 <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
                     android:src="@drawable/ic_category_blank"
                     android:contentDescription="Blank" />
 
