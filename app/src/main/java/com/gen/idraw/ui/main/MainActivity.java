@@ -21,9 +21,11 @@ public class MainActivity extends AppCompatActivity {
         ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.btnColoringMode.setOnClickListener(v ->
-                Toast.makeText(this, R.string.coloring_coming_soon, Toast.LENGTH_SHORT).show()
-        );
+        binding.btnColoringMode.setOnClickListener(v -> {
+            Toast toast = Toast.makeText(this, R.string.coloring_coming_soon, Toast.LENGTH_LONG);
+            toast.show();
+            new android.os.Handler(android.os.Looper.getMainLooper()).postDelayed(toast::cancel, 1000);
+        });
 
         binding.btnDrawingMode.setOnClickListener(v ->
                 startActivity(new Intent(this, CategoryActivity.class))

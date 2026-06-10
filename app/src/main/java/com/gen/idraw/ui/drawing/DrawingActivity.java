@@ -56,8 +56,11 @@ public class DrawingActivity extends AppCompatActivity {
         int lineArtResId = getIntent().getIntExtra(EXTRA_LINE_ART_RES_ID, 0);
         binding.drawingView.setReferenceImage(lineArtResId);
 
-        binding.drawingView.setOnTryDrawWithoutColorListener(() ->
-                Toast.makeText(this, "选取颜色后开始画画^-^", Toast.LENGTH_SHORT).show());
+        binding.drawingView.setOnTryDrawWithoutColorListener(() -> {
+            Toast toast = Toast.makeText(this, "选取颜色后开始画画^-^", Toast.LENGTH_LONG);
+            toast.show();
+            new android.os.Handler(android.os.Looper.getMainLooper()).postDelayed(toast::cancel, 1000);
+        });
 
         binding.drawingView.setOnDrawingChangedListener(this::updateUndoRedoState);
     }
