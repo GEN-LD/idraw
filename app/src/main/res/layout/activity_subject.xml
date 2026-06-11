@@ -7,12 +7,12 @@
 
     <ImageButton
         android:id="@+id/btn_back"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:src="@drawable/ic_back"
         android:contentDescription="Back"
         android:background="@drawable/bg_brush_button"
-        android:padding="10dp"
+        android:padding="12dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
