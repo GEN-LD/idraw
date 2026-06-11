@@ -24,8 +24,8 @@ public class DrawingActivity extends AppCompatActivity {
     private float currentSizeDp;
     private int currentSizeIndex = 0;
 
-    private static final float[] PEN_SIZES = {20f, 30f, 40f};
-    private static final float[] ERASER_SIZES = {25f, 35f, 45f};
+    private static final float[] PEN_SIZES = {10f, 20f, 30f};
+    private static final float[] ERASER_SIZES = {15f, 25f, 35f};
 
     private static final int[] CHILD_FRIENDLY_COLORS = {
             0xFFEF4444, // Red
