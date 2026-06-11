@@ -89,6 +89,10 @@ public class DrawingView extends View {
         if (referenceDrawable != null) {
             referenceDrawable.setBounds(0, 0, w, h);
         }
+
+        for (Stroke stroke : strokes) {
+            drawStrokeToBitmap(stroke);
+        }
     }
 
     public void setReferenceImage(int resId) {

@@ -173,7 +173,7 @@ public class DrawingActivity extends AppCompatActivity {
         updateBrushIconTint(binding.btnPen, currentBrush == BrushType.PEN);
         updateBrushIconTint(binding.btnEraser, currentBrush == BrushType.ERASER);
 
-        int colorPanelVisibility = (currentBrush == BrushType.ERASER) ? View.GONE : View.VISIBLE;
+        int colorPanelVisibility = (currentBrush == BrushType.ERASER) ? View.INVISIBLE : View.VISIBLE;
         binding.rvColors.setVisibility(colorPanelVisibility);
 
         binding.btnSizeS.setActivated(currentSizeIndex == 0);
