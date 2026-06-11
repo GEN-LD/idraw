@@ -30,6 +30,8 @@ public class DrawingView extends View {
 
     private Bitmap mCanvasBitmap;
     private Canvas mCanvas;
+    private Bitmap mDisplayBitmap;
+    private Canvas mDisplayCanvas;
     private final Paint mBitmapPaint = new Paint();
     private final Paint mWhitePaint = new Paint();
 
@@ -75,9 +77,14 @@ public class DrawingView extends View {
         if (mCanvasBitmap != null && !mCanvasBitmap.isRecycled()) {
             mCanvasBitmap.recycle();
         }
+        if (mDisplayBitmap != null && !mDisplayBitmap.isRecycled()) {
+            mDisplayBitmap.recycle();
+        }
         mCanvasBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
         mCanvas = new Canvas(mCanvasBitmap);
         mCanvas.drawColor(Color.TRANSPARENT);
+        mDisplayBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
+        mDisplayCanvas = new Canvas(mDisplayBitmap);
 
         if (referenceDrawable != null) {
             referenceDrawable.setBounds(0, 0, w, h);
@@ -190,6 +197,7 @@ public class DrawingView extends View {
 
     private void drawStrokeToBitmap(Stroke stroke) {
         if (mCanvas == null) return;
+        if (stroke.getBrushType() == BrushType.ERASER) return;
 
         Paint paint = BrushFactory.createPaint(stroke.getBrushType(), stroke.getColor(), stroke.getStrokeWidth());
         Path path = buildPath(stroke);
@@ -206,6 +214,23 @@ public class DrawingView extends View {
             drawStrokeToBitmap(stroke);
         }
         invalidate();
+    }
+
+    private void composeDisplayBitmap() {
+        if (mDisplayCanvas == null || mCanvasBitmap == null) return;
+
+        mDisplayCanvas.drawColor(Color.TRANSPARENT, android.graphics.PorterDuff.Mode.CLEAR);
+        mDisplayCanvas.drawBitmap(mCanvasBitmap, 0, 0, mBitmapPaint);
+
+        for (Stroke stroke : strokes) {
+            if (stroke.getBrushType() == BrushType.ERASER) {
+                Paint paint = BrushFactory.createPaint(stroke.getBrushType(), stroke.getColor(), stroke.getStrokeWidth());
+                Path path = buildPath(stroke);
+                if (path != null) {
+                    mDisplayCanvas.drawPath(path, paint);
+                }
+            }
+        }
     }
 
     private Path buildPath(Stroke stroke) {
@@ -242,8 +267,10 @@ public class DrawingView extends View {
             referenceDrawable.draw(canvas);
         }
 
-        if (mCanvasBitmap != null && !mCanvasBitmap.isRecycled()) {
-            canvas.drawBitmap(mCanvasBitmap, 0, 0, mBitmapPaint);
+        composeDisplayBitmap();
+
+        if (mDisplayBitmap != null && !mDisplayBitmap.isRecycled()) {
+            canvas.drawBitmap(mDisplayBitmap, 0, 0, mBitmapPaint);
         }
 
         if (currentStroke != null) {
@@ -284,6 +311,10 @@ public class DrawingView extends View {
         if (mCanvasBitmap != null && !mCanvasBitmap.isRecycled()) {
             mCanvasBitmap.recycle();
             mCanvasBitmap = null;
+        }
+        if (mDisplayBitmap != null && !mDisplayBitmap.isRecycled()) {
+            mDisplayBitmap.recycle();
+            mDisplayBitmap = null;
         }
     }
 }
