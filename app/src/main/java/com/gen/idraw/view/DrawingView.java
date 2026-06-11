@@ -68,6 +68,7 @@ public class DrawingView extends View {
         super.onSizeChanged(w, h, oldw, oldh);
         if (w > 0 && h > 0) {
             initBitmap(w, h);
+            updateReferenceBounds();
         }
     }
 
@@ -91,13 +92,34 @@ public class DrawingView extends View {
     public void setReferenceImage(int resId) {
         if (resId != 0) {
             referenceDrawable = getResources().getDrawable(resId, null);
-            if (getWidth() > 0 && getHeight() > 0) {
-                referenceDrawable.setBounds(0, 0, getWidth(), getHeight());
-            }
+            updateReferenceBounds();
         } else {
             referenceDrawable = null;
         }
         invalidate();
+    }
+
+    private void updateReferenceBounds() {
+        if (referenceDrawable == null) return;
+        int padding = (int) dpToPx(40f);
+        int w = getWidth();
+        int h = getHeight();
+        if (w > 0 && h > 0) {
+            int availW = w - padding * 2;
+            int availH = h - padding * 2;
+            float imgW = referenceDrawable.getIntrinsicWidth();
+            float imgH = referenceDrawable.getIntrinsicHeight();
+            if (imgW <= 0 || imgH <= 0) {
+                referenceDrawable.setBounds(padding, padding, w - padding, h - padding);
+                return;
+            }
+            float scale = Math.min(availW / imgW, availH / imgH);
+            int drawW = (int) (imgW * scale);
+            int drawH = (int) (imgH * scale);
+            int left = padding + (availW - drawW) / 2;
+            int top = padding + (availH - drawH) / 2;
+            referenceDrawable.setBounds(left, top, left + drawW, top + drawH);
+        }
     }
 
     public void setDrawingEnabled(boolean enabled) {
