@@ -82,8 +82,8 @@ public class DrawingActivity extends AppCompatActivity {
 
     private void selectBrush(BrushType type) {
         currentBrush = type;
-        currentSizeIndex = 1;
-        currentSizeDp = getCurrentSizes()[1];
+        currentSizeIndex = 0;
+        currentSizeDp = getCurrentSizes()[0];
         updateBrushUI();
         applyBrushToDrawingView();
     }
