@@ -47,6 +47,7 @@ public class SubjectActivity extends AppCompatActivity {
 
     private void openDrawing(DrawingSubject subject) {
         Intent intent = new Intent(this, DrawingActivity.class);
+        intent.putExtra(DrawingActivity.EXTRA_LINE_ART_RES_ID, subject.getLineArtResId());
         startActivity(intent);
     }
 
