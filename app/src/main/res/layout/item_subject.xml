@@ -19,8 +19,8 @@
 
         <ImageView
             android:id="@+id/iv_icon"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:contentDescription="Subject icon" />
 
         <TextView
