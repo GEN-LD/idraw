@@ -89,7 +89,10 @@ public class DrawingActivity extends AppCompatActivity {
     }
 
     private void applyBrushToDrawingView() {
-        if (colorSelected) {
+        if (currentBrush == BrushType.ERASER) {
+            binding.drawingView.setBrush(currentBrush, 0, currentSizeDp);
+            binding.drawingView.setDrawingEnabled(true);
+        } else if (colorSelected) {
             binding.drawingView.setBrush(currentBrush, currentColor, currentSizeDp);
             binding.drawingView.setDrawingEnabled(true);
         }
