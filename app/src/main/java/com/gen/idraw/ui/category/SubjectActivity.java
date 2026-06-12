@@ -38,7 +38,7 @@ public class SubjectActivity extends AppCompatActivity {
         binding.tvTitle.setText(getCategoryTitle(category));
 
         List<DrawingSubject> subjects = SubjectRepository.getSubjects(category);
-        SubjectAdapter adapter = new SubjectAdapter(subjects);
+        SubjectAdapter adapter = new SubjectAdapter(subjects, category);
         adapter.setOnSubjectSelectedListener(this::openDrawing);
 
         binding.rvSubjects.setLayoutManager(new GridLayoutManager(this, 3, RecyclerView.VERTICAL, false));
