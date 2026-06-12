@@ -13,6 +13,8 @@
         android:layout_height="0dp"
         android:fillViewport="true"
         android:scrollbars="none"
+        android:clipChildren="false"
+        android:clipToPadding="false"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent">
@@ -25,7 +27,9 @@
             android:background="@drawable/bg_toolbar_panel"
             android:gravity="center_horizontal"
             android:paddingVertical="8dp"
-            android:paddingHorizontal="4dp">
+            android:paddingHorizontal="4dp"
+            android:clipChildren="false"
+            android:clipToPadding="false">
 
             <!-- Back -->
             <ImageButton
