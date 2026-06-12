@@ -160,7 +160,19 @@ public class DrawingActivity extends AppCompatActivity {
 
     private void toggleSizePopup() {
         sizePopupVisible = !sizePopupVisible;
+        if (sizePopupVisible) {
+            positionSizePopup();
+        }
         binding.sizePopup.setVisibility(sizePopupVisible ? View.VISIBLE : View.GONE);
+    }
+
+    private void positionSizePopup() {
+        int[] btnLoc = new int[2];
+        binding.btnSize.getLocationOnScreen(btnLoc);
+        int[] rootLoc = new int[2];
+        binding.getRoot().getLocationOnScreen(rootLoc);
+        float y = btnLoc[1] - rootLoc[1];
+        binding.sizePopup.setTranslationY(y);
     }
 
     private void selectSizeFromPopup(int index) {
