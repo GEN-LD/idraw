@@ -12,6 +12,7 @@ import com.gen.idraw.databinding.ActivityMainBinding;
 import com.gen.idraw.ui.category.CategoryActivity;
 import com.gen.idraw.ui.drawing.DrawingActivity;
 import com.gen.idraw.ui.settings.SettingsActivity;
+import com.gen.idraw.util.ViewUtils;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         );
 
         binding.btnSettings.setOnClickListener(v ->
-                startActivity(new Intent(this, SettingsActivity.class))
+                ViewUtils.animateClick(v, () -> startActivity(new Intent(this, SettingsActivity.class)))
         );
     }
 
