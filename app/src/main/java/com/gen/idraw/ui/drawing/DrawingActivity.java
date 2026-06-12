@@ -23,6 +23,7 @@ public class DrawingActivity extends AppCompatActivity {
     private boolean colorSelected = false;
     private float currentSizeDp;
     private int currentSizeIndex = 0;
+    private boolean sizePopupVisible = false;
 
     private static final float[] PEN_SIZES = {10f, 20f, 30f};
     private static final float[] ERASER_SIZES = {15f, 25f, 35f};
@@ -50,7 +51,7 @@ public class DrawingActivity extends AppCompatActivity {
         currentSizeDp = getCurrentSizes()[currentSizeIndex];
         initToolbar();
         initColorPicker();
-        initSizeButtons();
+        initSizeButton();
         updateBrushUI();
 
         int lineArtResId = getIntent().getIntExtra(EXTRA_LINE_ART_RES_ID, 0);
@@ -149,15 +150,24 @@ public class DrawingActivity extends AppCompatActivity {
         );
     }
 
-    private void initSizeButtons() {
-        binding.btnSizeS.setOnClickListener(v -> selectSize(0));
-        binding.btnSizeM.setOnClickListener(v -> selectSize(1));
-        binding.btnSizeL.setOnClickListener(v -> selectSize(2));
+    private void initSizeButton() {
+        binding.btnSize.setOnClickListener(v -> toggleSizePopup());
+
+        binding.btnPopupS.setOnClickListener(v -> selectSizeFromPopup(0));
+        binding.btnPopupM.setOnClickListener(v -> selectSizeFromPopup(1));
+        binding.btnPopupL.setOnClickListener(v -> selectSizeFromPopup(2));
     }
 
-    private void selectSize(int index) {
+    private void toggleSizePopup() {
+        sizePopupVisible = !sizePopupVisible;
+        binding.sizePopup.setVisibility(sizePopupVisible ? View.VISIBLE : View.GONE);
+    }
+
+    private void selectSizeFromPopup(int index) {
         currentSizeIndex = index;
         currentSizeDp = getCurrentSizes()[index];
+        sizePopupVisible = false;
+        binding.sizePopup.setVisibility(View.GONE);
         updateBrushUI();
         applyBrushToDrawingView();
     }
@@ -176,13 +186,25 @@ public class DrawingActivity extends AppCompatActivity {
         int colorPanelVisibility = (currentBrush == BrushType.ERASER) ? View.INVISIBLE : View.VISIBLE;
         binding.rvColors.setVisibility(colorPanelVisibility);
 
-        binding.btnSizeS.setActivated(currentSizeIndex == 0);
-        binding.btnSizeM.setActivated(currentSizeIndex == 1);
-        binding.btnSizeL.setActivated(currentSizeIndex == 2);
+        // Update size button icon based on current size
+        int sizeIconRes;
+        switch (currentSizeIndex) {
+            case 0: sizeIconRes = R.drawable.ic_size_s; break;
+            case 1: sizeIconRes = R.drawable.ic_size_m; break;
+            case 2: sizeIconRes = R.drawable.ic_size_l; break;
+            default: sizeIconRes = R.drawable.ic_size_s; break;
+        }
+        binding.btnSize.setImageResource(sizeIconRes);
+        binding.btnSize.setActivated(true);
 
-        updateBrushIconTint(binding.btnSizeS, currentSizeIndex == 0);
-        updateBrushIconTint(binding.btnSizeM, currentSizeIndex == 1);
-        updateBrushIconTint(binding.btnSizeL, currentSizeIndex == 2);
+        // Update popup button states
+        binding.btnPopupS.setActivated(currentSizeIndex == 0);
+        binding.btnPopupM.setActivated(currentSizeIndex == 1);
+        binding.btnPopupL.setActivated(currentSizeIndex == 2);
+
+        updateBrushIconTint(binding.btnPopupS, currentSizeIndex == 0);
+        updateBrushIconTint(binding.btnPopupM, currentSizeIndex == 1);
+        updateBrushIconTint(binding.btnPopupL, currentSizeIndex == 2);
     }
 
     private void updateBrushIconTint(ImageButton button, boolean selected) {
