@@ -28,10 +28,12 @@
     </style>
 
     <style name="IdrawButton.Home.Coloring">
-        <item name="backgroundTint">@color/primary</item>
+        <item name="backgroundTint">@null</item>
+        <item name="android:background">@drawable/ic_background_orange</item>
     </style>
 
     <style name="IdrawButton.Home.Drawing">
-        <item name="backgroundTint">@color/secondary</item>
+        <item name="backgroundTint">@null</item>
+        <item name="android:background">@drawable/ic_background_green</item>
     </style>
 </resources>
