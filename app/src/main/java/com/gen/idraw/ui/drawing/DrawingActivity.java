@@ -67,7 +67,7 @@ public class DrawingActivity extends AppCompatActivity {
     }
 
     private void initToolbar() {
-        binding.btnBack.setOnClickListener(v -> finish());
+        binding.btnBack.setOnClickListener(v -> ViewUtils.animateClick(v, () -> finish()));
 
         binding.btnPen.setOnClickListener(v -> selectBrush(BrushType.PEN));
         binding.btnEraser.setOnClickListener(v -> selectBrush(BrushType.ERASER));

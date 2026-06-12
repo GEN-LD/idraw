@@ -26,7 +26,7 @@ public class SettingsActivity extends AppCompatActivity {
         binding.switchSoundEffects.setChecked(settings.isSoundEffectsEnabled());
         binding.sliderVolume.setValue(settings.getVolume());
 
-        binding.btnBack.setOnClickListener(v -> finish());
+        binding.btnBack.setOnClickListener(v -> ViewUtils.animateClick(v, () -> finish()));
 
         binding.switchBgMusic.setOnCheckedChangeListener((buttonView, isChecked) ->
                 settings.setBgMusicEnabled(isChecked));
