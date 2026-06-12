@@ -1,6 +1,5 @@
 package com.gen.idraw.ui.category;
 
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +17,15 @@ import com.google.android.material.card.MaterialCardView;
 import java.util.List;
 
 public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.ViewHolder> {
+
+    private static final int[][] CARD_COLORS = {
+            {0xFFFCE4EC, 0xFFF48FB1},
+            {0xFFE3F2FD, 0xFF90CAF9},
+            {0xFFFFF8E1, 0xFFFFE082},
+            {0xFFE8F5E9, 0xFFA5D6A7},
+            {0xFFF3E5F5, 0xFFCE93D8},
+            {0xFFFBE9E7, 0xFFFFAB91},
+    };
 
     private final List<DrawingSubject> subjects;
     private final DrawingCategory category;
@@ -50,24 +58,9 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.ViewHold
         holder.ivIcon.setImageResource(subject.getIconResId());
         holder.tvName.setText(subject.getName());
 
-        int bgColor;
-        int strokeColor;
-        switch (category) {
-            case ANIMAL:
-                bgColor = Color.parseColor("#FFE8F5E9");
-                strokeColor = Color.parseColor("#FFA5D6A7");
-                break;
-            case VEHICLE:
-                bgColor = Color.parseColor("#FFE3F2FD");
-                strokeColor = Color.parseColor("#FF90CAF9");
-                break;
-            default:
-                bgColor = Color.parseColor("#FFFFF8E1");
-                strokeColor = Color.parseColor("#FFFFE082");
-                break;
-        }
-        holder.cardView.setCardBackgroundColor(bgColor);
-        holder.cardView.setStrokeColor(strokeColor);
+        int[] colors = CARD_COLORS[position % CARD_COLORS.length];
+        holder.cardView.setCardBackgroundColor(colors[0]);
+        holder.cardView.setStrokeColor(colors[1]);
 
         holder.itemView.setOnClickListener(v -> {
             if (listener != null) {
