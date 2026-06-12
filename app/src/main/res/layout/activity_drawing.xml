@@ -102,6 +102,9 @@
         android:gravity="center_vertical"
         android:background="@drawable/bg_toolbar_panel"
         android:padding="4dp"
+        android:translationZ="10dp"
+        android:clickable="true"
+        android:focusable="true"
         android:visibility="gone"
         app:layout_constraintStart_toEndOf="@id/toolbar_scroll"
         app:layout_constraintTop_toTopOf="@id/btn_size">
