@@ -39,7 +39,7 @@
                 android:src="@drawable/ic_back"
                 android:contentDescription="Back"
                 android:background="@drawable/bg_brush_button"
-                android:padding="8dp"
+                android:padding="10dp"
                 android:layout_marginBottom="2dp" />
 
             <!-- Brush type buttons -->
