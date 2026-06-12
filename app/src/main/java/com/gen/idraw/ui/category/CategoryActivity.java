@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.gen.idraw.R;
 import com.gen.idraw.databinding.ActivityCategoryBinding;
+import com.gen.idraw.model.DrawingCategory;
 import com.gen.idraw.util.ViewUtils;
 import com.gen.idraw.ui.drawing.DrawingActivity;
 import com.gen.idraw.ui.settings.SettingsActivity;

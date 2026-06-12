@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.gen.idraw.databinding.ActivitySettingsBinding;
 import com.gen.idraw.util.SettingsManager;
+import com.gen.idraw.util.ViewUtils;
 
 public class SettingsActivity extends AppCompatActivity {
 

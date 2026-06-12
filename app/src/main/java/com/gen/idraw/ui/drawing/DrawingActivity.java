@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.gen.idraw.R;
 import com.gen.idraw.databinding.ActivityDrawingBinding;
 import com.gen.idraw.model.BrushType;
+import com.gen.idraw.util.ViewUtils;
 
 public class DrawingActivity extends AppCompatActivity {
 
