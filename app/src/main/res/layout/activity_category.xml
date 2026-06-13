@@ -20,19 +20,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tv_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/select_category"
-        android:textSize="24sp"
-        android:textColor="@color/on_surface"
-        android:fontFamily="sans-serif-medium"
-        android:layout_marginStart="16dp"
-        app:layout_constraintStart_toEndOf="@id/btn_back"
-        app:layout_constraintTop_toTopOf="@id/btn_back"
-        app:layout_constraintBottom_toBottomOf="@id/btn_back" />
-
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -73,7 +60,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/category_animal"
                     android:textSize="18sp"
-                    android:textColor="#FF6B35"
+                    android:textColor="#FF2E7D32"
                     android:fontFamily="sans-serif-black"
                     android:layout_marginTop="8dp" />
 
@@ -111,7 +98,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/category_vehicle"
                     android:textSize="18sp"
-                    android:textColor="#FF6B35"
+                    android:textColor="#FF1565C0"
                     android:fontFamily="sans-serif-black"
                     android:layout_marginTop="8dp" />
 
@@ -148,7 +135,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/category_blank"
                     android:textSize="18sp"
-                    android:textColor="#FF6B35"
+                    android:textColor="#FFF57F17"
                     android:fontFamily="sans-serif-black"
                     android:layout_marginTop="8dp" />
 

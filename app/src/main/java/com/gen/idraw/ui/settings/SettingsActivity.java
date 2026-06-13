@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.gen.idraw.databinding.ActivitySettingsBinding;
 import com.gen.idraw.util.SettingsManager;
+import com.gen.idraw.util.SoundUtils;
 import com.gen.idraw.util.ViewUtils;
 
 public class SettingsActivity extends AppCompatActivity {
@@ -27,7 +28,10 @@ public class SettingsActivity extends AppCompatActivity {
         binding.switchSoundEffects.setChecked(settings.isSoundEffectsEnabled());
         binding.sliderVolume.setValue(settings.getVolume());
 
-        binding.btnBack.setOnClickListener(v -> ViewUtils.animateClick(v, () -> finish()));
+        binding.btnBack.setOnClickListener(v -> ViewUtils.animateClick(v, () -> {
+            SoundUtils.playClick(this);
+            finish();
+        }));
 
         binding.switchBgMusic.setOnCheckedChangeListener((buttonView, isChecked) ->
                 settings.setBgMusicEnabled(isChecked));

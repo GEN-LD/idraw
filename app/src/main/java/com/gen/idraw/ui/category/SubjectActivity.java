@@ -13,6 +13,7 @@ import com.gen.idraw.databinding.ActivitySubjectBinding;
 import com.gen.idraw.model.DrawingCategory;
 import com.gen.idraw.model.DrawingSubject;
 import com.gen.idraw.model.SubjectRepository;
+import com.gen.idraw.util.SoundUtils;
 import com.gen.idraw.ui.drawing.DrawingActivity;
 
 import java.util.List;
@@ -34,7 +35,10 @@ public class SubjectActivity extends AppCompatActivity {
         String categoryStr = getIntent().getStringExtra(EXTRA_CATEGORY);
         DrawingCategory category = DrawingCategory.valueOf(categoryStr);
 
-        binding.btnBack.setOnClickListener(v -> finish());
+        binding.btnBack.setOnClickListener(v -> {
+            SoundUtils.playClick(this);
+            finish();
+        });
         binding.tvTitle.setText(getCategoryTitle(category));
 
         List<DrawingSubject> subjects = SubjectRepository.getSubjects(category);

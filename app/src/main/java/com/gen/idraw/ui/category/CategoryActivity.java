@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.gen.idraw.R;
 import com.gen.idraw.databinding.ActivityCategoryBinding;
 import com.gen.idraw.model.DrawingCategory;
+import com.gen.idraw.util.SoundUtils;
 import com.gen.idraw.util.ViewUtils;
 import com.gen.idraw.ui.drawing.DrawingActivity;
 import com.gen.idraw.ui.settings.SettingsActivity;
@@ -27,9 +28,18 @@ public class CategoryActivity extends AppCompatActivity {
 
         binding.btnBack.setOnClickListener(v -> ViewUtils.animateClick(v, () -> finish()));
 
-        binding.cardAnimal.setOnClickListener(v -> openCategory(DrawingCategory.ANIMAL));
-        binding.cardVehicle.setOnClickListener(v -> openCategory(DrawingCategory.VEHICLE));
-        binding.cardBlank.setOnClickListener(v -> openBlankCanvas());
+        binding.cardAnimal.setOnClickListener(v -> {
+            SoundUtils.playClick(this);
+            openCategory(DrawingCategory.ANIMAL);
+        });
+        binding.cardVehicle.setOnClickListener(v -> {
+            SoundUtils.playClick(this);
+            openCategory(DrawingCategory.VEHICLE);
+        });
+        binding.cardBlank.setOnClickListener(v -> {
+            SoundUtils.playClick(this);
+            openBlankCanvas();
+        });
     }
 
     private void openCategory(DrawingCategory category) {
