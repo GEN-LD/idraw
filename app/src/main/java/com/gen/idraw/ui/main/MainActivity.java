@@ -38,7 +38,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
         binding.btnSettings.setOnClickListener(v ->
-                ViewUtils.animateClick(v, () -> startActivity(new Intent(this, SettingsActivity.class)))
+                ViewUtils.animateClick(v, () -> {
+                    SoundUtils.playClick(this);
+                    startActivity(new Intent(this, SettingsActivity.class));
+                })
         );
     }
 

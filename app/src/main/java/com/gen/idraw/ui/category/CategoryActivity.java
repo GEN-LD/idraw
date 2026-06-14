@@ -26,7 +26,10 @@ public class CategoryActivity extends AppCompatActivity {
 
         hideSystemBars();
 
-        binding.btnBack.setOnClickListener(v -> ViewUtils.animateClick(v, () -> finish()));
+        binding.btnBack.setOnClickListener(v -> ViewUtils.animateClick(v, () -> {
+            SoundUtils.playClick(this);
+            finish();
+        }));
 
         binding.cardAnimal.setOnClickListener(v -> {
             SoundUtils.playClick(this);
