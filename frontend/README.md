@@ -12,6 +12,8 @@
 
 ## HTTP 访问方式
 
+应用以 `/idraw` 子路径对外提供访问，配合 Nginx 反向代理使用。
+
 ### 方式一：开发服务器
 
 ```bash
@@ -20,32 +22,27 @@ npm install
 npm run dev
 ```
 
-浏览器访问：<http://localhost:5173>
+浏览器访问：<http://localhost:5173>（开发模式默认从根路径访问，如需 `/idraw` 子路径请用 Nginx 反代）
 
-### 方式二：生产构建 + Python 静态服务器
+### 方式二：生产构建 + Nginx 反向代理
 
 ```bash
 cd frontend
 npm install
 npm run build
-python3 -m http.server 8080 --directory dist
-```
-
-浏览器访问：<http://localhost:8080>
-
-或使用一键脚本（默认 8080 端口）：
-
-```bash
-cd frontend
-./start.sh
-```
-
-若 8080 端口被占用，可指定其他端口：
-
-```bash
-cd frontend
 PORT=8888 ./start.sh
 ```
+
+上游服务监听 `127.0.0.1:8888`，仅本机访问。然后使用 `deploy/nginx.conf` 配置 Nginx：
+
+```nginx
+location /idraw/ {
+    proxy_pass http://127.0.0.1:8888/;
+    ...
+}
+```
+
+浏览器访问：<http://your-host/idraw/>
 
 ### 方式三：Vite 预览
 
@@ -75,13 +72,13 @@ frontend/
 
 ## 路由
 
-使用 HashRouter，支持任意静态文件服务器直接部署。
+使用 HashRouter，配合 `/idraw` 子路径部署时的完整 URL：
 
 ```
-/#/                 首页
-/#/category         类别选择
-/#/subjects/animal  动物主题
-/#/subjects/vehicle 交通工具主题
-/#/draw             画画页
-/#/settings         设置页
+/idraw/#/                 首页
+/idraw/#/category         类别选择
+/idraw/#/subjects/animal  动物主题
+/idraw/#/subjects/vehicle 交通工具主题
+/idraw/#/draw             画画页
+/idraw/#/settings         设置页
 ```
