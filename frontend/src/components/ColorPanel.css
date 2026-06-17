@@ -1,0 +1,33 @@
+.color-panel {
+  width: var(--color-panel-width);
+  height: calc(100% - 40px);
+  margin: 20px 0;
+  background-color: var(--color-toolbar-bg);
+  border-top-left-radius: 16px;
+  border-bottom-left-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  padding: 4px;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.color-swatch {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  border: 1px solid rgba(136, 136, 136, 0.2);
+  border-radius: 6px;
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.1s ease;
+}
+
+.color-swatch:hover {
+  transform: scale(1.02);
+}
+
+.color-swatch-selected {
+  border: 3px solid var(--color-swatch-border);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+}

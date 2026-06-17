@@ -1,0 +1,66 @@
+export default function LineartBicycle({ className }) {
+  return (
+    <svg viewBox="0 0 400 400" className={className}>
+      <path
+        fill="none"
+        stroke="#FFB0B0B0"
+        strokeWidth="3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M140,230L140,190L185,190L210,150L260,190L260,230Z"
+      />
+      <path
+        fill="none"
+        stroke="#FFB0B0B0"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        d="M110,250A30,30 0,1 1,110 310A30,30 0,1 1,110 310"
+      />
+      <path
+        fill="none"
+        stroke="#FFB0B0B0"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        d="M290,250A30,30 0,1 1,290 310A30,30 0,1 1,290 310"
+      />
+      <path
+        fill="none"
+        stroke="#FFB0B0B0"
+        strokeWidth="3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M140,230L110,230L110,250"
+      />
+      <path
+        fill="none"
+        stroke="#FFB0B0B0"
+        strokeWidth="3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M260,230L290,230L290,250"
+      />
+      <path
+        fill="none"
+        stroke="#FFB0B0B0"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M210,150L200,110L190,150"
+      />
+      <path
+        fill="none"
+        stroke="#FFB0B0B0"
+        strokeWidth="2"
+        strokeLinecap="round"
+        d="M185,190L185,230"
+      />
+      <path
+        fill="none"
+        stroke="#FFB0B0B0"
+        strokeWidth="2"
+        strokeLinecap="round"
+        d="M260,190L260,230"
+      />
+    </svg>
+  );
+}
