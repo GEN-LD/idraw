@@ -6,7 +6,6 @@
   flex-wrap: nowrap;
   align-items: stretch;
   background-color: #FFFFFF;
-  overflow: hidden;
 }
 
 .drawing-canvas-wrapper {
@@ -14,4 +13,5 @@
   min-width: 0;
   height: 100%;
   position: relative;
+  overflow: hidden;
 }
