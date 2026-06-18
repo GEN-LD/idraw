@@ -6,6 +6,7 @@ import ColorPanel from '../components/ColorPanel';
 import { BrushType, PEN_SIZES, ERASER_SIZES, COLORS } from '../utils/constants';
 import { playClick } from '../utils/soundUtils';
 import { animateClick } from '../utils/viewUtils';
+import './DrawingPage.css';
 import {
   LineartPanda, LineartRabbit, LineartGiraffe,
   LineartExcavator, LineartFireTruck, LineartPoliceCar,

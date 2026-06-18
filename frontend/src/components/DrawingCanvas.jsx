@@ -3,7 +3,7 @@ import { BrushType } from '../utils/constants';
 import './DrawingCanvas.css';
 
 const DrawingCanvas = forwardRef(function DrawingCanvas(
-  { brushType, brushSize, color, onBeforeDraw, referenceImage: ReferenceImage },
+  { brushType, brushSize, color, onBeforeDraw, onStrokeCommitted, referenceImage: ReferenceImage },
   ref
 ) {
   const canvasRef = useRef(null);
@@ -138,7 +138,8 @@ const DrawingCanvas = forwardRef(function DrawingCanvas(
     isDrawingRef.current = false;
     strokesRef.current.push(currentStrokeRef.current);
     currentStrokeRef.current = null;
-  }, []);
+    onStrokeCommitted?.();
+  }, [onStrokeCommitted]);
 
   useImperativeHandle(ref, () => ({
     undo: () => {

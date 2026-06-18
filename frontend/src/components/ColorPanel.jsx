@@ -43,7 +43,7 @@ export default function ColorPanel({ colors, selectedColor, onColorSelect }) {
             style={{
               backgroundColor: c,
               height: `${height}px`,
-              marginLeft: isSelected ? `-${sizes.overflow}px` : undefined,
+              marginLeft: isSelected ? `-${sizes.overflow}px` : 0,
               width: isSelected ? `calc(100% + ${sizes.overflow}px)` : '100%',
             }}
             onClick={() => onColorSelect(c)}

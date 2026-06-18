@@ -6,7 +6,7 @@
   background-color: var(--color-toolbar-bg);
   border-top-right-radius: 16px;
   border-bottom-right-radius: 16px;
-  flex-shrink: 0;
+  flex: 0 0 80px;
   position: relative;
 }
 
