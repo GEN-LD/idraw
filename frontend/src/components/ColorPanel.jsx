@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 import './ColorPanel.css';
 
+const SELECTED_WIDTH = 180;
+
 export default function ColorPanel({ colors, selectedColor, onColorSelect }) {
   const panelRef = useRef(null);
-  const [sizes, setSizes] = useState({ normalH: 32, selectedH: 38, overflow: 0 });
+  const [sizes, setSizes] = useState({ normalH: 32, selectedH: 38, marginLeft: 0, panelContentW: 92 });
 
   useEffect(() => {
     const panel = panelRef.current;
@@ -11,8 +13,11 @@ export default function ColorPanel({ colors, selectedColor, onColorSelect }) {
 
     const updateSizes = () => {
       const height = panel.clientHeight;
-      const paddingTop = parseInt(getComputedStyle(panel).paddingTop, 10) || 0;
-      const paddingBottom = parseInt(getComputedStyle(panel).paddingBottom, 10) || 0;
+      const style = getComputedStyle(panel);
+      const paddingTop = parseInt(style.paddingTop, 10) || 0;
+      const paddingBottom = parseInt(style.paddingBottom, 10) || 0;
+      const paddingLeft = parseInt(style.paddingLeft, 10) || 0;
+      const paddingRight = parseInt(style.paddingRight, 10) || 0;
       const availableHeight = height - paddingTop - paddingBottom;
       const spacing = 6;
       const n = colors.length;
@@ -20,9 +25,9 @@ export default function ColorPanel({ colors, selectedColor, onColorSelect }) {
       const normalH = Math.floor((availableHeight - totalSpacing) / n);
       const selectedH = Math.floor(normalH * 1.2);
       const unselectedH = Math.floor((availableHeight - totalSpacing - selectedH) / (n - 1));
-      const contentWidth = panel.clientWidth - paddingTop - paddingBottom;
-      const overflow = Math.floor(contentWidth * 0.5);
-      setSizes({ normalH: unselectedH, selectedH, overflow });
+      const contentWidth = panel.clientWidth - paddingLeft - paddingRight;
+      const marginLeft = -(SELECTED_WIDTH - contentWidth);
+      setSizes({ normalH: unselectedH, selectedH, marginLeft, panelContentW: contentWidth });
     };
 
     updateSizes();
@@ -40,12 +45,12 @@ export default function ColorPanel({ colors, selectedColor, onColorSelect }) {
           <button
             key={c}
             className={`color-swatch ${isSelected ? 'selected' : ''}`}
-            style={{
-              backgroundColor: c,
-              height: `${height}px`,
-              marginLeft: isSelected ? `-${sizes.overflow}px` : 0,
-              width: isSelected ? `calc(100% + ${sizes.overflow}px)` : '100%',
-            }}
+              style={{
+                backgroundColor: c,
+                height: `${height}px`,
+                marginLeft: isSelected ? `${sizes.marginLeft}px` : 0,
+                width: isSelected ? `${SELECTED_WIDTH}px` : '100%',
+              }}
             onClick={() => onColorSelect(c)}
             aria-label={`选择颜色 ${c}`}
           />
