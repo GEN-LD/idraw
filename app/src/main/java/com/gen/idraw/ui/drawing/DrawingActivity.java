@@ -172,9 +172,7 @@ public class DrawingActivity extends AppCompatActivity {
         binding.btnSize.getLocationOnScreen(btnLoc);
         int[] rootLoc = new int[2];
         binding.getRoot().getLocationOnScreen(rootLoc);
-        float x = btnLoc[0] - rootLoc[0] + binding.btnSize.getWidth();
         float y = btnLoc[1] - rootLoc[1];
-        binding.sizePopup.setTranslationX(x);
         binding.sizePopup.setTranslationY(y);
     }
 

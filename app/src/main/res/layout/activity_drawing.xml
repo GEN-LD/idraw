@@ -110,7 +110,7 @@
         android:clickable="true"
         android:focusable="true"
         android:visibility="gone"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/toolbar_scroll"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
