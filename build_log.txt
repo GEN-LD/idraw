@@ -1,0 +1,71 @@
+﻿./gradlew : WARNING: A restricted method in java.lang.System has been called
+所在位置 行:1 字符: 18
++ cd D:\git\idraw; ./gradlew assembleDebug 2>&1 | Out-File -FilePath "D ...
++                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (WARNING: A rest...has been called:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+WARNING: java.lang.System::load has been called by net.rubygrapefruit.platform.internal.NativeLibraryLoader in an unnam
+ed module (file:/C:/Users/11384/.gradle/wrapper/dists/gradle-8.14-bin/38aieal9i53h9rfe7vjup95b9/gradle-8.14/lib/native-
+platform-0.22-milestone-28.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preDebugBuild UP-TO-DATE
+> Task :app:mergeDebugNativeDebugMetadata NO-SOURCE
+> Task :app:dataBindingMergeDependencyArtifactsDebug UP-TO-DATE
+> Task :app:generateDebugResValues UP-TO-DATE
+> Task :app:generateDebugResources UP-TO-DATE
+> Task :app:mergeDebugResources UP-TO-DATE
+> Task :app:packageDebugResources UP-TO-DATE
+> Task :app:processDebugNavigationResources UP-TO-DATE
+> Task :app:parseDebugLocalResources UP-TO-DATE
+> Task :app:dataBindingGenBaseClassesDebug UP-TO-DATE
+> Task :app:javaPreCompileDebug UP-TO-DATE
+> Task :app:checkDebugAarMetadata UP-TO-DATE
+> Task :app:compileDebugNavigationResources UP-TO-DATE
+> Task :app:mapDebugSourceSetPaths UP-TO-DATE
+> Task :app:createDebugCompatibleScreenManifests UP-TO-DATE
+> Task :app:extractDeepLinksDebug UP-TO-DATE
+> Task :app:processDebugMainManifest UP-TO-DATE
+> Task :app:processDebugManifest UP-TO-DATE
+> Task :app:processDebugManifestForPackage UP-TO-DATE
+> Task :app:processDebugResources UP-TO-DATE
+
+> Task :app:compileDebugJavaWithJavac FAILED
+D:\git\idraw\app\src\main\java\com\gen\idraw\ui\drawing\DrawingActivity.java:43: 閿欒: 宸插湪绫?DrawingActivity涓畾涔変簡鍙橀噺 siz
+ePopupVisible
+    private boolean sizePopupVisible = false;
+                    ^
+娉? 鏌愪簺杈撳叆鏂囦欢浣跨敤鎴栬鐩栦簡宸茶繃鏃剁殑 API銆?
+娉? 鏈夊叧璇︾粏淇℃伅, 璇蜂娇鐢?-Xlint:deprecation 閲嶆柊缂栬瘧銆?
+1 涓敊璇?
+
+[Incubating] Problems report is available at: file:///D:/git/idraw/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':app:compileDebugJavaWithJavac'.
+> Compilation failed; see the compiler output below.
+  娉? 鏈夊叧璇︾粏淇℃伅, 璇蜂娇鐢?-Xlint:deprecation 閲嶆柊缂栬瘧銆?
+  娉? 鏌愪簺杈撳叆鏂囦欢浣跨敤鎴栬鐩栦簡宸茶繃鏃剁殑 API銆?
+  D:\git\idraw\app\src\main\java\com\gen\idraw\ui\drawing\DrawingActivity.java:43: 閿欒: 宸插湪绫?DrawingActivity涓畾涔変簡鍙橀噺 s
+izePopupVisible
+      private boolean sizePopupVisible = false;
+                      ^
+  1 涓敊璇?
+
+* Try:
+> Check your code and dependencies to fix the compilation error(s)
+> Run with --scan to get full insights.
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.14/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD FAILED in 1s
+19 actionable tasks: 1 executed, 18 up-to-date

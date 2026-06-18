@@ -35,6 +35,8 @@ public class DrawingView extends View {
 
     private Drawable referenceDrawable;
 
+    private boolean drawingEnabled = false;
+
     public DrawingView(Context context) {
         super(context);
         init();
@@ -66,6 +68,7 @@ public class DrawingView extends View {
         super.onSizeChanged(w, h, oldw, oldh);
         if (w > 0 && h > 0) {
             initBitmap(w, h);
+            updateReferenceBounds();
         }
     }
 
@@ -80,18 +83,47 @@ public class DrawingView extends View {
         if (referenceDrawable != null) {
             referenceDrawable.setBounds(0, 0, w, h);
         }
+
+        for (Stroke stroke : strokes) {
+            drawStrokeToBitmap(stroke);
+        }
     }
 
     public void setReferenceImage(int resId) {
         if (resId != 0) {
             referenceDrawable = getResources().getDrawable(resId, null);
-            if (getWidth() > 0 && getHeight() > 0) {
-                referenceDrawable.setBounds(0, 0, getWidth(), getHeight());
-            }
+            updateReferenceBounds();
         } else {
             referenceDrawable = null;
         }
         invalidate();
+    }
+
+    private void updateReferenceBounds() {
+        if (referenceDrawable == null) return;
+        int padding = (int) dpToPx(40f);
+        int w = getWidth();
+        int h = getHeight();
+        if (w > 0 && h > 0) {
+            int availW = w - padding * 2;
+            int availH = h - padding * 2;
+            float imgW = referenceDrawable.getIntrinsicWidth();
+            float imgH = referenceDrawable.getIntrinsicHeight();
+            if (imgW <= 0 || imgH <= 0) {
+                referenceDrawable.setBounds(padding, padding, w - padding, h - padding);
+                return;
+            }
+            float scale = Math.min(availW / imgW, availH / imgH);
+            int drawW = (int) (imgW * scale);
+            int drawH = (int) (imgH * scale);
+            int left = padding + (availW - drawW) / 2;
+            int top = padding + (availH - drawH) / 2;
+            referenceDrawable.setBounds(left, top, left + drawW, top + drawH);
+        }
+    }
+
+    public void setDrawingEnabled(boolean enabled) {
+        this.drawingEnabled = enabled;
     }
 
     public void setBrush(BrushType type, int color, float sizeDp) {
@@ -140,6 +172,13 @@ public class DrawingView extends View {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        if (!drawingEnabled) {
+            if (event.getActionMasked() == MotionEvent.ACTION_DOWN && tryDrawListener != null) {
+                tryDrawListener.onTryDrawWithoutColor();
+            }
+            return true;
+        }
+
         float x = event.getX();
         float y = event.getY();
 
@@ -147,18 +186,26 @@ public class DrawingView extends View {
             case MotionEvent.ACTION_DOWN:
                 currentStroke = new Stroke(currentBrushType, currentColor, currentStrokeWidthPx);
                 currentStroke.addPoint(x, y);
+                if (currentBrushType == BrushType.ERASER) {
+                    drawLastSegmentToBitmap(currentStroke);
+                }
                 break;
 
             case MotionEvent.ACTION_MOVE:
                 if (currentStroke != null) {
                     currentStroke.addPoint(x, y);
+                    if (currentBrushType == BrushType.ERASER) {
+                        drawLastSegmentToBitmap(currentStroke);
+                    }
                 }
                 break;
 
             case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_CANCEL:
                 if (currentStroke != null) {
-                    drawStrokeToBitmap(currentStroke);
+                    if (currentBrushType == BrushType.PEN) {
+                        drawStrokeToBitmap(currentStroke);
+                    }
 
                     strokes.add(currentStroke);
                     undoneStrokes.clear();
@@ -183,6 +230,25 @@ public class DrawingView extends View {
         if (path != null) {
             mCanvas.drawPath(path, paint);
         }
+    }
+
+    private void drawLastSegmentToBitmap(Stroke stroke) {
+        if (mCanvas == null) return;
+        int count = stroke.getPointCount();
+        if (count < 2) return;
+
+        Paint paint = BrushFactory.createPaint(stroke.getBrushType(), stroke.getColor(), stroke.getStrokeWidth());
+        Path path = new Path();
+        float prevX = stroke.getPointX(count - 2);
+        float prevY = stroke.getPointY(count - 2);
+        float currX = stroke.getPointX(count - 1);
+        float currY = stroke.getPointY(count - 1);
+        float midX = (prevX + currX) / 2f;
+        float midY = (prevY + currY) / 2f;
+        path.moveTo(prevX, prevY);
+        path.quadTo(prevX, prevY, midX, midY);
+        path.lineTo(currX, currY);
+        mCanvas.drawPath(path, paint);
     }
 
     private void redrawAll() {
@@ -233,7 +299,7 @@ public class DrawingView extends View {
             canvas.drawBitmap(mCanvasBitmap, 0, 0, mBitmapPaint);
         }
 
-        if (currentStroke != null) {
+        if (currentStroke != null && currentStroke.getBrushType() == BrushType.PEN) {
             Path path = buildPath(currentStroke);
             if (path != null) {
                 Paint paint = BrushFactory.createPaint(
@@ -253,6 +319,16 @@ public class DrawingView extends View {
 
     public void setOnDrawingChangedListener(OnDrawingChangedListener listener) {
         this.onDrawingChangedListener = listener;
+    }
+
+    public interface OnTryDrawWithoutColorListener {
+        void onTryDrawWithoutColor();
+    }
+
+    private OnTryDrawWithoutColorListener tryDrawListener;
+
+    public void setOnTryDrawWithoutColorListener(OnTryDrawWithoutColorListener listener) {
+        this.tryDrawListener = listener;
     }
 
     @Override

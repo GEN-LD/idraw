@@ -3,16 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background">
+    android:background="#fff6db"
+    android:clipChildren="false"
+    android:clipToPadding="false">
 
     <ImageButton
         android:id="@+id/btn_back"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:src="@drawable/ic_back"
         android:contentDescription="Back"
         android:background="@drawable/bg_brush_button"
-        android:padding="10dp"
+        android:padding="12dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -113,7 +115,7 @@
                 android:layout_height="wrap_content"
                 android:valueFrom="0"
                 android:valueTo="100"
-                android:stepSize="5"
+                android:stepSize="25"
                 app:thumbColor="@color/primary"
                 app:trackColorActive="@color/primary"
                 app:trackHeight="6dp" />

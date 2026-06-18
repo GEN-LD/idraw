@@ -3,6 +3,7 @@ package com.gen.idraw.ui.drawing;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.gen.idraw.R;
 import com.gen.idraw.databinding.ActivityDrawingBinding;
 import com.gen.idraw.model.BrushType;
+import com.gen.idraw.util.ViewUtils;
 
 public class DrawingActivity extends AppCompatActivity {
 
@@ -19,11 +21,13 @@ public class DrawingActivity extends AppCompatActivity {
     private ActivityDrawingBinding binding;
     private BrushType currentBrush = BrushType.PEN;
     private int currentColor = 0xFFEF4444;
+    private boolean colorSelected = false;
     private float currentSizeDp;
-    private int currentSizeIndex = 1;
+    private int currentSizeIndex = 0;
+    private boolean sizePopupVisible = false;
 
-    private static final float[] PEN_SIZES = {20f, 30f, 40f};
-    private static final float[] ERASER_SIZES = {25f, 35f, 45f};
+    private static final float[] PEN_SIZES = {10f, 20f, 30f};
+    private static final float[] ERASER_SIZES = {15f, 25f, 35f};
 
     private static final int[] CHILD_FRIENDLY_COLORS = {
             0xFFEF4444, // Red
@@ -48,18 +52,23 @@ public class DrawingActivity extends AppCompatActivity {
         currentSizeDp = getCurrentSizes()[currentSizeIndex];
         initToolbar();
         initColorPicker();
-        initSizeButtons();
+        initSizeButton();
         updateBrushUI();
-        applyBrushToDrawingView();
 
         int lineArtResId = getIntent().getIntExtra(EXTRA_LINE_ART_RES_ID, 0);
         binding.drawingView.setReferenceImage(lineArtResId);
+
+        binding.drawingView.setOnTryDrawWithoutColorListener(() -> {
+            Toast toast = Toast.makeText(this, "选取颜色后开始画画^-^", Toast.LENGTH_LONG);
+            toast.show();
+            new android.os.Handler(android.os.Looper.getMainLooper()).postDelayed(toast::cancel, 1000);
+        });
 
         binding.drawingView.setOnDrawingChangedListener(this::updateUndoRedoState);
     }
 
     private void initToolbar() {
-        binding.btnBack.setOnClickListener(v -> finish());
+        binding.btnBack.setOnClickListener(v -> ViewUtils.animateClick(v, () -> finish()));
 
         binding.btnPen.setOnClickListener(v -> selectBrush(BrushType.PEN));
         binding.btnEraser.setOnClickListener(v -> selectBrush(BrushType.ERASER));
@@ -75,28 +84,35 @@ public class DrawingActivity extends AppCompatActivity {
 
     private void selectBrush(BrushType type) {
         currentBrush = type;
-        currentSizeIndex = 1;
-        currentSizeDp = getCurrentSizes()[1];
+        currentSizeIndex = 0;
+        currentSizeDp = getCurrentSizes()[0];
         updateBrushUI();
         applyBrushToDrawingView();
     }
 
     private void applyBrushToDrawingView() {
-        binding.drawingView.setBrush(currentBrush, currentColor, currentSizeDp);
+        if (currentBrush == BrushType.ERASER) {
+            binding.drawingView.setBrush(currentBrush, 0, currentSizeDp);
+            binding.drawingView.setDrawingEnabled(true);
+        } else if (colorSelected) {
+            binding.drawingView.setBrush(currentBrush, currentColor, currentSizeDp);
+            binding.drawingView.setDrawingEnabled(true);
+        }
     }
 
     private void initColorPicker() {
         ColorAdapter adapter = new ColorAdapter(CHILD_FRIENDLY_COLORS);
         adapter.setOnColorSelectedListener((color, position) -> {
             currentColor = color;
+            colorSelected = true;
             applyBrushToDrawingView();
         });
 
         binding.rvColors.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         binding.rvColors.setAdapter(adapter);
 
-        // 添加 2dp item 间距（前 11 个 item 底部，最后一个不加）
-        final float spacingPx = 2f * getResources().getDisplayMetrics().density;
+        final float spacingPx = 4f * getResources().getDisplayMetrics().density;
+        final float density = getResources().getDisplayMetrics().density;
         binding.rvColors.addItemDecoration(new androidx.recyclerview.widget.RecyclerView.ItemDecoration() {
             @Override
             public void getItemOffsets(android.graphics.Rect outRect, android.view.View view,
@@ -109,7 +125,6 @@ public class DrawingActivity extends AppCompatActivity {
             }
         });
 
-        // 布局完成后计算每种颜色高度，均分颜色栏高度
         binding.rvColors.getViewTreeObserver().addOnGlobalLayoutListener(
             new android.view.ViewTreeObserver.OnGlobalLayoutListener() {
                 @Override
@@ -120,8 +135,15 @@ public class DrawingActivity extends AppCompatActivity {
                         int paddingBottom = binding.rvColors.getPaddingBottom();
                         int availableHeight = height - paddingTop - paddingBottom;
                         int totalSpacing = (int) (spacingPx * (CHILD_FRIENDLY_COLORS.length - 1));
-                        int itemHeight = (availableHeight - totalSpacing) / CHILD_FRIENDLY_COLORS.length;
-                        adapter.setItemHeight(Math.max(1, itemHeight));
+                        int n = CHILD_FRIENDLY_COLORS.length;
+                        float normalH = (availableHeight - totalSpacing) / (float) n;
+                        int selectedH = (int) (normalH * 1.2f);
+                        int unselectedH = (int) ((availableHeight - totalSpacing - selectedH) / (float) (n - 1));
+                        int contentWidth = binding.rvColors.getWidth()
+                                - binding.rvColors.getPaddingLeft()
+                                - binding.rvColors.getPaddingRight();
+                        int widthOverflow = (int) (contentWidth * 0.5f);
+                        adapter.setItemSizes(unselectedH, selectedH, widthOverflow);
                         binding.rvColors.getViewTreeObserver().removeOnGlobalLayoutListener(this);
                     }
                 }
@@ -129,15 +151,36 @@ public class DrawingActivity extends AppCompatActivity {
         );
     }
 
-    private void initSizeButtons() {
-        binding.btnSizeS.setOnClickListener(v -> selectSize(0));
-        binding.btnSizeM.setOnClickListener(v -> selectSize(1));
-        binding.btnSizeL.setOnClickListener(v -> selectSize(2));
+    private void initSizeButton() {
+        binding.btnSize.setOnClickListener(v -> toggleSizePopup());
+
+        binding.btnPopupS.setOnClickListener(v -> selectSizeFromPopup(0));
+        binding.btnPopupM.setOnClickListener(v -> selectSizeFromPopup(1));
+        binding.btnPopupL.setOnClickListener(v -> selectSizeFromPopup(2));
     }
 
-    private void selectSize(int index) {
+    private void toggleSizePopup() {
+        sizePopupVisible = !sizePopupVisible;
+        if (sizePopupVisible) {
+            positionSizePopup();
+        }
+        binding.sizePopup.setVisibility(sizePopupVisible ? View.VISIBLE : View.GONE);
+    }
+
+    private void positionSizePopup() {
+        int[] btnLoc = new int[2];
+        binding.btnSize.getLocationOnScreen(btnLoc);
+        int[] rootLoc = new int[2];
+        binding.getRoot().getLocationOnScreen(rootLoc);
+        float y = btnLoc[1] - rootLoc[1];
+        binding.sizePopup.setTranslationY(y);
+    }
+
+    private void selectSizeFromPopup(int index) {
         currentSizeIndex = index;
         currentSizeDp = getCurrentSizes()[index];
+        sizePopupVisible = false;
+        binding.sizePopup.setVisibility(View.GONE);
         updateBrushUI();
         applyBrushToDrawingView();
     }
@@ -153,16 +196,25 @@ public class DrawingActivity extends AppCompatActivity {
         updateBrushIconTint(binding.btnPen, currentBrush == BrushType.PEN);
         updateBrushIconTint(binding.btnEraser, currentBrush == BrushType.ERASER);
 
-        int colorPanelVisibility = (currentBrush == BrushType.ERASER) ? View.GONE : View.VISIBLE;
-        binding.rvColors.setVisibility(colorPanelVisibility);
+        // Update size button icon based on current size
+        int sizeIconRes;
+        switch (currentSizeIndex) {
+            case 0: sizeIconRes = R.drawable.ic_size_s; break;
+            case 1: sizeIconRes = R.drawable.ic_size_m; break;
+            case 2: sizeIconRes = R.drawable.ic_size_l; break;
+            default: sizeIconRes = R.drawable.ic_size_s; break;
+        }
+        binding.btnSize.setImageResource(sizeIconRes);
+        binding.btnSize.setActivated(true);
 
-        binding.btnSizeS.setActivated(currentSizeIndex == 0);
-        binding.btnSizeM.setActivated(currentSizeIndex == 1);
-        binding.btnSizeL.setActivated(currentSizeIndex == 2);
+        // Update popup button states
+        binding.btnPopupS.setActivated(currentSizeIndex == 0);
+        binding.btnPopupM.setActivated(currentSizeIndex == 1);
+        binding.btnPopupL.setActivated(currentSizeIndex == 2);
 
-        updateBrushIconTint(binding.btnSizeS, currentSizeIndex == 0);
-        updateBrushIconTint(binding.btnSizeM, currentSizeIndex == 1);
-        updateBrushIconTint(binding.btnSizeL, currentSizeIndex == 2);
+        updateBrushIconTint(binding.btnPopupS, currentSizeIndex == 0);
+        updateBrushIconTint(binding.btnPopupM, currentSizeIndex == 1);
+        updateBrushIconTint(binding.btnPopupL, currentSizeIndex == 2);
     }
 
     private void updateBrushIconTint(ImageButton button, boolean selected) {

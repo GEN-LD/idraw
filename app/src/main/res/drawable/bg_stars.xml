@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#FFF8F0" />
+        </shape>
+    </item>
+    <item>
+        <bitmap
+            android:src="@drawable/tile_gold"
+            android:tileMode="repeat" />
+    </item>
+    <item android:top="20dp" android:left="20dp">
+        <bitmap
+            android:src="@drawable/tile_pink"
+            android:tileMode="repeat" />
+    </item>
+    <item android:top="40dp" android:left="40dp">
+        <bitmap
+            android:src="@drawable/tile_white"
+            android:tileMode="repeat" />
+    </item>
+</layer-list>
