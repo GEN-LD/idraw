@@ -1,6 +1,5 @@
 import { useRef, useEffect, useState } from 'react';
 import {
-  IcBack,
   IcPen,
   IcEraser,
   IcUndo,
@@ -49,7 +48,7 @@ export default function Toolbar({
       <div className="toolbar-scroll">
         <div className="toolbar-panel">
           <button className="toolbar-button back-button" onClick={onBack} aria-label="返回">
-            <IcBack className="icon" />
+            <img src="/idraw/ic_back.png" alt="返回" className="nav-icon-img" />
           </button>
 
           <div className="toolbar-divider" />

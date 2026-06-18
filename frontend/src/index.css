@@ -63,3 +63,10 @@ button {
   width: 20px;
   height: 20px;
 }
+
+.nav-icon-img {
+  width: 48px;
+  height: 48px;
+  display: block;
+  object-fit: contain;
+}

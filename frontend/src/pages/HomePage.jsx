@@ -1,6 +1,5 @@
 import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '../routes.js';
-import { IcSettings } from '../assets/icons/index.js';
 import { playClick } from '../utils/soundUtils.js';
 import { animateClick } from '../utils/viewUtils.js';
 import './HomePage.css';
@@ -36,7 +35,7 @@ export default function HomePage() {
         </button>
       </div>
       <button className="home-settings-button" onClick={handleSettings} aria-label="设置">
-        <IcSettings className="icon" />
+        <img src="/idraw/ic_settings.png" alt="设置" className="nav-icon-img" />
       </button>
     </div>
   );

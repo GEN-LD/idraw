@@ -2,7 +2,6 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { ROUTES } from '../routes.js';
 import { getSubjects, getCategoryTitle } from '../utils/subjectsRepository.js';
 import * as icons from '../assets/icons/index.js';
-import { IcBack } from '../assets/icons/index.js';
 import { playClick } from '../utils/soundUtils.js';
 import { animateClick } from '../utils/viewUtils.js';
 import './SubjectPage.css';
@@ -38,7 +37,7 @@ export default function SubjectPage() {
     <div className="subject-page">
       <header className="subject-header">
         <button className="icon-button" onClick={handleBack} aria-label="返回">
-          <IcBack className="icon" />
+          <img src="/idraw/ic_back.png" alt="返回" className="nav-icon-img" />
         </button>
         <h1 className="subject-title">{title}</h1>
       </header>

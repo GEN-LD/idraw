@@ -26,7 +26,6 @@
   border: none;
   border-radius: 10px;
   background-color: transparent;
-  color: var(--color-brush-unselected-icon);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -37,11 +36,6 @@
 .icon-button:active {
   transform: scale(0.7);
   transition: transform 0.1s ease;
-}
-
-.icon-button .icon {
-  width: 32px;
-  height: 32px;
 }
 
 .category-cards {

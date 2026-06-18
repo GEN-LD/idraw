@@ -10,7 +10,7 @@
     radial-gradient(circle, rgba(255, 255, 255, 0.15) 1px, transparent 1px);
   background-size: 24px 24px, 24px 24px, 24px 24px;
   background-position: 0 0, 12px 12px, 6px 24px;
-  padding: 48px;
+  padding: 38px;
 }
 
 .subject-header {
@@ -22,7 +22,7 @@
 
 .subject-title {
   margin: 0;
-  font-size: 84px;
+  font-size: 67px;
   font-weight: 900;
   font-family: sans-serif;
   color: #FF6B35;
@@ -31,26 +31,26 @@
 .subject-grid {
   flex: 1;
   display: grid;
-  grid-template-columns: repeat(3, 480px);
-  gap: 24px;
-  padding: 24px 96px 48px;
+  grid-template-columns: repeat(3, 384px);
+  gap: 19px;
+  padding: 19px 77px 38px;
   align-content: start;
   justify-content: center;
   overflow-y: auto;
 }
 
 .subject-card {
-  width: 480px;
-  height: 600px;
+  width: 384px;
+  height: 480px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  padding: 24px;
+  gap: 10px;
+  padding: 19px;
   border: 6px solid;
-  border-radius: 60px;
-  box-shadow: 0 12px 18px rgba(0, 0, 0, 0.06);
+  border-radius: 48px;
+  box-shadow: 0 10px 14px rgba(0, 0, 0, 0.06);
   cursor: pointer;
   transition: transform 0.1s ease;
 }
@@ -60,22 +60,22 @@
 }
 
 .subject-card-icon-wrapper {
-  width: 360px;
-  height: 360px;
+  width: 288px;
+  height: 288px;
   background-color: #FFFFFF;
-  border-radius: 36px;
+  border-radius: 29px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .subject-card-icon {
-  width: 240px;
-  height: 240px;
+  width: 192px;
+  height: 192px;
 }
 
 .subject-card-name {
-  font-size: 54px;
+  font-size: 43px;
   font-weight: 900;
   font-family: sans-serif;
 }

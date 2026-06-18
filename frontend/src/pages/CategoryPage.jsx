@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { ROUTES, getSubjectsPath } from '../routes.js';
-import { IcBack, IcCategoryAnimal, IcCategoryVehicle, IcCategoryBlank } from '../assets/icons/index.js';
+import { IcCategoryAnimal, IcCategoryVehicle, IcCategoryBlank } from '../assets/icons/index.js';
 import { playClick } from '../utils/soundUtils.js';
 import { animateClick } from '../utils/viewUtils.js';
 import './CategoryPage.css';
@@ -54,7 +54,7 @@ export default function CategoryPage() {
     <div className="category-page">
       <header className="category-header">
         <button className="icon-button" onClick={handleBack} aria-label="返回">
-          <IcBack className="icon" />
+          <img src="/idraw/ic_back.png" alt="返回" className="nav-icon-img" />
         </button>
       </header>
 

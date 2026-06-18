@@ -17,23 +17,23 @@
 .home-buttons {
   display: flex;
   flex-direction: row;
-  gap: 72px;
+  gap: 58px;
   align-items: center;
   justify-content: center;
 }
 
 .home-button {
-  min-width: 720px;
-  min-height: 420px;
+  min-width: 576px;
+  min-height: 336px;
   border: none;
-  border-radius: 72px;
-  font-size: 84px;
+  border-radius: 58px;
+  font-size: 67px;
   font-weight: 500;
   font-family: sans-serif;
   letter-spacing: 0.02em;
   color: #FFFFFF;
   cursor: pointer;
-  box-shadow: 0 12px 18px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 14px rgba(0, 0, 0, 0.1);
   transition: transform 0.1s ease, box-shadow 0.1s ease;
   background-size: 100% 100%;
   background-position: center;
@@ -43,7 +43,7 @@
 
 .home-button:active {
   transform: scale(0.95);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
 
 .home-button-coloring {
@@ -63,20 +63,14 @@
   border: none;
   border-radius: 10px;
   background-color: transparent;
-  color: var(--color-brush-unselected-icon);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px;
+  padding: 16px;
   transition: transform 0.1s ease;
 }
 
 .home-settings-button:active {
   transform: scale(0.7);
-}
-
-.home-settings-button .icon {
-  width: 32px;
-  height: 32px;
 }
