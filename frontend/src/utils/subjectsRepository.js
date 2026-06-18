@@ -16,13 +16,6 @@ const subjects = [
     lineArt: 'LineartRabbit',
   },
   {
-    id: 'chick',
-    name: '小鸡',
-    category: DrawingCategory.ANIMAL,
-    icon: 'IcSubjectChick',
-    lineArt: 'LineartChick',
-  },
-  {
     id: 'giraffe',
     name: '长颈鹿',
     category: DrawingCategory.ANIMAL,
@@ -44,25 +37,11 @@ const subjects = [
     lineArt: 'LineartFireTruck',
   },
   {
-    id: 'ambulance',
-    name: '救护车',
-    category: DrawingCategory.VEHICLE,
-    icon: 'IcSubjectAmbulance',
-    lineArt: 'LineartAmbulance',
-  },
-  {
     id: 'police_car',
     name: '警车',
     category: DrawingCategory.VEHICLE,
     icon: 'IcSubjectPoliceCar',
     lineArt: 'LineartPoliceCar',
-  },
-  {
-    id: 'bicycle',
-    name: '自行车',
-    category: DrawingCategory.VEHICLE,
-    icon: 'IcSubjectBicycle',
-    lineArt: 'LineartBicycle',
   },
 ];
 

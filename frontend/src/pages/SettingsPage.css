@@ -3,7 +3,7 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  background-color: var(--color-background);
+  background-color: #fff6db;
   padding: 16px;
 }
 
@@ -55,7 +55,6 @@
   gap: 8px;
 }
 
-/* Material-like switch */
 .switch {
   position: relative;
   display: inline-block;
@@ -102,7 +101,6 @@
   transform: translateX(20px);
 }
 
-/* Volume slider */
 .volume-slider {
   width: 100%;
   height: 6px;

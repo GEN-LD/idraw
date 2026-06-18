@@ -1,26 +1,26 @@
 .toolbar-scroll {
-  width: var(--toolbar-width);
+  width: 80px;
   height: 100%;
   overflow-y: auto;
-  overflow-x: hidden;
+  overflow-x: visible;
   background-color: var(--color-toolbar-bg);
   border-top-right-radius: 16px;
   border-bottom-right-radius: 16px;
   flex-shrink: 0;
+  position: relative;
 }
 
 .toolbar-panel {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
+  gap: 2px;
   padding: 8px 4px;
-  min-height: 100%;
 }
 
 .toolbar-button {
-  width: var(--toolbar-button-size);
-  height: var(--toolbar-button-size);
+  width: 60px;
+  height: 60px;
   border: none;
   border-radius: 10px;
   background-color: transparent;
@@ -31,6 +31,13 @@
   justify-content: center;
   padding: 8px;
   transition: background-color 0.15s, color 0.15s;
+}
+
+.back-button {
+  width: 72px;
+  height: 72px;
+  padding: 10px;
+  margin-bottom: 2px;
 }
 
 .toolbar-button:hover {
@@ -51,5 +58,18 @@
   width: 100%;
   height: 1px;
   background-color: var(--color-divider);
-  margin: 4px 0;
+  margin: 2px 0;
+}
+
+.size-popup {
+  position: absolute;
+  left: 80px;
+  top: 0;
+  display: flex;
+  flex-direction: row;
+  gap: 2px;
+  padding: 4px;
+  background-color: var(--color-toolbar-bg);
+  border-radius: 0 16px 16px 0;
+  z-index: 10;
 }

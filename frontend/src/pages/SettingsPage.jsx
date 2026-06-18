@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '../routes.js';
 import { useSettings } from '../hooks/useSettings.js';
 import { IcBack } from '../assets/icons/index.js';
+import { playClick } from '../utils/soundUtils.js';
 import './SettingsPage.css';
 
 export default function SettingsPage() {
@@ -15,14 +16,15 @@ export default function SettingsPage() {
     setVolume,
   } = useSettings();
 
+  const handleBack = () => {
+    playClick();
+    navigate(ROUTES.HOME);
+  };
+
   return (
     <div className="settings-page">
       <header className="settings-header">
-        <button
-          className="icon-button"
-          onClick={() => navigate(ROUTES.HOME)}
-          aria-label="返回"
-        >
+        <button className="icon-button" onClick={handleBack} aria-label="返回">
           <IcBack className="icon" />
         </button>
         <h1 className="settings-title">设置</h1>
@@ -61,7 +63,7 @@ export default function SettingsPage() {
             type="range"
             min={0}
             max={100}
-            step={5}
+            step={25}
             value={volume}
             onChange={(e) => setVolume(parseInt(e.target.value, 10))}
             className="volume-slider"

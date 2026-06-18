@@ -2,92 +2,94 @@ import {
   IcBack,
   IcPen,
   IcEraser,
+  IcUndo,
+  IcClear,
   IcSizeS,
   IcSizeM,
   IcSizeL,
-  IcUndo,
-  IcClear,
 } from '../assets/icons/index.js';
 import { BrushType } from '../utils/constants.js';
 import './Toolbar.css';
 
+const SIZE_ICONS = [IcSizeS, IcSizeM, IcSizeL];
+
 export default function Toolbar({
-  currentBrush,
-  currentSizeIndex,
-  canUndo,
+  brushType,
+  onBrushChange,
+  sizeIndex,
+  sizes,
+  sizeLabels,
+  onSizeSelect,
+  showSizePopup,
+  onToggleSizePopup,
   onBack,
-  onSelectBrush,
-  onSelectSize,
   onUndo,
   onClear,
+  canUndo,
 }) {
-  const brushButtons = [
-    { type: BrushType.PEN, icon: IcPen, label: '钢笔' },
-    { type: BrushType.ERASER, icon: IcEraser, label: '橡皮擦' },
-  ];
-
-  const sizeButtons = [
-    { index: 0, icon: IcSizeS, label: '小' },
-    { index: 1, icon: IcSizeM, label: '中' },
-    { index: 2, icon: IcSizeL, label: '大' },
-  ];
+  const CurrentSizeIcon = SIZE_ICONS[sizeIndex] || IcSizeS;
 
   return (
     <div className="toolbar-scroll">
       <div className="toolbar-panel">
-        <button
-          className="toolbar-button"
-          onClick={onBack}
-          aria-label="返回"
-        >
+        <button className="toolbar-button back-button" onClick={onBack} aria-label="返回">
           <IcBack className="icon" />
         </button>
 
         <div className="toolbar-divider" />
 
-        {brushButtons.map(({ type, icon: Icon, label }) => (
-          <button
-            key={type}
-            className={`toolbar-button ${currentBrush === type ? 'toolbar-button-active' : ''}`}
-            onClick={() => onSelectBrush(type)}
-            aria-label={label}
-          >
-            <Icon className="icon" />
-          </button>
-        ))}
-
-        <div className="toolbar-divider" />
-
-        {sizeButtons.map(({ index, icon: Icon, label }) => (
-          <button
-            key={index}
-            className={`toolbar-button ${currentSizeIndex === index ? 'toolbar-button-active' : ''}`}
-            onClick={() => onSelectSize(index)}
-            aria-label={label}
-          >
-            <Icon className="icon" />
-          </button>
-        ))}
-
-        <div className="toolbar-divider" />
-
         <button
-          className="toolbar-button"
-          onClick={onUndo}
-          disabled={!canUndo}
-          aria-label="撤销"
+          className={`toolbar-button ${brushType === BrushType.PEN ? 'toolbar-button-active' : ''}`}
+          onClick={() => onBrushChange(BrushType.PEN)}
+          aria-label="钢笔"
         >
-          <IcUndo className="icon" />
+          <IcPen className="icon" />
+        </button>
+        <button
+          className={`toolbar-button ${brushType === BrushType.ERASER ? 'toolbar-button-active' : ''}`}
+          onClick={() => onBrushChange(BrushType.ERASER)}
+          aria-label="橡皮擦"
+        >
+          <IcEraser className="icon" />
         </button>
 
+        <div className="toolbar-divider" />
+
         <button
-          className="toolbar-button"
-          onClick={onClear}
-          aria-label="清空"
+          className="toolbar-button toolbar-button-active"
+          onClick={onToggleSizePopup}
+          aria-label="笔刷大小"
         >
+          <CurrentSizeIcon className="icon" />
+        </button>
+
+        <div className="toolbar-divider" />
+
+        <button className="toolbar-button" onClick={onUndo} disabled={!canUndo} aria-label="撤销">
+          <IcUndo className="icon" />
+        </button>
+        <button className="toolbar-button" onClick={onClear} aria-label="清空">
           <IcClear className="icon" />
         </button>
       </div>
+
+      {showSizePopup && (
+        <div className="size-popup">
+          {sizes.map((size, idx) => {
+            const Icon = SIZE_ICONS[idx];
+            return (
+              <button
+                key={idx}
+                className={`toolbar-button ${sizeIndex === idx ? 'toolbar-button-active' : ''}`}
+                onClick={() => onSizeSelect(idx)}
+                aria-label={sizeLabels[idx]}
+              >
+                <Icon className="icon" />
+              </button>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }

@@ -1,21 +1,19 @@
-import { CHILD_FRIENDLY_COLORS, toCssColor } from '../utils/constants.js';
 import './ColorPanel.css';
 
-export default function ColorPanel({ selectedColor, onSelect, hidden }) {
-  if (hidden) return null;
-
+export default function ColorPanel({ colors, selectedColor, onColorSelect }) {
   return (
     <div className="color-panel">
-      {CHILD_FRIENDLY_COLORS.map((color) => {
-        const isSelected = color === selectedColor;
+      {colors.map((c) => {
+        const isSelected = selectedColor === c;
         return (
-          <button
-            key={color}
-            className={`color-swatch ${isSelected ? 'color-swatch-selected' : ''}`}
-            style={{ backgroundColor: toCssColor(color) }}
-            onClick={() => onSelect(color)}
-            aria-label={`选择颜色 ${color.toString(16)}`}
-          />
+          <div
+            key={c}
+            className={`color-swatch ${isSelected ? 'selected' : ''}`}
+            style={{ backgroundColor: c }}
+            onClick={() => onColorSelect(c)}
+          >
+            {isSelected && <div className="color-indicator" />}
+          </div>
         );
       })}
     </div>
