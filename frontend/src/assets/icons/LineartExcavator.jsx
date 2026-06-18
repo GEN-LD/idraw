@@ -1,0 +1,60 @@
+export default function LineartExcavator({ className }) {
+  return (
+    <svg viewBox="0 0 400 400" className={className}>
+      <path
+        fill="none"
+        stroke="#FFB0B0B0"
+        strokeWidth="3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M60,260L60,200L110,200L130,160L300,160L320,200L370,200L370,260Z"
+      />
+      <path
+        fill="none"
+        stroke="#FFB0B0B0"
+        strokeWidth="3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M50,260L380,260L380,300L50,300Z"
+      />
+      <path
+        fill="none"
+        stroke="#FFB0B0B0"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        d="M110,280A22,22 0,1 1,110 324A22,22 0,1 1,110 324"
+      />
+      <path
+        fill="none"
+        stroke="#FFB0B0B0"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        d="M320,280A22,22 0,1 1,320 324A22,22 0,1 1,320 324"
+      />
+      <path
+        fill="none"
+        stroke="#FFB0B0B0"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M130,200L130,260"
+      />
+      <path
+        fill="none"
+        stroke="#FFB0B0B0"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M300,160L300,260"
+      />
+      <path
+        fill="none"
+        stroke="#FFB0B0B0"
+        strokeWidth="3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M320,200L370,160L370,120"
+      />
+    </svg>
+  );
+}

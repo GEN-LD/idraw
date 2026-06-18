@@ -1,0 +1,33 @@
+.drawing-canvas-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: #FFFFFF;
+  overflow: hidden;
+}
+
+.drawing-reference {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  padding: 24px;
+}
+
+.drawing-reference-svg {
+  max-width: 100%;
+  max-height: 100%;
+  width: 100%;
+  height: 100%;
+}
+
+.drawing-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+  cursor: crosshair;
+}

@@ -1,0 +1,65 @@
+.home-page {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-background);
+  position: relative;
+}
+
+.home-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-button {
+  width: var(--home-button-width);
+  height: var(--home-button-height);
+  border: none;
+  border-radius: var(--home-button-corner);
+  font-size: 28px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--color-on-primary);
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.home-button:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.home-button-coloring {
+  background-color: var(--color-primary);
+}
+
+.home-button-drawing {
+  background-color: var(--color-secondary);
+}
+
+.home-settings-button {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  width: 48px;
+  height: 48px;
+  border: none;
+  border-radius: 10px;
+  background-color: transparent;
+  color: var(--color-brush-unselected-icon);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+.home-settings-button:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}

@@ -1,0 +1,74 @@
+export default function LineartFireTruck({ className }) {
+  return (
+    <svg viewBox="0 0 400 400" className={className}>
+      <path
+        fill="none"
+        stroke="#FFB0B0B0"
+        strokeWidth="3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M50,250L50,190L140,190L160,140L340,140L340,250Z"
+      />
+      <path
+        fill="none"
+        stroke="#FFB0B0B0"
+        strokeWidth="3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M40,250L350,250L350,290L40,290Z"
+      />
+      <path
+        fill="none"
+        stroke="#FFB0B0B0"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        d="M100,270A22,22 0,1 1,100 314A22,22 0,1 1,100 314"
+      />
+      <path
+        fill="none"
+        stroke="#FFB0B0B0"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        d="M290,270A22,22 0,1 1,290 314A22,22 0,1 1,290 314"
+      />
+      <path
+        fill="none"
+        stroke="#FFB0B0B0"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M170,140L170,190"
+      />
+      <path
+        fill="none"
+        stroke="#FFB0B0B0"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M250,140L250,190"
+      />
+      <path
+        fill="none"
+        stroke="#FFB0B0B0"
+        strokeWidth="3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M160,100L160,140L210,140L210,100Z"
+      />
+      <path
+        fill="none"
+        stroke="#FFB0B0B0"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        d="M165,105L165,135"
+      />
+      <path
+        fill="none"
+        stroke="#FFB0B0B0"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        d="M340,160L370,160L370,140"
+      />
+    </svg>
+  );
+}
