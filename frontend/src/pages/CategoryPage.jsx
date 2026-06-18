@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { ROUTES, getSubjectsPath } from '../routes.js';
 import { IcBack, IcCategoryAnimal, IcCategoryVehicle, IcCategoryBlank } from '../assets/icons/index.js';
 import { playClick } from '../utils/soundUtils.js';
-import { animateClick, requestImmersiveOnce } from '../utils/viewUtils.js';
+import { animateClick } from '../utils/viewUtils.js';
 import './CategoryPage.css';
 
 const categories = [
@@ -46,7 +46,6 @@ export default function CategoryPage() {
   };
 
   const handleCategoryClick = (path) => {
-    requestImmersiveOnce();
     playClick();
     navigate(path);
   };
