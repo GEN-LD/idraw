@@ -14,7 +14,7 @@ export default function ColorPanel({ colors, selectedColor, onColorSelect }) {
       const paddingTop = parseInt(getComputedStyle(panel).paddingTop, 10) || 0;
       const paddingBottom = parseInt(getComputedStyle(panel).paddingBottom, 10) || 0;
       const availableHeight = height - paddingTop - paddingBottom;
-      const spacing = 4;
+      const spacing = 6;
       const n = colors.length;
       const totalSpacing = spacing * (n - 1);
       const normalH = Math.floor((availableHeight - totalSpacing) / n);

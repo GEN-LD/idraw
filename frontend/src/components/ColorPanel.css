@@ -5,7 +5,7 @@
   flex-direction: column;
   align-items: flex-end;
   padding: 20px 4px;
-  gap: 4px;
+  gap: 6px;
   background-color: var(--color-toolbar-bg);
   border-top-left-radius: 16px;
   border-bottom-left-radius: 16px;
