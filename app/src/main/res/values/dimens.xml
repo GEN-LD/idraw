@@ -8,11 +8,11 @@
     <dimen name="spacing_xl">32dp</dimen>
 
     <!-- Home screen -->
-    <dimen name="home_button_width">240dp</dimen>
-    <dimen name="home_button_height">140dp</dimen>
-    <dimen name="home_button_corner">24dp</dimen>
-    <dimen name="home_button_text">28sp</dimen>
-    <dimen name="home_button_margin">24dp</dimen>
+    <dimen name="home_button_width">720dp</dimen>
+    <dimen name="home_button_height">420dp</dimen>
+    <dimen name="home_button_corner">72dp</dimen>
+    <dimen name="home_button_text">84sp</dimen>
+    <dimen name="home_button_margin">72dp</dimen>
 
     <!-- Toolbar -->
     <dimen name="toolbar_width">80dp</dimen>
