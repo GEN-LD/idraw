@@ -7,19 +7,6 @@ import { BrushType, PEN_SIZES, ERASER_SIZES, COLORS } from '../utils/constants';
 import { playClick } from '../utils/soundUtils';
 import { animateClick } from '../utils/viewUtils';
 import './DrawingPage.css';
-import {
-  LineartPanda, LineartRabbit, LineartGiraffe,
-  LineartExcavator, LineartFireTruck, LineartPoliceCar,
-} from '../assets/icons';
-
-const LINEART_MAP = {
-  panda: LineartPanda,
-  rabbit: LineartRabbit,
-  giraffe: LineartGiraffe,
-  excavator: LineartExcavator,
-  fire_truck: LineartFireTruck,
-  police_car: LineartPoliceCar,
-};
 
 const SIZE_LABELS = ['S', 'M', 'L'];
 
@@ -91,9 +78,9 @@ export default function DrawingPage() {
     setCanUndo(canvasRef.current?.canUndo() ?? false);
   }, []);
 
-  const ReferenceImage = useMemo(() => {
+  const referenceImagePath = useMemo(() => {
     if (isBlank || !subjectId) return null;
-    return LINEART_MAP[subjectId] || null;
+    return `/idraw/lineart_${subjectId}.png`;
   }, [isBlank, subjectId]);
 
   return (
@@ -119,7 +106,7 @@ export default function DrawingPage() {
           brushSize={currentSize}
           color={selectedColor}
           onBeforeDraw={handleBeforeDraw}
-          referenceImage={ReferenceImage}
+          referenceImage={referenceImagePath}
           onStrokeCommitted={handleCanvasChange}
         />
       </div>

@@ -1,7 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { ROUTES } from '../routes.js';
 import { getSubjects, getCategoryTitle } from '../utils/subjectsRepository.js';
-import * as icons from '../assets/icons/index.js';
 import { playClick } from '../utils/soundUtils.js';
 import { animateClick } from '../utils/viewUtils.js';
 import './SubjectPage.css';
@@ -44,7 +43,6 @@ export default function SubjectPage() {
 
       <div className="subject-grid">
         {subjects.map((subject, index) => {
-          const IconComponent = icons[subject.icon];
           const colorSet = SUBJECT_COLORS[index % SUBJECT_COLORS.length];
           return (
             <button
@@ -58,7 +56,11 @@ export default function SubjectPage() {
               onClick={() => handleSubjectClick(subject)}
             >
               <div className="subject-card-icon-wrapper">
-                {IconComponent && <IconComponent className="subject-card-icon" />}
+                <img
+                  src={`/idraw/ic_subject_${subject.id}.png`}
+                  alt={subject.name}
+                  className="subject-card-icon"
+                />
               </div>
               <span className="subject-card-name">{subject.name}</span>
             </button>

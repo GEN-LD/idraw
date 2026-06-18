@@ -1,5 +1,5 @@
 .color-panel {
-  width: 60px;
+  width: 100px;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -9,7 +9,7 @@
   background-color: var(--color-toolbar-bg);
   border-top-left-radius: 16px;
   border-bottom-left-radius: 16px;
-  flex: 0 0 60px;
+  flex: 0 0 100px;
 }
 
 .color-swatch {

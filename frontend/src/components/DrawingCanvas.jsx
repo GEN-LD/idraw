@@ -3,7 +3,7 @@ import { BrushType } from '../utils/constants';
 import './DrawingCanvas.css';
 
 const DrawingCanvas = forwardRef(function DrawingCanvas(
-  { brushType, brushSize, color, onBeforeDraw, onStrokeCommitted, referenceImage: ReferenceImage },
+  { brushType, brushSize, color, onBeforeDraw, onStrokeCommitted, referenceImage: referenceImagePath },
   ref
 ) {
   const canvasRef = useRef(null);
@@ -162,17 +162,21 @@ const DrawingCanvas = forwardRef(function DrawingCanvas(
 
   return (
     <div className="drawing-canvas-container" ref={containerRef}>
-      {ReferenceImage && (
+      {referenceImagePath && (
         <div className="reference-image-layer" style={{
           padding: `${refImgPadding}px`,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
         }}>
-          <ReferenceImage
-            width={refImgMaxW > 0 ? refImgMaxW : 300}
-            height={refImgMaxH > 0 ? refImgMaxH : 400}
-            preserveAspectRatio="xMidYMid meet"
+          <img
+            src={referenceImagePath}
+            alt="参考图"
+            style={{
+              maxWidth: '100%',
+              maxHeight: '100%',
+              objectFit: 'contain',
+            }}
           />
         </div>
       )}

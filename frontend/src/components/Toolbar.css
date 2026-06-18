@@ -1,12 +1,12 @@
 .toolbar-outer {
-  width: 80px;
+  width: 100px;
   height: 100%;
-  flex: 0 0 80px;
+  flex: 0 0 100px;
   position: relative;
 }
 
 .toolbar-scroll {
-  width: 80px;
+  width: 100px;
   height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
