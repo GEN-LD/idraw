@@ -1,3 +1,4 @@
+import { useRef, useEffect, useState } from 'react';
 import {
   IcBack,
   IcPen,
@@ -28,9 +29,20 @@ export default function Toolbar({
   canUndo,
 }) {
   const CurrentSizeIcon = SIZE_ICONS[sizeIndex] || IcSizeS;
+  const toolbarRef = useRef(null);
+  const sizeBtnRef = useRef(null);
+  const [popupTop, setPopupTop] = useState(0);
+
+  useEffect(() => {
+    if (showSizePopup && sizeBtnRef.current && toolbarRef.current) {
+      const toolbarRect = toolbarRef.current.getBoundingClientRect();
+      const btnRect = sizeBtnRef.current.getBoundingClientRect();
+      setPopupTop(btnRect.top - toolbarRect.top);
+    }
+  }, [showSizePopup]);
 
   return (
-    <div className="toolbar-scroll">
+    <div ref={toolbarRef} className="toolbar-scroll">
       <div className="toolbar-panel">
         <button className="toolbar-button back-button" onClick={onBack} aria-label="返回">
           <IcBack className="icon" />
@@ -56,6 +68,7 @@ export default function Toolbar({
         <div className="toolbar-divider" />
 
         <button
+          ref={sizeBtnRef}
           className="toolbar-button toolbar-button-active"
           onClick={onToggleSizePopup}
           aria-label="笔刷大小"
@@ -74,7 +87,7 @@ export default function Toolbar({
       </div>
 
       {showSizePopup && (
-        <div className="size-popup">
+        <div className="size-popup" style={{ top: popupTop }}>
           {sizes.map((size, idx) => {
             const Icon = SIZE_ICONS[idx];
             return (

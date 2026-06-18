@@ -3,6 +3,7 @@ import { ROUTES } from '../routes.js';
 import { useSettings } from '../hooks/useSettings.js';
 import { IcBack } from '../assets/icons/index.js';
 import { playClick } from '../utils/soundUtils.js';
+import { animateClick } from '../utils/viewUtils.js';
 import './SettingsPage.css';
 
 export default function SettingsPage() {
@@ -16,9 +17,11 @@ export default function SettingsPage() {
     setVolume,
   } = useSettings();
 
-  const handleBack = () => {
-    playClick();
-    navigate(ROUTES.HOME);
+  const handleBack = (e) => {
+    animateClick(e.currentTarget, () => {
+      playClick();
+      navigate(ROUTES.HOME);
+    });
   };
 
   return (

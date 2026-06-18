@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { ROUTES, getSubjectsPath } from '../routes.js';
 import { IcBack, IcCategoryAnimal, IcCategoryVehicle, IcCategoryBlank } from '../assets/icons/index.js';
 import { playClick } from '../utils/soundUtils.js';
+import { animateClick, requestImmersiveOnce } from '../utils/viewUtils.js';
 import './CategoryPage.css';
 
 const categories = [
@@ -37,12 +38,15 @@ const categories = [
 export default function CategoryPage() {
   const navigate = useNavigate();
 
-  const handleBack = () => {
-    playClick();
-    navigate(ROUTES.HOME);
+  const handleBack = (e) => {
+    animateClick(e.currentTarget, () => {
+      playClick();
+      navigate(ROUTES.HOME);
+    });
   };
 
   const handleCategoryClick = (path) => {
+    requestImmersiveOnce();
     playClick();
     navigate(path);
   };

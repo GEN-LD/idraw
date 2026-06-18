@@ -4,6 +4,7 @@ import { getSubjects, getCategoryTitle } from '../utils/subjectsRepository.js';
 import * as icons from '../assets/icons/index.js';
 import { IcBack } from '../assets/icons/index.js';
 import { playClick } from '../utils/soundUtils.js';
+import { animateClick, requestImmersiveOnce } from '../utils/viewUtils.js';
 import './SubjectPage.css';
 
 const SUBJECT_COLORS = [
@@ -21,12 +22,15 @@ export default function SubjectPage() {
   const subjects = getSubjects(category);
   const title = getCategoryTitle(category);
 
-  const handleBack = () => {
-    playClick();
-    navigate(ROUTES.CATEGORY);
+  const handleBack = (e) => {
+    animateClick(e.currentTarget, () => {
+      playClick();
+      navigate(ROUTES.CATEGORY);
+    });
   };
 
   const handleSubjectClick = (subject) => {
+    requestImmersiveOnce();
     playClick();
     navigate(`${ROUTES.DRAWING}?subject=${subject.id}`);
   };

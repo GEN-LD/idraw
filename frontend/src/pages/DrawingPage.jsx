@@ -5,6 +5,7 @@ import Toolbar from '../components/Toolbar';
 import ColorPanel from '../components/ColorPanel';
 import { BrushType, PEN_SIZES, ERASER_SIZES, COLORS } from '../utils/constants';
 import { playClick } from '../utils/soundUtils';
+import { animateClick } from '../utils/viewUtils';
 import {
   LineartPanda, LineartRabbit, LineartGiraffe,
   LineartExcavator, LineartFireTruck, LineartPoliceCar,
@@ -31,6 +32,7 @@ export default function DrawingPage() {
   const [sizeIndex, setSizeIndex] = useState(0);
   const [selectedColor, setSelectedColor] = useState(null);
   const [showSizePopup, setShowSizePopup] = useState(false);
+  const [canUndo, setCanUndo] = useState(false);
   const canvasRef = useRef(null);
 
   const sizes = brushType === BrushType.PEN ? PEN_SIZES : ERASER_SIZES;
@@ -57,22 +59,18 @@ export default function DrawingPage() {
   }, []);
 
   const handleBack = useCallback((e) => {
-    const btn = e.currentTarget;
-    btn.style.transition = 'transform 0.1s ease';
-    btn.style.transform = 'scale(0.7)';
-    setTimeout(() => {
-      btn.style.transform = 'scale(1)';
-      setTimeout(() => navigate(-1), 100);
-    }, 100);
+    animateClick(e.currentTarget, () => navigate(-1));
   }, [navigate]);
 
   const handleUndo = useCallback(() => {
     canvasRef.current?.undo();
+    setCanUndo(canvasRef.current?.canUndo() ?? false);
   }, []);
 
   const handleClear = useCallback(() => {
     if (window.confirm('确定清空画布吗？')) {
       canvasRef.current?.clear();
+      setCanUndo(false);
     }
   }, []);
 
@@ -88,12 +86,14 @@ export default function DrawingPage() {
     return true;
   }, [selectedColor, brushType]);
 
+  const handleCanvasChange = useCallback(() => {
+    setCanUndo(canvasRef.current?.canUndo() ?? false);
+  }, []);
+
   const ReferenceImage = useMemo(() => {
     if (isBlank || !subjectId) return null;
     return LINEART_MAP[subjectId] || null;
   }, [isBlank, subjectId]);
-
-  const showColorPanel = brushType === BrushType.PEN;
 
   return (
     <div className="drawing-page">
@@ -109,7 +109,7 @@ export default function DrawingPage() {
         onBack={handleBack}
         onUndo={handleUndo}
         onClear={handleClear}
-        canUndo={canvasRef.current?.canUndo() ?? false}
+        canUndo={canUndo}
       />
       <div className="drawing-canvas-wrapper">
         <DrawingCanvas
@@ -119,15 +119,14 @@ export default function DrawingPage() {
           color={selectedColor}
           onBeforeDraw={handleBeforeDraw}
           referenceImage={ReferenceImage}
+          onStrokeCommitted={handleCanvasChange}
         />
       </div>
-      {showColorPanel && (
-        <ColorPanel
-          colors={COLORS}
-          selectedColor={selectedColor}
-          onColorSelect={handleColorSelect}
-        />
-      )}
+      <ColorPanel
+        colors={COLORS}
+        selectedColor={selectedColor}
+        onColorSelect={handleColorSelect}
+      />
     </div>
   );
 }
