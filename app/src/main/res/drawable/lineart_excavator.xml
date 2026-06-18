@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="400dp"
+    android:height="400dp"
+    android:viewportWidth="400"
+    android:viewportHeight="400">
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#FFB0B0B0"
+        android:strokeWidth="3"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="M60,260L60,200L110,200L130,160L300,160L320,200L370,200L370,260Z"/>
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#FFB0B0B0"
+        android:strokeWidth="3"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="M50,260L380,260L380,300L50,300Z"/>
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#FFB0B0B0"
+        android:strokeWidth="2.5"
+        android:strokeLineCap="round"
+        android:pathData="M110,280A22,22 0,1 1,110 324A22,22 0,1 1,110 324"/>
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#FFB0B0B0"
+        android:strokeWidth="2.5"
+        android:strokeLineCap="round"
+        android:pathData="M320,280A22,22 0,1 1,320 324A22,22 0,1 1,320 324"/>
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#FFB0B0B0"
+        android:strokeWidth="2.5"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="M130,200L130,260"/>
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#FFB0B0B0"
+        android:strokeWidth="2.5"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="M300,160L300,260"/>
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#FFB0B0B0"
+        android:strokeWidth="3"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="M320,200L370,160L370,120"/>
+</vector>

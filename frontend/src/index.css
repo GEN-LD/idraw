@@ -1,0 +1,65 @@
+:root {
+  --color-primary: #FF6B35;
+  --color-primary-dark: #E85D26;
+  --color-primary-variant: #FF8C5A;
+  --color-secondary: #4ECDC4;
+  --color-secondary-dark: #3DB8B0;
+  --color-on-primary: #FFFFFF;
+  --color-on-secondary: #FFFFFF;
+  --color-surface: #FFFFFF;
+  --color-on-surface: #1E293B;
+  --color-background: #FFF8F0;
+  --color-toolbar-bg: #F1F5F9;
+  --color-divider: #E2E8F0;
+  --color-brush-selected-bg: #FF6B35;
+  --color-brush-unselected-icon: #64748B;
+  --color-swatch-border: #FFFFFF;
+  --color-lineart: #FFB0B0B0;
+
+  --home-button-width: 240px;
+  --home-button-height: 140px;
+  --home-button-corner: 24px;
+  --toolbar-width: 64px;
+  --toolbar-button-size: 48px;
+  --color-panel-width: 60px;
+
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: var(--color-on-surface);
+  background-color: var(--color-background);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+button {
+  font-family: inherit;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+
+.icon-sm {
+  width: 20px;
+  height: 20px;
+}
