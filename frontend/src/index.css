@@ -44,6 +44,16 @@
   -webkit-touch-callout: none;
 }
 
+.page-background {
+  background-color: #FFF8F0;
+  background-image:
+    radial-gradient(circle at 20px 20px, #F0B830 2px, transparent 2px),
+    radial-gradient(circle at 20px 20px, #FF8FAB 2px, transparent 2px),
+    radial-gradient(circle at 20px 20px, #FFFFFF 2px, transparent 2px);
+  background-size: 40px 40px;
+  background-position: 0 0, 20px 20px, 40px 40px;
+}
+
 html,
 body,
 #root {

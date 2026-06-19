@@ -51,7 +51,7 @@ export default function CategoryPage() {
   };
 
   return (
-    <div className="category-page">
+    <div className="category-page page-background">
       <header className="category-header">
         <button className="icon-button" onClick={handleBack} aria-label="返回">
           <img src="/idraw/ic_back.png" alt="返回" className="nav-icon-img" />

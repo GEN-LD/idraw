@@ -33,7 +33,7 @@ export default function SubjectPage() {
   };
 
   return (
-    <div className="subject-page">
+    <div className="subject-page page-background">
       <header className="subject-header">
         <button className="icon-button" onClick={handleBack} aria-label="返回">
           <img src="/idraw/ic_back.png" alt="返回" className="nav-icon-img" />

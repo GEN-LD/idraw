@@ -25,7 +25,7 @@ export default function HomePage() {
   };
 
   return (
-    <div className="home-page">
+    <div className="home-page page-background">
       <div className="home-buttons">
         <button className="home-button home-button-coloring" onClick={handleColoringMode}>
           涂色模式
