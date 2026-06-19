@@ -22,16 +22,16 @@
 }
 
 .icon-button {
-  width: 144px;
-  height: 144px;
+  width: 216px;
+  height: 216px;
   border: none;
-  border-radius: 20px;
+  border-radius: 28px;
   background-color: transparent;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 24px;
+  padding: 36px;
   flex-shrink: 0;
 }
 

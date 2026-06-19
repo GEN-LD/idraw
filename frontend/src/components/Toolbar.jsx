@@ -1,7 +1,5 @@
 import { useRef, useEffect, useState } from 'react';
 import {
-  IcPen,
-  IcEraser,
   IcUndo,
   IcClear,
   IcSizeS,
@@ -58,14 +56,14 @@ export default function Toolbar({
             onClick={() => onBrushChange(BrushType.PEN)}
             aria-label="钢笔"
           >
-            <IcPen className="icon" />
+            <img src="/idraw/pen.png" alt="钢笔" className="toolbar-icon-img brush-icon" />
           </button>
           <button
             className={`toolbar-button ${brushType === BrushType.ERASER ? 'toolbar-button-active' : ''}`}
             onClick={() => onBrushChange(BrushType.ERASER)}
             aria-label="橡皮擦"
           >
-            <IcEraser className="icon" />
+            <img src="/idraw/eraser.png" alt="橡皮擦" className="toolbar-icon-img brush-icon" />
           </button>
 
           <div className="toolbar-divider" />
