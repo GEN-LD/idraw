@@ -52,14 +52,14 @@ export default function Toolbar({
           <div className="toolbar-divider" />
 
           <button
-            className={`toolbar-button ${brushType === BrushType.PEN ? 'toolbar-button-active' : ''}`}
+            className={`toolbar-button brush-tool-button ${brushType === BrushType.PEN ? 'toolbar-button-active' : ''}`}
             onClick={() => onBrushChange(BrushType.PEN)}
             aria-label="钢笔"
           >
             <img src="/idraw/pen.png" alt="钢笔" className="toolbar-icon-img brush-icon" />
           </button>
           <button
-            className={`toolbar-button ${brushType === BrushType.ERASER ? 'toolbar-button-active' : ''}`}
+            className={`toolbar-button brush-tool-button ${brushType === BrushType.ERASER ? 'toolbar-button-active' : ''}`}
             onClick={() => onBrushChange(BrushType.ERASER)}
             aria-label="橡皮擦"
           >
