@@ -10,30 +10,30 @@ export const DrawingCategory = {
 };
 
 export const COLORS = [
-  '#EF4444',
-  '#F97316',
-  '#EAB308',
-  '#22C55E',
-  '#06B6D4',
-  '#3B82F6',
-  '#8B5CF6',
-  '#EC4899',
-  '#92400E',
+  '#F87171',
+  '#FB923C',
+  '#FACC15',
+  '#4ADE80',
+  '#22D3EE',
+  '#60A5FA',
+  '#A78BFA',
+  '#F472B6',
+  '#B45309',
 ];
 
 export const CHILD_FRIENDLY_COLORS = [
-  0xFFEF4444,
-  0xFFF97316,
-  0xFFEAB308,
-  0xFF22C55E,
-  0xFF06B6D4,
-  0xFF3B82F6,
-  0xFF8B5CF6,
-  0xFFEC4899,
-  0xFF92400E,
+  0xFFF87171,
+  0xFFFB923C,
+  0xFFFACC15,
+  0xFF4ADE80,
+  0xFF22D3EE,
+  0xFF60A5FA,
+  0xFFA78BFA,
+  0xFFF472B6,
+  0xFFB45309,
 ];
 
-export const DEFAULT_COLOR = 0xFFEF4444;
+export const DEFAULT_COLOR = 0xFFF87171;
 
 export const PEN_SIZES = [10, 20, 30];
 export const ERASER_SIZES = [15, 25, 35];
