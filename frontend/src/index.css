@@ -47,11 +47,11 @@
 .page-background {
   background-color: #FFF8F0;
   background-image:
-    radial-gradient(circle at 20px 20px, #F0B830 2px, transparent 2px),
-    radial-gradient(circle at 20px 20px, #FF8FAB 2px, transparent 2px),
-    radial-gradient(circle at 20px 20px, #FFFFFF 2px, transparent 2px);
-  background-size: 40px 40px;
-  background-position: 0 0, 20px 20px, 40px 40px;
+    radial-gradient(circle at 30px 30px, #F0B830 3px, transparent 3px),
+    radial-gradient(circle at 30px 30px, #FF8FAB 3px, transparent 3px),
+    radial-gradient(circle at 30px 30px, #FFFFFF 3px, transparent 3px);
+  background-size: 60px 60px;
+  background-position: 0 0, 30px 30px, 60px 60px;
 }
 
 html,
