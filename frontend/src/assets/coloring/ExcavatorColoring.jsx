@@ -12,7 +12,6 @@ const MODULES = [
   { id: 'boom', name: '大臂' },
   { id: 'arm', name: '斗杆' },
   { id: 'bucket', name: '铲斗' },
-  { id: 'bucket-teeth', name: '铲斗齿' },
 ];
 
 export default function ExcavatorColoring({ onModuleClick, moduleColors }) {
@@ -33,9 +32,6 @@ export default function ExcavatorColoring({ onModuleClick, moduleColors }) {
         </clipPath>
         <clipPath id="arm-clip">
           <path d="M722,86 L744,110 L796,270 L772,288 Z" />
-        </clipPath>
-        <clipPath id="bucket-clip">
-          <path d="M745,290 L772,288 L796,270 C828,274 844,298 840,334 C837,356 833,372 830,378 L770,386 C748,380 741,362 740,342 C738,318 742,300 745,290 Z" />
         </clipPath>
       </defs>
 
@@ -91,13 +87,8 @@ export default function ExcavatorColoring({ onModuleClick, moduleColors }) {
         <circle cx="500" cy="280" r="3" fill="#1a1a1a" opacity="0.4" />
         <line x1="733" y1="98" x2="784" y2="279" />
         <path d="M705,130 L758,210" />
-        <path d="M760,298 Q772,332 784,362" />
-        <path d="M804,285 Q814,322 820,360" />
-        <path d="M772,288 Q800,320 830,378" strokeDasharray="3 4" />
         <circle cx="733" cy="98" r="9" />
         <circle cx="733" cy="98" r="4" fill="#1a1a1a" opacity="0.4" />
-        <circle cx="784" cy="279" r="8" />
-        <circle cx="784" cy="279" r="3.5" fill="#1a1a1a" opacity="0.4" />
       </g>
 
       <g className="coloring-modules">
@@ -173,17 +164,19 @@ export default function ExcavatorColoring({ onModuleClick, moduleColors }) {
                 fill={moduleColors?.['arm'] || '#FFFFFF'}
                 stroke="#1a1a1a" strokeWidth="4" strokeLinejoin="round" />
         </g>
-        <g className="coloring-module" data-module-id="bucket" data-module-name="铲斗"
-           onClick={(e) => onModuleClick?.('bucket', e)}>
-          <path d="M745,290 L772,288 L796,270 C828,274 844,298 840,334 C837,356 833,372 830,378 L770,386 C748,380 741,362 740,342 C738,318 742,300 745,290 Z"
-                fill={moduleColors?.['bucket'] || '#FFFFFF'}
-                stroke="#1a1a1a" strokeWidth="4" strokeLinejoin="round" />
-        </g>
-        <g className="coloring-module" data-module-id="bucket-teeth" data-module-name="铲斗齿"
-           onClick={(e) => onModuleClick?.('bucket-teeth', e)}>
-          <path d="M830,378 L824,397 L816,385 L809,399 L802,386 L795,400 L788,387 L781,398 L774,386 L770,386 Z"
-                fill={moduleColors?.['bucket-teeth'] || '#FFFFFF'}
-                stroke="#1a1a1a" strokeWidth="4" strokeLinejoin="round" />
+        <g transform="translate(720, 350) scale(-1, 1) rotate(-300) translate(-720, -350)">
+          <g className="coloring-module" data-module-id="bucket" data-module-name="铲斗"
+             onClick={(e) => onModuleClick?.('bucket', e)}>
+            <path d="M 745 295 L 767 288 L 792 270 L 800 310 C 805 355 785 400 740 420 C 695 440 650 420 635 380 L 642 340 L 655 300 Z"
+                  fill={moduleColors?.['bucket'] || '#FFFFFF'}
+                  stroke="#1a1a1a" strokeWidth="4" strokeLinejoin="round" />
+          </g>
+          <g className="coloring-deco">
+            <path d="M 665 310 Q 695 365 740 395" strokeDasharray="4 4" />
+            <path d="M 775 285 Q 790 330 785 375" strokeDasharray="4 4" />
+            <circle cx="754" cy="291" r="9" />
+            <circle cx="754" cy="291" r="4" fill="#1a1a1a" opacity="0.4" />
+          </g>
         </g>
       </g>
     </svg>
