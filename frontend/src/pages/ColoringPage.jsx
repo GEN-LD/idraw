@@ -30,7 +30,7 @@ const COLORS = [
 const SUBJECT_CONFIG = {
   excavator: {
     title: '挖掘机涂色乐园',
-    subtitle: '选一种颜色，点击挖掘机的零件给它穿上彩衣吧',
+    subtitle: '选一种颜色，点击零件给它穿上彩衣吧',
     Component: ExcavatorColoring,
     modules: ExcavatorModules,
   },

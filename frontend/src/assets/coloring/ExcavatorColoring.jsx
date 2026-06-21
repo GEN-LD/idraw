@@ -1,173 +1,136 @@
 const MODULES = [
-  { id: 'track-frame', name: '履带框架' },
-  { id: 'left-wheel', name: '左驱动轮' },
-  { id: 'right-wheel', name: '右驱动轮' },
-  { id: 'chassis', name: '底盘支架' },
-  { id: 'turntable', name: '转台' },
-  { id: 'engine', name: '引擎舱' },
-  { id: 'exhaust-pipe', name: '排气管' },
-  { id: 'exhaust-cap', name: '排气帽' },
+  { id: 'track-outer', name: '履带外框' },
+  { id: 'track-inner', name: '履带内侧' },
+  { id: 'roller-left', name: '左承重轮' },
+  { id: 'roller-mid', name: '中承重轮' },
+  { id: 'roller-right', name: '右承重轮' },
+  { id: 'platform', name: '平台底座' },
+  { id: 'engine', name: '发动机室' },
+  { id: 'exhaust', name: '排气管' },
+  { id: 'rain-cap', name: '防雨帽' },
   { id: 'cab', name: '驾驶室' },
-  { id: 'cab-window', name: '驾驶室窗户' },
+  { id: 'warning-light', name: '警示灯' },
+  { id: 'cab-window', name: '玻璃窗' },
+  { id: 'arm-base', name: '机械臂底座' },
   { id: 'boom', name: '大臂' },
+  { id: 'boom-cylinder', name: '大臂液压杆' },
   { id: 'arm', name: '斗杆' },
+  { id: 'arm-cylinder', name: '斗杆液压杆' },
   { id: 'bucket', name: '铲斗' },
+  { id: 'joint-boom-root', name: '大臂关节' },
+  { id: 'joint-boom-arm', name: '臂杆关节' },
 ];
 
 export default function ExcavatorColoring({ onModuleClick, moduleColors }) {
+  const fill = (id) => moduleColors?.[id] || '#FFFFFF';
+
   return (
     <svg className="coloring-svg" viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <clipPath id="track-clip">
-          <rect x="130" y="440" width="410" height="60" rx="30" />
-        </clipPath>
-        <clipPath id="cab-clip">
-          <path d="M160,340 L160,240 L175,220 L285,220 L300,240 L300,340 Z" />
-        </clipPath>
-        <clipPath id="cab-window-clip">
-          <rect x="178" y="245" width="104" height="70" rx="5" />
-        </clipPath>
-        <clipPath id="boom-clip">
-          <path d="M478,268 L465,242 C540,132 642,82 722,86 L744,110 C672,124 572,206 502,292 Z" />
-        </clipPath>
-        <clipPath id="arm-clip">
-          <path d="M722,86 L744,110 L796,270 L772,288 Z" />
-        </clipPath>
-      </defs>
-
-      <g className="coloring-deco-bg">
-        <line x1="40" y1="525" x2="860" y2="525" strokeDasharray="10 8" />
-        <circle cx="780" cy="90" r="26" />
-        <g stroke="#1a1a1a" strokeWidth="2.5" strokeLinecap="round">
-          <line x1="780" y1="44" x2="780" y2="34" />
-          <line x1="780" y1="146" x2="780" y2="156" />
-          <line x1="728" y1="90" x2="718" y2="90" />
-          <line x1="832" y1="90" x2="842" y2="90" />
-          <line x1="744" y1="54" x2="737" y2="47" />
-          <line x1="816" y1="54" x2="823" y2="47" />
-          <line x1="744" y1="126" x2="737" y2="133" />
-          <line x1="816" y1="126" x2="823" y2="133" />
-        </g>
-        <path d="M80,110 Q80,92 98,92 Q105,75 128,82 Q148,75 152,92 Q170,92 170,110 Q170,128 152,128 L98,128 Q80,128 80,110 Z" />
-        <path d="M60,515 Q70,498 88,503 Q105,498 110,515" />
-        <path d="M820,518 Q832,500 855,506 Q875,500 880,518" />
-        <path d="M150,522 L156,515 L162,522 Z" fill="rgba(0,0,0,0.05)" />
-        <path d="M720,524 L728,514 L736,524 Z" fill="rgba(0,0,0,0.05)" />
-      </g>
-
-      <g className="coloring-deco">
-        <line x1="205" y1="445" x2="205" y2="495" />
-        <line x1="235" y1="445" x2="235" y2="495" />
-        <line x1="265" y1="445" x2="265" y2="495" />
-        <line x1="295" y1="445" x2="295" y2="495" />
-        <line x1="325" y1="445" x2="325" y2="495" />
-        <line x1="355" y1="445" x2="355" y2="495" />
-        <line x1="385" y1="445" x2="385" y2="495" />
-        <line x1="415" y1="445" x2="415" y2="495" />
-        <line x1="445" y1="445" x2="445" y2="495" />
-        <line x1="475" y1="445" x2="475" y2="495" />
-        <circle cx="170" cy="470" r="10" />
-        <circle cx="500" cy="470" r="10" />
-        <circle cx="170" cy="470" r="3" fill="#1a1a1a" opacity="0.4" />
-        <circle cx="500" cy="470" r="3" fill="#1a1a1a" opacity="0.4" />
-        <line x1="320" y1="285" x2="350" y2="285" />
-        <line x1="320" y1="295" x2="350" y2="295" />
-        <line x1="320" y1="305" x2="350" y2="305" />
-        <line x1="320" y1="315" x2="350" y2="315" />
-        <line x1="320" y1="325" x2="350" y2="325" />
-        <circle cx="500" cy="195" r="5" />
-        <circle cx="510" cy="180" r="6" />
-        <circle cx="525" cy="168" r="7" />
-        <line x1="230" y1="245" x2="230" y2="315" />
-        <path d="M508,268 L588,192" />
-        <circle cx="508" cy="268" r="5" />
-        <circle cx="588" cy="192" r="4" />
-        <path d="M500,280 Q590,210 660,145" />
-        <circle cx="500" cy="280" r="7" />
-        <circle cx="500" cy="280" r="3" fill="#1a1a1a" opacity="0.4" />
-        <circle cx="733" cy="98" r="9" />
-        <circle cx="733" cy="98" r="4" fill="#1a1a1a" opacity="0.4" />
-      </g>
-
       <g className="coloring-modules">
-        <g className="coloring-module" data-module-id="track-frame" data-module-name="履带框架"
-           onClick={(e) => onModuleClick?.('track-frame', e)}>
-          <rect x="130" y="440" width="410" height="60" rx="30"
-                fill={moduleColors?.['track-frame'] || '#FFFFFF'}
-                stroke="#1a1a1a" strokeWidth="4" strokeLinejoin="round" />
+        {/* 1: 履带外框 */}
+        <rect className="coloring-module" data-module-id="track-outer" data-module-name="履带外框"
+              x="100" y="420" width="400" height="100" rx="50"
+              fill={fill('track-outer')} stroke="#1a1a1a" strokeWidth="4"
+              onClick={(e) => onModuleClick?.('track-outer', e)} />
+        {/* 2: 履带内侧 */}
+        <rect className="coloring-module" data-module-id="track-inner" data-module-name="履带内侧"
+              x="130" y="445" width="340" height="50" rx="25"
+              fill={fill('track-inner')} stroke="#1a1a1a" strokeWidth="4"
+              onClick={(e) => onModuleClick?.('track-inner', e)} />
+        {/* 3-5: 承重轮 */}
+        <circle className="coloring-module" data-module-id="roller-left" data-module-name="左承重轮"
+                cx="170" cy="470" r="25"
+                fill={fill('roller-left')} stroke="#1a1a1a" strokeWidth="4"
+                onClick={(e) => onModuleClick?.('roller-left', e)} />
+        <circle className="coloring-module" data-module-id="roller-mid" data-module-name="中承重轮"
+                cx="300" cy="470" r="25"
+                fill={fill('roller-mid')} stroke="#1a1a1a" strokeWidth="4"
+                onClick={(e) => onModuleClick?.('roller-mid', e)} />
+        <circle className="coloring-module" data-module-id="roller-right" data-module-name="右承重轮"
+                cx="430" cy="470" r="25"
+                fill={fill('roller-right')} stroke="#1a1a1a" strokeWidth="4"
+                onClick={(e) => onModuleClick?.('roller-right', e)} />
+        {/* 6: 平台底座 */}
+        <rect className="coloring-module" data-module-id="platform" data-module-name="平台底座"
+              x="150" y="380" width="300" height="40" rx="10"
+              fill={fill('platform')} stroke="#1a1a1a" strokeWidth="4"
+              onClick={(e) => onModuleClick?.('platform', e)} />
+        {/* 7: 发动机室 */}
+        <path className="coloring-module" data-module-id="engine" data-module-name="发动机室"
+              d="M160,380 L160,275 L280,275 L280,380 Z"
+              fill={fill('engine')} stroke="#1a1a1a" strokeWidth="4" strokeLinejoin="round"
+              onClick={(e) => onModuleClick?.('engine', e)} />
+        {/* 8: 排气管 */}
+        <path className="coloring-module" data-module-id="exhaust" data-module-name="排气管"
+              d="M190,275 L190,215 L230,215 L230,275 Z"
+              fill={fill('exhaust')} stroke="#1a1a1a" strokeWidth="4" strokeLinejoin="round"
+              onClick={(e) => onModuleClick?.('exhaust', e)} />
+        {/* 9: 防雨帽 */}
+        <rect className="coloring-module" data-module-id="rain-cap" data-module-name="防雨帽"
+              x="180" y="200" width="60" height="15" rx="5"
+              fill={fill('rain-cap')} stroke="#1a1a1a" strokeWidth="4"
+              onClick={(e) => onModuleClick?.('rain-cap', e)} />
+        {/* 10: 驾驶室 */}
+        <path className="coloring-module" data-module-id="cab" data-module-name="驾驶室"
+              d="M280,380 L280,200 L380,200 L430,380 Z"
+              fill={fill('cab')} stroke="#1a1a1a" strokeWidth="4" strokeLinejoin="round"
+              onClick={(e) => onModuleClick?.('cab', e)} />
+        {/* 11: 警示灯 */}
+        <path className="coloring-module" data-module-id="warning-light" data-module-name="警示灯"
+              d="M310,200 L310,170 L350,170 L350,200 Z"
+              fill={fill('warning-light')} stroke="#1a1a1a" strokeWidth="4" strokeLinejoin="round"
+              onClick={(e) => onModuleClick?.('warning-light', e)} />
+        {/* 12: 玻璃窗 */}
+        <path className="coloring-module" data-module-id="cab-window" data-module-name="玻璃窗"
+              d="M300,340 L300,230 L365,230 L400,340 Z"
+              fill={fill('cab-window')} stroke="#1a1a1a" strokeWidth="4" strokeLinejoin="round"
+              onClick={(e) => onModuleClick?.('cab-window', e)} />
+        {/* 13: 机械臂底座 */}
+        <path className="coloring-module" data-module-id="arm-base" data-module-name="机械臂底座"
+              d="M380,380 L380,300 L440,300 L440,380 Z"
+              fill={fill('arm-base')} stroke="#1a1a1a" strokeWidth="4" strokeLinejoin="round"
+              onClick={(e) => onModuleClick?.('arm-base', e)} />
+        {/* 14: 大臂 */}
+        <path className="coloring-module" data-module-id="boom" data-module-name="大臂"
+              d="M400,350 Q460,160 630,70 L660,105 Q490,210 430,380 Z"
+              fill={fill('boom')} stroke="#1a1a1a" strokeWidth="4" strokeLinejoin="round"
+              onClick={(e) => onModuleClick?.('boom', e)} />
+        {/* 15: 大臂液压杆 */}
+        <path className="coloring-module" data-module-id="boom-cylinder" data-module-name="大臂液压杆"
+              d="M440,320 L610,130 L630,150 L460,340 Z"
+              fill={fill('boom-cylinder')} stroke="#1a1a1a" strokeWidth="4" strokeLinejoin="round"
+              onClick={(e) => onModuleClick?.('boom-cylinder', e)} />
+        {/* 16: 斗杆 */}
+        <path className="coloring-module" data-module-id="arm" data-module-name="斗杆"
+              d="M665,75 L771,353 L731,373 L625,105 Z"
+              fill={fill('arm')} stroke="#1a1a1a" strokeWidth="4" strokeLinejoin="round"
+              onClick={(e) => onModuleClick?.('arm', e)} />
+        {/* 17: 斗杆液压杆 */}
+        <path className="coloring-module" data-module-id="arm-cylinder" data-module-name="斗杆液压杆"
+              d="M635,95 L715,260 L695,280 L615,115 Z"
+              fill={fill('arm-cylinder')} stroke="#1a1a1a" strokeWidth="4" strokeLinejoin="round"
+              onClick={(e) => onModuleClick?.('arm-cylinder', e)} />
+        {/* 18: 铲斗 */}
+        <g transform="translate(766, 430) scale(-1, 1) rotate(-300) translate(-720, -350)">
+          <path className="coloring-module" data-module-id="bucket" data-module-name="铲斗"
+                d="M745,295 L767,288 L792,270 L800,310 C805,355 785,400 740,420 C695,440 650,420 635,380 L642,340 L655,300 Z"
+                fill={fill('bucket')} stroke="#1a1a1a" strokeWidth="4" strokeLinejoin="round"
+                onClick={(e) => onModuleClick?.('bucket', e)} />
+          <path d="M665,310 Q695,365 740,395" strokeDasharray="4 4"
+                fill="none" stroke="#1e1e1e" strokeWidth="4" strokeLinecap="round" />
+          <path d="M775,285 Q790,330 785,375" strokeDasharray="4 4"
+                fill="none" stroke="#1e1e1e" strokeWidth="4" strokeLinecap="round" />
         </g>
-        <g className="coloring-module" data-module-id="left-wheel" data-module-name="左驱动轮"
-           onClick={(e) => onModuleClick?.('left-wheel', e)}>
-          <circle cx="170" cy="470" r="28"
-                  fill={moduleColors?.['left-wheel'] || '#FFFFFF'}
-                  stroke="#1a1a1a" strokeWidth="4" />
-        </g>
-        <g className="coloring-module" data-module-id="right-wheel" data-module-name="右驱动轮"
-           onClick={(e) => onModuleClick?.('right-wheel', e)}>
-          <circle cx="500" cy="470" r="28"
-                  fill={moduleColors?.['right-wheel'] || '#FFFFFF'}
-                  stroke="#1a1a1a" strokeWidth="4" />
-        </g>
-        <g className="coloring-module" data-module-id="chassis" data-module-name="底盘支架"
-           onClick={(e) => onModuleClick?.('chassis', e)}>
-          <polygon points="220,385 460,385 510,440 170,440"
-                   fill={moduleColors?.['chassis'] || '#FFFFFF'}
-                   stroke="#1a1a1a" strokeWidth="4" strokeLinejoin="round" />
-        </g>
-        <g className="coloring-module" data-module-id="turntable" data-module-name="转台"
-           onClick={(e) => onModuleClick?.('turntable', e)}>
-          <rect x="150" y="340" width="370" height="45" rx="8"
-                fill={moduleColors?.['turntable'] || '#FFFFFF'}
-                stroke="#1a1a1a" strokeWidth="4" />
-        </g>
-        <g className="coloring-module" data-module-id="engine" data-module-name="引擎舱"
-           onClick={(e) => onModuleClick?.('engine', e)}>
-          <rect x="300" y="265" width="220" height="75" rx="5"
-                fill={moduleColors?.['engine'] || '#FFFFFF'}
-                stroke="#1a1a1a" strokeWidth="4" />
-        </g>
-        <g className="coloring-module" data-module-id="exhaust-pipe" data-module-name="排气管"
-           onClick={(e) => onModuleClick?.('exhaust-pipe', e)}>
-          <rect x="480" y="215" width="14" height="50" rx="3"
-                fill={moduleColors?.['exhaust-pipe'] || '#FFFFFF'}
-                stroke="#1a1a1a" strokeWidth="4" />
-        </g>
-        <g className="coloring-module" data-module-id="exhaust-cap" data-module-name="排气帽"
-           onClick={(e) => onModuleClick?.('exhaust-cap', e)}>
-          <circle cx="487" cy="212" r="9"
-                  fill={moduleColors?.['exhaust-cap'] || '#FFFFFF'}
-                  stroke="#1a1a1a" strokeWidth="4" />
-        </g>
-        <g className="coloring-module" data-module-id="cab" data-module-name="驾驶室"
-           onClick={(e) => onModuleClick?.('cab', e)}>
-          <path d="M160,340 L160,240 L175,220 L285,220 L300,240 L300,340 Z"
-                fill={moduleColors?.['cab'] || '#FFFFFF'}
-                stroke="#1a1a1a" strokeWidth="4" strokeLinejoin="round" />
-        </g>
-        <g className="coloring-module" data-module-id="cab-window" data-module-name="驾驶室窗户"
-           onClick={(e) => onModuleClick?.('cab-window', e)}>
-          <rect x="178" y="245" width="104" height="70" rx="5"
-                fill={moduleColors?.['cab-window'] || '#FFFFFF'}
-                stroke="#1a1a1a" strokeWidth="4" />
-        </g>
-        <g className="coloring-module" data-module-id="boom" data-module-name="大臂"
-           onClick={(e) => onModuleClick?.('boom', e)}>
-          <path d="M478,268 L465,242 C540,132 642,82 722,86 L744,110 C672,124 572,206 502,292 Z"
-                fill={moduleColors?.['boom'] || '#FFFFFF'}
-                stroke="#1a1a1a" strokeWidth="4" strokeLinejoin="round" />
-        </g>
-        <g className="coloring-module" data-module-id="arm" data-module-name="斗杆"
-           onClick={(e) => onModuleClick?.('arm', e)}>
-          <path d="M722,86 L744,110 L796,270 L772,288 Z"
-                fill={moduleColors?.['arm'] || '#FFFFFF'}
-                stroke="#1a1a1a" strokeWidth="4" strokeLinejoin="round" />
-        </g>
-        <g className="coloring-module" data-module-id="bucket" data-module-name="铲斗"
-           onClick={(e) => onModuleClick?.('bucket', e)}>
-          <path d="M772,288 L796,270 C820,285 832,320 825,355 C818,395 780,425 735,415 C690,405 665,370 675,335 C682,310 715,295 745,295 Z"
-                fill={moduleColors?.['bucket'] || '#FFFFFF'}
-                stroke="#1a1a1a" strokeWidth="4" strokeLinejoin="round" />
-        </g>
+        {/* 19: 大臂根部关节 */}
+        <circle className="coloring-module" data-module-id="joint-boom-root" data-module-name="大臂关节"
+                cx="410" cy="330" r="20"
+                fill={fill('joint-boom-root')} stroke="#1a1a1a" strokeWidth="4"
+                onClick={(e) => onModuleClick?.('joint-boom-root', e)} />
+        {/* 20: 大小臂连接关节 */}
+        <circle className="coloring-module" data-module-id="joint-boom-arm" data-module-name="臂杆关节"
+                cx="645" cy="88" r="20"
+                fill={fill('joint-boom-arm')} stroke="#1a1a1a" strokeWidth="4"
+                onClick={(e) => onModuleClick?.('joint-boom-arm', e)} />
       </g>
     </svg>
   );
