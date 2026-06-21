@@ -85,8 +85,6 @@ export default function ExcavatorColoring({ onModuleClick, moduleColors }) {
         <path d="M500,280 Q590,210 660,145" />
         <circle cx="500" cy="280" r="7" />
         <circle cx="500" cy="280" r="3" fill="#1a1a1a" opacity="0.4" />
-        <line x1="733" y1="98" x2="784" y2="279" />
-        <path d="M705,130 L758,210" />
         <circle cx="733" cy="98" r="9" />
         <circle cx="733" cy="98" r="4" fill="#1a1a1a" opacity="0.4" />
       </g>
@@ -169,12 +167,6 @@ export default function ExcavatorColoring({ onModuleClick, moduleColors }) {
           <path d="M772,288 L796,270 C820,285 832,320 825,355 C818,395 780,425 735,415 C690,405 665,370 675,335 C682,310 715,295 745,295 Z"
                 fill={moduleColors?.['bucket'] || '#FFFFFF'}
                 stroke="#1a1a1a" strokeWidth="4" strokeLinejoin="round" />
-        </g>
-        <g className="coloring-deco">
-          <path d="M715,305 Q755,360 805,345" strokeDasharray="4 4" />
-          <path d="M790,285 Q812,325 805,365" strokeDasharray="4 4" />
-          <circle cx="784" cy="279" r="8" />
-          <circle cx="784" cy="279" r="3.5" fill="#1a1a1a" opacity="0.4" />
         </g>
       </g>
     </svg>
