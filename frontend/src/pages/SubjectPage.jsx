@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { ROUTES } from '../routes.js';
 import { getSubjects, getCategoryTitle } from '../utils/subjectsRepository.js';
 import { playClick } from '../utils/soundUtils.js';
@@ -17,19 +17,26 @@ const SUBJECT_COLORS = [
 export default function SubjectPage() {
   const navigate = useNavigate();
   const { category } = useParams();
+  const [searchParams] = useSearchParams();
+  const coloringMode = searchParams.get('coloring') === 'true';
+  const coloringParam = coloringMode ? '&coloring=true' : '';
   const subjects = getSubjects(category);
   const title = getCategoryTitle(category);
 
   const handleBack = (e) => {
     animateClick(e.currentTarget, () => {
       playClick();
-      navigate(ROUTES.CATEGORY);
+      if (coloringMode) {
+        navigate(`${ROUTES.CATEGORY}?coloring=true`);
+      } else {
+        navigate(ROUTES.CATEGORY);
+      }
     });
   };
 
   const handleSubjectClick = (subject) => {
     playClick();
-    navigate(`${ROUTES.DRAWING}?subject=${subject.id}`);
+    navigate(`${ROUTES.DRAWING}?subject=${subject.id}${coloringParam}`);
   };
 
   return (

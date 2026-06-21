@@ -169,15 +169,19 @@ const DrawingCanvas = forwardRef(function DrawingCanvas(
           alignItems: 'center',
           justifyContent: 'center',
         }}>
-          <img
-            src={referenceImagePath}
-            alt="参考图"
-            style={{
-              maxWidth: '100%',
-              maxHeight: '100%',
-              objectFit: 'contain',
-            }}
-          />
+          {typeof referenceImagePath === 'string' ? (
+            <img
+              src={referenceImagePath}
+              alt="参考图"
+              style={{
+                maxWidth: '100%',
+                maxHeight: '100%',
+                objectFit: 'contain',
+              }}
+            />
+          ) : (
+            referenceImagePath
+          )}
         </div>
       )}
       <canvas

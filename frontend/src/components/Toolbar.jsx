@@ -48,9 +48,6 @@ export default function Toolbar({
           <button className="toolbar-button back-button" onClick={onBack} aria-label="返回">
             <img src="/idraw/ic_back.png" alt="返回" className="nav-icon-img" />
           </button>
-
-          <div className="toolbar-divider" />
-
           <button
             className={`toolbar-button brush-tool-button ${brushType === BrushType.PEN ? 'toolbar-button-active' : ''}`}
             onClick={() => onBrushChange(BrushType.PEN)}
@@ -66,8 +63,6 @@ export default function Toolbar({
             <img src="/idraw/eraser.png" alt="橡皮擦" className="toolbar-icon-img brush-icon" />
           </button>
 
-          <div className="toolbar-divider" />
-
           <button
             ref={sizeBtnRef}
             className="toolbar-button toolbar-button-active"
@@ -76,8 +71,6 @@ export default function Toolbar({
           >
             <CurrentSizeIcon className="icon" />
           </button>
-
-          <div className="toolbar-divider" />
 
           <button className="toolbar-button" onClick={onUndo} disabled={!canUndo} aria-label="撤销">
             <IcUndo className="icon" />

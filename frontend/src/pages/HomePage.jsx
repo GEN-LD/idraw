@@ -9,7 +9,7 @@ export default function HomePage() {
 
   const handleColoringMode = () => {
     playClick();
-    window.alert('涂色模式即将上线！');
+    navigate(`${ROUTES.CATEGORY}?coloring=true`);
   };
 
   const handleDrawingMode = () => {

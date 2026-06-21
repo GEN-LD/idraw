@@ -4,17 +4,28 @@ import DrawingCanvas from '../components/DrawingCanvas';
 import Toolbar from '../components/Toolbar';
 import ColorPanel from '../components/ColorPanel';
 import { BrushType, PEN_SIZES, ERASER_SIZES, COLORS } from '../utils/constants';
+import { getSubjectById } from '../utils/subjectsRepository.js';
+import {
+  LineartPanda, LineartRabbit, LineartGiraffe,
+  LineartExcavator, LineartFireTruck, LineartPoliceCar,
+} from '../assets/icons/index.js';
 import { playClick } from '../utils/soundUtils';
 import { animateClick } from '../utils/viewUtils';
 import './DrawingPage.css';
 
 const SIZE_LABELS = ['S', 'M', 'L'];
 
+const LINEART_COMPONENTS = {
+  LineartPanda, LineartRabbit, LineartGiraffe,
+  LineartExcavator, LineartFireTruck, LineartPoliceCar,
+};
+
 export default function DrawingPage() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const subjectId = searchParams.get('subject') || '';
   const isBlank = searchParams.get('blank') === 'true';
+  const coloringMode = searchParams.get('coloring') === 'true';
 
   const [brushType, setBrushType] = useState(BrushType.PEN);
   const [sizeIndex, setSizeIndex] = useState(0);
@@ -78,10 +89,20 @@ export default function DrawingPage() {
     setCanUndo(canvasRef.current?.canUndo() ?? false);
   }, []);
 
-  const referenceImagePath = useMemo(() => {
+  const subject = useMemo(() => getSubjectById(subjectId), [subjectId]);
+
+  const referenceImage = useMemo(() => {
     if (isBlank || !subjectId) return null;
+    if (coloringMode) {
+      return `/idraw/lineart_${subjectId}.png`;
+    }
+    const componentName = subject?.lineArt;
+    if (componentName && LINEART_COMPONENTS[componentName]) {
+      const Component = LINEART_COMPONENTS[componentName];
+      return <Component className="lineart-svg" />;
+    }
     return `/idraw/lineart_${subjectId}.png`;
-  }, [isBlank, subjectId]);
+  }, [isBlank, subjectId, coloringMode, subject]);
 
   return (
     <div className="drawing-page">
@@ -106,7 +127,7 @@ export default function DrawingPage() {
           brushSize={currentSize}
           color={selectedColor}
           onBeforeDraw={handleBeforeDraw}
-          referenceImage={referenceImagePath}
+          referenceImage={referenceImage}
           onStrokeCommitted={handleCanvasChange}
         />
       </div>

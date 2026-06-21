@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { ROUTES, getSubjectsPath } from '../routes.js';
 import { IcCategoryAnimal, IcCategoryVehicle, IcCategoryBlank } from '../assets/icons/index.js';
 import { playClick } from '../utils/soundUtils.js';
@@ -37,6 +37,8 @@ const categories = [
 
 export default function CategoryPage() {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const coloringMode = searchParams.get('coloring') === 'true';
 
   const handleBack = (e) => {
     animateClick(e.currentTarget, () => {
@@ -47,7 +49,15 @@ export default function CategoryPage() {
 
   const handleCategoryClick = (path) => {
     playClick();
-    navigate(path);
+    if (coloringMode) {
+      if (path.startsWith(ROUTES.DRAWING)) {
+        navigate(`${path}&coloring=true`);
+      } else {
+        navigate(`${path}?coloring=true`);
+      }
+    } else {
+      navigate(path);
+    }
   };
 
   return (
