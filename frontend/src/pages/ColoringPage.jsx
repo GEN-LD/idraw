@@ -214,7 +214,6 @@ export default function ColoringPage() {
           </div>
           <h1>{config.title}</h1>
         </div>
-        <p className="coloring-subtitle">{config.subtitle}</p>
       </header>
 
       <div className="coloring-main">
