@@ -3,6 +3,7 @@ export const ROUTES = {
   CATEGORY: '/category',
   SUBJECTS: '/subjects/:category',
   DRAWING: '/draw',
+  COLORING: '/coloring/:subject',
   SETTINGS: '/settings',
 };
 

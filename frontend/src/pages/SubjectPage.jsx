@@ -36,7 +36,11 @@ export default function SubjectPage() {
 
   const handleSubjectClick = (subject) => {
     playClick();
-    navigate(`${ROUTES.DRAWING}?subject=${subject.id}${coloringParam}`);
+    if (coloringMode) {
+      navigate(`/coloring/${subject.id}?coloring=true`);
+    } else {
+      navigate(`${ROUTES.DRAWING}?subject=${subject.id}${coloringParam}`);
+    }
   };
 
   return (

@@ -4,6 +4,7 @@ import HomePage from './pages/HomePage.jsx';
 import CategoryPage from './pages/CategoryPage.jsx';
 import SubjectPage from './pages/SubjectPage.jsx';
 import DrawingPage from './pages/DrawingPage.jsx';
+import ColoringPage from './pages/ColoringPage.jsx';
 import SettingsPage from './pages/SettingsPage.jsx';
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
         <Route path={ROUTES.CATEGORY} element={<CategoryPage />} />
         <Route path={ROUTES.SUBJECTS} element={<SubjectPage />} />
         <Route path={ROUTES.DRAWING} element={<DrawingPage />} />
+        <Route path={ROUTES.COLORING} element={<ColoringPage />} />
         <Route path={ROUTES.SETTINGS} element={<SettingsPage />} />
         <Route path="*" element={<Navigate to={ROUTES.HOME} replace />} />
       </Routes>
