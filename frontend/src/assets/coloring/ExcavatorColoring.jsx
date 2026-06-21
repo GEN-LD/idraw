@@ -164,19 +164,17 @@ export default function ExcavatorColoring({ onModuleClick, moduleColors }) {
                 fill={moduleColors?.['arm'] || '#FFFFFF'}
                 stroke="#1a1a1a" strokeWidth="4" strokeLinejoin="round" />
         </g>
-        <g transform="translate(720, 350) scale(-1, 1) rotate(-300) translate(-720, -350)">
-          <g className="coloring-module" data-module-id="bucket" data-module-name="铲斗"
-             onClick={(e) => onModuleClick?.('bucket', e)}>
-            <path d="M 745 295 L 767 288 L 792 270 L 800 310 C 805 355 785 400 740 420 C 695 440 650 420 635 380 L 642 340 L 655 300 Z"
-                  fill={moduleColors?.['bucket'] || '#FFFFFF'}
-                  stroke="#1a1a1a" strokeWidth="4" strokeLinejoin="round" />
-          </g>
-          <g className="coloring-deco">
-            <path d="M 665 310 Q 695 365 740 395" strokeDasharray="4 4" />
-            <path d="M 775 285 Q 790 330 785 375" strokeDasharray="4 4" />
-            <circle cx="754" cy="291" r="9" />
-            <circle cx="754" cy="291" r="4" fill="#1a1a1a" opacity="0.4" />
-          </g>
+        <g className="coloring-module" data-module-id="bucket" data-module-name="铲斗"
+           onClick={(e) => onModuleClick?.('bucket', e)}>
+          <path d="M772,288 L796,270 C820,285 832,320 825,355 C818,395 780,425 735,415 C690,405 665,370 675,335 C682,310 715,295 745,295 Z"
+                fill={moduleColors?.['bucket'] || '#FFFFFF'}
+                stroke="#1a1a1a" strokeWidth="4" strokeLinejoin="round" />
+        </g>
+        <g className="coloring-deco">
+          <path d="M715,305 Q755,360 805,345" strokeDasharray="4 4" />
+          <path d="M790,285 Q812,325 805,365" strokeDasharray="4 4" />
+          <circle cx="784" cy="279" r="8" />
+          <circle cx="784" cy="279" r="3.5" fill="#1a1a1a" opacity="0.4" />
         </g>
       </g>
     </svg>
