@@ -116,10 +116,6 @@ export default function ExcavatorColoring({ onModuleClick, moduleColors }) {
                 d="M745,295 L767,288 L792,270 L800,310 C805,355 785,400 740,420 C695,440 650,420 635,380 L642,340 L655,300 Z"
                 fill={fill('bucket')} stroke="#1a1a1a" strokeWidth="4" strokeLinejoin="round"
                 onClick={(e) => onModuleClick?.('bucket', e)} />
-          <path d="M665,310 Q695,365 740,395" strokeDasharray="4 4"
-                fill="none" stroke="#1e1e1e" strokeWidth="4" strokeLinecap="round" />
-          <path d="M775,285 Q790,330 785,375" strokeDasharray="4 4"
-                fill="none" stroke="#1e1e1e" strokeWidth="4" strokeLinecap="round" />
         </g>
         {/* 19: 大臂根部关节 */}
         <circle className="coloring-module" data-module-id="joint-boom-root" data-module-name="大臂关节"
