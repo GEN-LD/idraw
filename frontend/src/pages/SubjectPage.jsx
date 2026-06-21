@@ -1,6 +1,7 @@
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { ROUTES } from '../routes.js';
 import { getSubjects, getCategoryTitle } from '../utils/subjectsRepository.js';
+import { COLORING_SUBJECTS } from './ColoringPage.jsx';
 import { playClick } from '../utils/soundUtils.js';
 import { animateClick } from '../utils/viewUtils.js';
 import './SubjectPage.css';
@@ -36,8 +37,10 @@ export default function SubjectPage() {
 
   const handleSubjectClick = (subject) => {
     playClick();
-    if (coloringMode) {
+    if (coloringMode && COLORING_SUBJECTS.includes(subject.id)) {
       navigate(`/coloring/${subject.id}?coloring=true`);
+    } else if (coloringMode) {
+      navigate(`${ROUTES.DRAWING}?subject=${subject.id}${coloringParam}`);
     } else {
       navigate(`${ROUTES.DRAWING}?subject=${subject.id}${coloringParam}`);
     }

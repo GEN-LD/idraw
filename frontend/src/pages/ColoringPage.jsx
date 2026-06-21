@@ -36,6 +36,8 @@ const SUBJECT_CONFIG = {
   },
 };
 
+export const COLORING_SUBJECTS = Object.keys(SUBJECT_CONFIG);
+
 const CELEBRATION_COLORS = ['#FF6B35', '#FFD23F', '#06D6A0', '#4ECDC4', '#4361EE', '#F72585', '#7209B7'];
 
 export default function ColoringPage() {
