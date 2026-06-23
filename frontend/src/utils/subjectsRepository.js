@@ -43,6 +43,13 @@ const subjects = [
     icon: 'IcSubjectPoliceCar',
     lineArt: 'LineartPoliceCar',
   },
+  {
+    id: 'train',
+    name: '小火车',
+    category: DrawingCategory.VEHICLE,
+    icon: 'IcSubjectTrain',
+    lineArt: 'LineartTrain',
+  },
 ];
 
 export function getSubjects(category) {

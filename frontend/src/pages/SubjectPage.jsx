@@ -2,7 +2,7 @@ import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { ROUTES } from '../routes.js';
 import { getSubjects, getCategoryTitle } from '../utils/subjectsRepository.js';
 import { COLORING_SUBJECTS } from './ColoringPage.jsx';
-import { ExcavatorIcon, FireTruckIcon, PoliceCarIcon } from '../assets/subject-icons/index.js';
+import { ExcavatorIcon, FireTruckIcon, PoliceCarIcon, TrainIcon } from '../assets/subject-icons/index.js';
 import { playClick } from '../utils/soundUtils.js';
 import { animateClick } from '../utils/viewUtils.js';
 import './SubjectPage.css';
@@ -20,6 +20,7 @@ const SUBJECT_ICON_MAP = {
   excavator: ExcavatorIcon,
   fire_truck: FireTruckIcon,
   police_car: PoliceCarIcon,
+  train: TrainIcon,
 };
 
 export default function SubjectPage() {
