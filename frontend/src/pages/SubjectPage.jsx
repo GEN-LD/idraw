@@ -2,6 +2,7 @@ import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { ROUTES } from '../routes.js';
 import { getSubjects, getCategoryTitle } from '../utils/subjectsRepository.js';
 import { COLORING_SUBJECTS } from './ColoringPage.jsx';
+import { ExcavatorIcon, FireTruckIcon, PoliceCarIcon } from '../assets/subject-icons/index.js';
 import { playClick } from '../utils/soundUtils.js';
 import { animateClick } from '../utils/viewUtils.js';
 import './SubjectPage.css';
@@ -14,6 +15,12 @@ const SUBJECT_COLORS = [
   { bg: '#F3E5F5', stroke: '#CE93D8', text: '#7B1FA2' },
   { bg: '#FBE9E7', stroke: '#FFAB91', text: '#E64A19' },
 ];
+
+const SUBJECT_ICON_MAP = {
+  excavator: ExcavatorIcon,
+  fire_truck: FireTruckIcon,
+  police_car: PoliceCarIcon,
+};
 
 export default function SubjectPage() {
   const navigate = useNavigate();
@@ -58,6 +65,7 @@ export default function SubjectPage() {
       <div className="subject-grid">
         {subjects.map((subject, index) => {
           const colorSet = SUBJECT_COLORS[index % SUBJECT_COLORS.length];
+          const IconComponent = SUBJECT_ICON_MAP[subject.id];
           return (
             <button
               key={subject.id}
@@ -70,11 +78,15 @@ export default function SubjectPage() {
               onClick={() => handleSubjectClick(subject)}
             >
               <div className="subject-card-icon-wrapper">
-                <img
-                  src={`/idraw/ic_subject_${subject.id}.png`}
-                  alt={subject.name}
-                  className="subject-card-icon"
-                />
+                {IconComponent ? (
+                  <IconComponent className="subject-card-icon" />
+                ) : (
+                  <img
+                    src={`/idraw/ic_subject_${subject.id}.png`}
+                    alt={subject.name}
+                    className="subject-card-icon"
+                  />
+                )}
               </div>
               <span className="subject-card-name">{subject.name}</span>
             </button>
