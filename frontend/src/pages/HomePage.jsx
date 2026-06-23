@@ -28,10 +28,13 @@ export default function HomePage() {
     <div className="home-page page-background">
       <div className="home-buttons">
         <button className="home-button home-button-coloring" onClick={handleColoringMode}>
-          涂色模式
+          涂色乐园
         </button>
         <button className="home-button home-button-drawing" onClick={handleDrawingMode}>
-          画画模式
+          画画天地
+        </button>
+        <button className="home-button home-button-drawing" onClick={handleDrawingMode}>
+          画画天地
         </button>
       </div>
       <button className="home-settings-button" onClick={handleSettings} aria-label="设置">

@@ -27,9 +27,9 @@
   font-weight: 700;
   font-family: 'Fredoka', sans-serif;
   letter-spacing: 0.02em;
-  color: #1a1a1a;
+  color: #FFFFFF;
   cursor: pointer;
-  box-shadow: 6px 6px 0 #1a1a1a;
+  box-shadow: 6px 6px 0 #FFFFFF;
   transition: transform 0.12s ease, box-shadow 0.12s ease;
   background-size: 100% 100%;
   background-position: center;
@@ -39,12 +39,12 @@
 
 .home-button:hover {
   transform: translate(-2px, -2px);
-  box-shadow: 8px 8px 0 #1a1a1a;
+  box-shadow: 8px 8px 0 #FFFFFF;
 }
 
 .home-button:active {
   transform: translate(3px, 3px);
-  box-shadow: 3px 3px 0 #1a1a1a;
+  box-shadow: 3px 3px 0 #FFFFFF;
 }
 
 .home-button-coloring {

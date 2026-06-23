@@ -37,19 +37,19 @@
   justify-content: center;
   gap: clamp(8px, 1.5vh, 16px);
   cursor: pointer;
-  box-shadow: 6px 6px 0 #1a1a1a;
+  box-shadow: 6px 6px 0 #FFFFFF;
   transition: transform 0.12s ease, box-shadow 0.12s ease;
   padding: 16px;
 }
 
 .category-card:hover {
   transform: translate(-2px, -2px);
-  box-shadow: 8px 8px 0 #1a1a1a;
+  box-shadow: 8px 8px 0 #FFFFFF;
 }
 
 .category-card:active {
   transform: translate(2px, 2px);
-  box-shadow: 3px 3px 0 #1a1a1a;
+  box-shadow: 3px 3px 0 #FFFFFF;
 }
 
 .category-card-icon-wrapper {
