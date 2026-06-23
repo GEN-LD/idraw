@@ -21,25 +21,30 @@
   width: clamp(280px, 35vw, 480px);
   height: auto;
   aspect-ratio: 12 / 7;
-  border: none;
-  border-radius: clamp(24px, 4vw, 40px);
+  border: 3px solid #1a1a1a;
+  border-radius: clamp(20px, 3vw, 28px);
   font-size: clamp(28px, 4vw, 48px);
-  font-weight: 500;
-  font-family: sans-serif;
+  font-weight: 700;
+  font-family: 'Fredoka', sans-serif;
   letter-spacing: 0.02em;
-  color: #FFFFFF;
+  color: #1a1a1a;
   cursor: pointer;
-  box-shadow: 0 10px 14px rgba(0, 0, 0, 0.1);
-  transition: transform 0.1s ease, box-shadow 0.1s ease;
+  box-shadow: 6px 6px 0 #1a1a1a;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
   background-size: 100% 100%;
   background-position: center;
   background-repeat: no-repeat;
   padding: 0;
 }
 
+.home-button:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 8px 8px 0 #1a1a1a;
+}
+
 .home-button:active {
-  transform: scale(0.95);
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  transform: translate(3px, 3px);
+  box-shadow: 3px 3px 0 #1a1a1a;
 }
 
 .home-button-coloring {
@@ -54,19 +59,26 @@
   position: absolute;
   right: clamp(16px, 3vw, 48px);
   bottom: clamp(16px, 3vw, 48px);
-  width: 144px;
-  height: 144px;
-  border: none;
-  border-radius: 20px;
-  background-color: transparent;
+  width: 80px;
+  height: 80px;
+  border: 3px solid #1a1a1a;
+  border-radius: 16px;
+  background-color: #FFFEF8;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 24px;
-  transition: transform 0.1s ease;
+  padding: 14px;
+  box-shadow: 4px 4px 0 #1a1a1a;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.home-settings-button:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 5px 5px 0 #1a1a1a;
 }
 
 .home-settings-button:active {
-  transform: scale(0.92);
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 #1a1a1a;
 }

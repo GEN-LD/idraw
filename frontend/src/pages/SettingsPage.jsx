@@ -26,8 +26,10 @@ export default function SettingsPage() {
   return (
     <div className="settings-page">
       <header className="settings-header">
-        <button className="icon-button" onClick={handleBack} aria-label="返回">
-          <img src="/idraw/ic_back.png" alt="返回" className="nav-icon-img" />
+        <button className="page-back-btn" onClick={handleBack} aria-label="返回">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M19 12H5M12 19l-7-7 7-7" />
+          </svg>
         </button>
         <h1 className="settings-title">设置</h1>
       </header>

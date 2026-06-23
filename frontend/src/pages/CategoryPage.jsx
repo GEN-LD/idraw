@@ -63,8 +63,10 @@ export default function CategoryPage() {
   return (
     <div className="category-page page-background">
       <header className="category-header">
-        <button className="icon-button" onClick={handleBack} aria-label="返回">
-          <img src="/idraw/ic_back.png" alt="返回" className="nav-icon-img" />
+        <button className="page-back-btn" onClick={handleBack} aria-label="返回">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M19 12H5M12 19l-7-7 7-7" />
+          </svg>
         </button>
       </header>
 
