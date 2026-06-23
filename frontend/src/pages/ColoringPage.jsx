@@ -84,7 +84,7 @@ export default function ColoringPage() {
   }, []);
 
   const fireConfetti = useCallback(() => {
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 80; i++) {
       setTimeout(() => {
         const el = document.createElement('div');
         el.className = 'coloring-confetti';
