@@ -1,6 +1,6 @@
 import { useState, useCallback, useMemo, useRef, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { ExcavatorColoring, ExcavatorModules, FireTruckColoring, FireTruckModules } from '../assets/coloring/index.js';
+import { ExcavatorColoring, ExcavatorModules, FireTruckColoring, FireTruckModules, PoliceCarColoring, PoliceCarModules } from '../assets/coloring/index.js';
 import { playClick } from '../utils/soundUtils.js';
 import './ColoringPage.css';
 
@@ -39,6 +39,12 @@ const SUBJECT_CONFIG = {
     subtitle: '选一种颜色，点击零件给它穿上彩衣吧',
     Component: FireTruckColoring,
     modules: FireTruckModules,
+  },
+  police_car: {
+    title: '警车涂色乐园',
+    subtitle: '选一种颜色，点击零件给它穿上彩衣吧',
+    Component: PoliceCarColoring,
+    modules: PoliceCarModules,
   },
 };
 
