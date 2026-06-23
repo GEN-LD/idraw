@@ -1,7 +1,7 @@
 export default function TrainIcon({ className }) {
   return (
     <svg viewBox="0 0 900 600" className={className} xmlns="http://www.w3.org/2000/svg">
-      <g fill="none" stroke="#1a1a1a" strokeWidth="16" strokeLinecap="round" strokeLinejoin="round">
+      <g fill="none" stroke="#1a1a1a" strokeWidth="8" strokeLinecap="round" strokeLinejoin="round">
         {/* 蒸汽 */}
         <circle cx="665" cy="105" r="16" />
         <circle cx="595" cy="75" r="24" />

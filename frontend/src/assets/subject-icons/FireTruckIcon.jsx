@@ -1,7 +1,7 @@
 export default function FireTruckIcon({ className }) {
   return (
     <svg viewBox="0 0 900 600" className={className} xmlns="http://www.w3.org/2000/svg">
-      <g fill="none" stroke="#1a1a1a" strokeWidth="16" strokeLinecap="round" strokeLinejoin="round">
+      <g fill="none" stroke="#1a1a1a" strokeWidth="8" strokeLinecap="round" strokeLinejoin="round">
         {/* 后车厢主体 */}
         <rect x="320" y="200" width="460" height="230" rx="15" />
         {/* 驾驶室主体 */}

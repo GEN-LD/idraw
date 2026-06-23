@@ -1,7 +1,7 @@
 export default function ExcavatorIcon({ className }) {
   return (
     <svg viewBox="0 0 900 600" className={className} xmlns="http://www.w3.org/2000/svg">
-      <g fill="none" stroke="#1a1a1a" strokeWidth="16" strokeLinecap="round" strokeLinejoin="round">
+      <g fill="none" stroke="#1a1a1a" strokeWidth="8" strokeLinecap="round" strokeLinejoin="round">
         {/* 履带外框 */}
         <rect x="100" y="420" width="400" height="100" rx="50" />
         {/* 三个承重轮 */}
