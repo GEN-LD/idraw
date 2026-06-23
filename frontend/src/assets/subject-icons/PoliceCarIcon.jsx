@@ -1,7 +1,7 @@
 export default function PoliceCarIcon({ className }) {
   return (
     <svg viewBox="0 0 900 600" className={className} xmlns="http://www.w3.org/2000/svg">
-      <g fill="none" stroke="currentColor" strokeWidth="16" strokeLinecap="round" strokeLinejoin="round">
+      <g fill="none" stroke="#1a1a1a" strokeWidth="16" strokeLinecap="round" strokeLinejoin="round">
         {/* 警灯支架 */}
         <line x1="440" y1="180" x2="440" y2="150" />
         <line x1="415" y1="180" x2="395" y2="160" />

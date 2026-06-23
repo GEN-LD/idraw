@@ -52,6 +52,7 @@
   box-shadow: 0 8px 14px rgba(0, 0, 0, 0.06);
   cursor: pointer;
   transition: transform 0.1s ease;
+  overflow: visible;
 }
 
 .subject-card:active {
@@ -69,14 +70,16 @@
   justify-content: center;
   flex-shrink: 1;
   min-height: 0;
+  overflow: visible;
 }
 
 .subject-card-icon {
-  width: 80%;
-  height: 80%;
-  max-width: 160px;
-  max-height: 160px;
+  width: 120%;
+  height: 120%;
+  max-width: none;
+  max-height: none;
   object-fit: contain;
+  overflow: visible;
 }
 
 .subject-card-name {
