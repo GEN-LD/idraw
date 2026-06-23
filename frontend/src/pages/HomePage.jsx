@@ -33,9 +33,6 @@ export default function HomePage() {
         <button className="home-button home-button-drawing" onClick={handleDrawingMode}>
           画画天地
         </button>
-        <button className="home-button home-button-drawing" onClick={handleDrawingMode}>
-          画画天地
-        </button>
       </div>
       <button className="home-settings-button" onClick={handleSettings} aria-label="设置">
         <img src="/idraw/ic_settings.png" alt="设置" className="nav-icon-img" />

@@ -21,7 +21,7 @@
   width: clamp(280px, 35vw, 480px);
   height: auto;
   aspect-ratio: 12 / 7;
-  border: 3px solid #1a1a1a;
+  border: none;
   border-radius: clamp(20px, 3vw, 28px);
   font-size: clamp(28px, 4vw, 48px);
   font-weight: 700;
