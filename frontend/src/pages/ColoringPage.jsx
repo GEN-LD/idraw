@@ -176,7 +176,12 @@ export default function ColoringPage() {
       }, 'image/png');
     };
     img.src = url;
-  }, [config?.title, showToast]);
+  }, [config?.name, showToast]);
+
+  const handleFinish = useCallback(() => {
+    showToast(`太棒了！${config?.name || ''}全部涂色完成！`, true);
+    fireConfetti();
+  }, [config?.name, showToast, fireConfetti]);
 
   const handleBack = useCallback(() => {
     const subj = getSubjectById(subject);
@@ -296,6 +301,12 @@ export default function ColoringPage() {
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><polyline points="7 10 12 15 17 10" /><line x1="12" y1="15" x2="12" y2="3" /></svg>
                 保存
               </button>
+              {progressPct >= 50 && (
+                <button className="coloring-btn coloring-btn-finish" onClick={handleFinish}>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg>
+                  完成
+                </button>
+              )}
             </div>
           </div>
         </div>
