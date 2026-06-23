@@ -30,7 +30,14 @@
   justify-content: center;
   gap: 12px;
   position: relative;
-  padding: 4px 52px;
+  padding: 4px 52px 6px;
+}
+
+.coloring-title-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
 }
 
 .coloring-back-btn {
@@ -102,7 +109,10 @@
 }
 
 .coloring-subtitle {
-  display: none;
+  font-size: 0.82rem;
+  color: var(--coloring-muted);
+  font-weight: 600;
+  line-height: 1;
 }
 
 .coloring-main {
@@ -111,8 +121,6 @@
   display: grid;
   grid-template-columns: 1fr 300px;
   gap: 14px;
-  max-width: 1400px;
-  margin: 0 auto;
   width: 100%;
 }
 

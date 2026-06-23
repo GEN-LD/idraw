@@ -1,6 +1,7 @@
 import { useState, useCallback, useMemo, useRef, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ExcavatorColoring, ExcavatorModules, FireTruckColoring, FireTruckModules, PoliceCarColoring, PoliceCarModules, TrainColoring, TrainModules } from '../assets/coloring/index.js';
+import { getSubjectById } from '../utils/subjectsRepository.js';
 import { playClick } from '../utils/soundUtils.js';
 import './ColoringPage.css';
 
@@ -29,26 +30,22 @@ const COLORS = [
 
 const SUBJECT_CONFIG = {
   excavator: {
-    title: '挖掘机涂色乐园',
-    subtitle: '选一种颜色，点击零件给它穿上彩衣吧',
+    name: '挖掘机',
     Component: ExcavatorColoring,
     modules: ExcavatorModules,
   },
   fire_truck: {
-    title: '消防车涂色乐园',
-    subtitle: '选一种颜色，点击零件给它穿上彩衣吧',
+    name: '消防车',
     Component: FireTruckColoring,
     modules: FireTruckModules,
   },
   police_car: {
-    title: '警车涂色乐园',
-    subtitle: '选一种颜色，点击零件给它穿上彩衣吧',
+    name: '警车',
     Component: PoliceCarColoring,
     modules: PoliceCarModules,
   },
   train: {
-    title: '小火车涂色乐园',
-    subtitle: '选一种颜色，点击零件给它穿上彩衣吧',
+    name: '小火车',
     Component: TrainColoring,
     modules: TrainModules,
   },
@@ -170,7 +167,7 @@ export default function ColoringPage() {
       canvas.toBlob((b) => {
         const a = document.createElement('a');
         a.href = URL.createObjectURL(b);
-        a.download = `我的${config?.title || '作品'}-${Date.now()}.png`;
+        a.download = `我的${config?.name || '作品'}-${Date.now()}.png`;
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
@@ -182,8 +179,10 @@ export default function ColoringPage() {
   }, [config?.title, showToast]);
 
   const handleBack = useCallback(() => {
-    navigate(-1);
-  }, [navigate]);
+    const subj = getSubjectById(subject);
+    const category = subj?.category || 'vehicle';
+    navigate(`/subjects/${category}?coloring=true`);
+  }, [navigate, subject]);
 
   useEffect(() => {
     const handler = (e) => {
@@ -221,16 +220,19 @@ export default function ColoringPage() {
             <path d="M19 12H5M12 19l-7-7 7-7" />
           </svg>
         </button>
-        <div className="coloring-title-row">
-          <div className="coloring-title-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M2 18h7m4 0h9" />
-              <rect x="3" y="14" width="7" height="4" rx="1" />
-              <path d="M10 14l3-7 4 2-2 5" />
-              <path d="M15 14l3-5 3 2-1 5" />
-            </svg>
+        <div className="coloring-title-area">
+          <div className="coloring-title-row">
+            <div className="coloring-title-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M2 18h7m4 0h9" />
+                <rect x="3" y="14" width="7" height="4" rx="1" />
+                <path d="M10 14l3-7 4 2-2 5" />
+                <path d="M15 14l3-5 3 2-1 5" />
+              </svg>
+            </div>
+            <h1>涂色乐园 — {config.name}</h1>
           </div>
-          <h1>{config.title}</h1>
+          <p className="coloring-subtitle">选一种颜色，点击{config.name}的零件给它穿上彩衣吧</p>
         </div>
       </header>
 
