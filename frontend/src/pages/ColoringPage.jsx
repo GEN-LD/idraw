@@ -6,6 +6,8 @@ import { playClick } from '../utils/soundUtils.js';
 import './ColoringPage.css';
 
 const COLORS = [
+  { hex: '#7209B7', name: '神秘紫' },
+  { hex: '#F72585', name: '樱花粉' },
   { hex: '#E63946', name: '热情红' },
   { hex: '#FF6B35', name: '活力橙' },
   // { hex: '#FB8500', name: '南瓜橘' },
@@ -17,8 +19,6 @@ const COLORS = [
   // { hex: '#219EBC', name: '天空蓝' },
   { hex: '#4361EE', name: '海洋蓝' },
   { hex: '#A2D2FF', name: '婴儿蓝' },
-  { hex: '#7209B7', name: '神秘紫' },
-  { hex: '#F72585', name: '樱花粉' },
   { hex: '#FFB4A2', name: '蜜桃粉' },
   { hex: '#8B5E3C', name: '巧克力' },
   // { hex: '#2B2D42', name: '深夜黑' },
