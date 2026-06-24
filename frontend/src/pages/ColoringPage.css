@@ -342,6 +342,7 @@
 .coloring-btn-secondary { background: var(--coloring-accent-2); color: white; }
 .coloring-btn-warn { background: #FFE066; }
 .coloring-btn-finish { background: linear-gradient(135deg, var(--coloring-accent), var(--coloring-accent-3)); color: white; font-size: 0.85rem; }
+.coloring-btn-finish.hidden { visibility: hidden; pointer-events: none; }
 
 /* Toast */
 .coloring-toast {
