@@ -38,7 +38,7 @@
 }
 
 .subject-card {
-  width: 100%;
+  width: calc(100% * 5 / 6);
   height: auto;
   aspect-ratio: 6 / 5;
   display: flex;
@@ -53,6 +53,7 @@
   cursor: pointer;
   transition: transform 0.12s ease, box-shadow 0.12s ease;
   overflow: visible;
+  justify-self: center;
 }
 
 .subject-card:hover {
