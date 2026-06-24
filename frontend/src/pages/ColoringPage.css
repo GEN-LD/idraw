@@ -175,7 +175,7 @@
 .coloring-toolbar {
   background: var(--coloring-paper);
   border-radius: 20px;
-  padding: clamp(10px, 1.6vh, 16px);
+  padding: clamp(5px, 0.8vh, 8px) clamp(10px, 1.6vh, 16px);
   border: 3px solid var(--coloring-ink);
   display: flex;
   flex-direction: column;
@@ -183,7 +183,7 @@
 }
 
 .coloring-section + .coloring-section {
-  margin-top: clamp(8px, 1.5vh, 14px);
+  margin-top: clamp(4px, 0.75vh, 7px);
 }
 
 .coloring-section h3 {
