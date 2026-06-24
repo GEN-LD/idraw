@@ -8,23 +8,23 @@ import './ColoringPage.css';
 const COLORS = [
   { hex: '#E63946', name: '热情红' },
   { hex: '#FF6B35', name: '活力橙' },
-  { hex: '#FB8500', name: '南瓜橘' },
+  // { hex: '#FB8500', name: '南瓜橘' },
   { hex: '#FFD23F', name: '阳光黄' },
-  { hex: '#FFB703', name: '蜂蜜金' },
+  // { hex: '#FFB703', name: '蜂蜜金' },
   { hex: '#06D6A0', name: '青草绿' },
   { hex: '#588157', name: '森林绿' },
   { hex: '#4ECDC4', name: '湖水青' },
-  { hex: '#219EBC', name: '天空蓝' },
+  // { hex: '#219EBC', name: '天空蓝' },
   { hex: '#4361EE', name: '海洋蓝' },
   { hex: '#A2D2FF', name: '婴儿蓝' },
   { hex: '#7209B7', name: '神秘紫' },
   { hex: '#F72585', name: '樱花粉' },
   { hex: '#FFB4A2', name: '蜜桃粉' },
   { hex: '#8B5E3C', name: '巧克力' },
-  { hex: '#2B2D42', name: '深夜黑' },
+  // { hex: '#2B2D42', name: '深夜黑' },
   { hex: '#6c757d', name: '水泥灰' },
   { hex: '#FFE5B4', name: '奶油色' },
-  { hex: '#95D5B2', name: '薄荷绿' },
+  // { hex: '#95D5B2', name: '薄荷绿' },
   { hex: '#FFFFFF', name: '橡皮擦' },
 ];
 
@@ -114,7 +114,7 @@ export default function ColoringPage() {
   }, [selectedColor, totalModules, celebrated, showToast, fireConfetti]);
 
   const handleEraser = useCallback(() => {
-    setSelectedColor(COLORS[19]);
+    setSelectedColor(COLORS[COLORS.length - 1]);
     showToast('橡皮擦已启用，点击模块即可擦除');
   }, [showToast]);
 
