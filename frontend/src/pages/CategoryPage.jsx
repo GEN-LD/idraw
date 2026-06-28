@@ -1,8 +1,10 @@
 import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useEffect } from 'react';
 import { ROUTES, getSubjectsPath } from '../routes.js';
 import { IcCategoryAnimal, IcCategoryVehicle, IcCategoryBlank } from '../assets/icons/index.js';
 import { playClick } from '../utils/soundUtils.js';
 import { animateClick } from '../utils/viewUtils.js';
+import { bgmManager } from '../utils/bgmManager.js';
 import './CategoryPage.css';
 
 const categories = [
@@ -39,6 +41,14 @@ export default function CategoryPage() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const coloringMode = searchParams.get('coloring') === 'true';
+
+  useEffect(() => {
+    if (coloringMode) {
+      bgmManager.ensurePlaying('/idraw/liangzhilaohu.mp3');
+    } else {
+      bgmManager.ensurePlaying('/idraw/niwawa.mp3');
+    }
+  }, [coloringMode]);
 
   const handleBack = (e) => {
     animateClick(e.currentTarget, () => {
