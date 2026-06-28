@@ -62,7 +62,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 4px 4px 0 #1a1a1a;
+  box-shadow: 4px 4px 0 #FFFFFF;
   transition: transform 0.12s ease, box-shadow 0.12s ease;
   color: #1a1a1a;
   padding: 6px;
@@ -70,11 +70,11 @@
 }
 .page-back-btn:hover {
   transform: translate(-1px, -1px);
-  box-shadow: 5px 5px 0 #1a1a1a;
+  box-shadow: 5px 5px 0 #FFFFFF;
 }
 .page-back-btn:active {
   transform: translate(2px, 2px);
-  box-shadow: 2px 2px 0 #1a1a1a;
+  box-shadow: 2px 2px 0 #FFFFFF;
 }
 .page-back-btn svg {
   width: 35px;
