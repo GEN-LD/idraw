@@ -41,6 +41,7 @@ export default function CategoryPage() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const coloringMode = searchParams.get('coloring') === 'true';
+  const visibleCategories = coloringMode ? categories.filter((c) => c.id !== 'blank') : categories;
 
   useEffect(() => {
     if (coloringMode) {
@@ -81,7 +82,7 @@ export default function CategoryPage() {
       </header>
 
       <div className="category-cards">
-        {categories.map((category) => {
+        {visibleCategories.map((category) => {
           const Icon = category.icon;
           return (
             <button
