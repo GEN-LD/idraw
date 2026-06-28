@@ -1,5 +1,6 @@
 import { useCallback, useState, useEffect } from 'react';
 import { settingsManager } from '../utils/settingsManager.js';
+import { bgmManager } from '../utils/bgmManager.js';
 
 export function useSettings() {
   const [bgMusicEnabled, setBgMusicEnabled] = useState(() => settingsManager.isBgMusicEnabled());
@@ -11,6 +12,18 @@ export function useSettings() {
     setSoundEffectsEnabled(settingsManager.isSoundEffectsEnabled());
     setVolume(settingsManager.getVolume());
   }, []);
+
+  useEffect(() => {
+    if (bgMusicEnabled) {
+      bgmManager.resume();
+    } else {
+      bgmManager.pause();
+    }
+  }, [bgMusicEnabled]);
+
+  useEffect(() => {
+    bgmManager.updateVolume(volume);
+  }, [volume]);
 
   const updateBgMusic = useCallback((enabled) => {
     settingsManager.setBgMusicEnabled(enabled);

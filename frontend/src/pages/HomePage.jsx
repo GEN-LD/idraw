@@ -1,11 +1,17 @@
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 import { ROUTES } from '../routes.js';
 import { playClick } from '../utils/soundUtils.js';
 import { animateClick } from '../utils/viewUtils.js';
+import { bgmManager } from '../utils/bgmManager.js';
 import './HomePage.css';
 
 export default function HomePage() {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    bgmManager.ensurePlaying('/idraw/xiaoxingxing.mp3');
+  }, []);
 
   const handleColoringMode = () => {
     playClick();
