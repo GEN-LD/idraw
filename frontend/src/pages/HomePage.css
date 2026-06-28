@@ -10,6 +10,7 @@
   --hp-accent-coral: #FF6B6B;
   --hp-shadow-pink: rgba(255, 139, 167, 0.35);
   --hp-shadow-mint: rgba(126, 206, 193, 0.35);
+  --hp-shadow-gold: rgba(255, 191, 71, 0.35);
   --hp-grass-1: #A8E6CF;
   --hp-grass-2: #88D8B0;
   --hp-grass-3: #6BC5A0;
@@ -417,36 +418,108 @@
 .hp-candy-btn:active .hp-candy-shadow { width: 320px; opacity: 0.8; bottom: -16px; }
 
 /* ===== 设置按钮 ===== */
-.hp-settings-btn {
+.hp-settings-wrapper {
+  position: fixed;
+  bottom: 140px;
+  right: 30px;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 14px;
+}
+
+.hp-gear-icon {
+  width: 16px; height: 16px;
+  background: #FFF;
+  border-radius: 50%;
+  box-shadow:
+    0 -12px 0 -1px #FFF,
+    10.39px -6px 0 -1px #FFF,
+    10.39px 6px 0 -1px #FFF,
+    0 12px 0 -1px #FFF,
+    -10.39px 6px 0 -1px #FFF,
+    -10.39px -6px 0 -1px #FFF;
+  animation: hp-gearSpin 8s linear infinite;
+  position: relative;
+  z-index: 1;
+}
+.hp-gear-icon::after {
+  content: '';
   position: absolute;
-  right: clamp(16px, 3vw, 48px);
-  bottom: clamp(16px, 3vw, 48px);
-  width: 64px;
-  height: 64px;
-  border: 3px solid var(--hp-fg);
-  border-radius: 16px;
-  background-color: #FFFEF8;
+  width: 6px; height: 6px;
+  background: linear-gradient(135deg, #FFD666, #FFBF47);
+  border-radius: 50%;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+}
+@keyframes hp-gearSpin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.hp-settings-btn {
+  position: relative;
+  width: 64px; height: 64px;
+  border: none;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #FFD666, #FFBF47);
   cursor: pointer;
+  outline: none;
+  box-shadow: 0 5px 0 #D4940A, 0 9px 22px var(--hp-shadow-gold);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 12px;
-  box-shadow: 4px 4px 0 var(--hp-fg);
-  transition: transform 0.12s ease, box-shadow 0.12s ease;
-  z-index: 10;
+  transition: transform 0.18s cubic-bezier(.34,1.56,.64,1), box-shadow 0.18s ease;
+  animation: hp-settingsIdle 3s ease-in-out infinite;
+  z-index: 2;
+}
+@keyframes hp-settingsIdle {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-4px); }
 }
 .hp-settings-btn:hover {
-  transform: translate(-1px, -1px);
-  box-shadow: 5px 5px 0 var(--hp-fg);
+  transform: translateY(-6px) scale(1.1);
+  box-shadow: 0 9px 0 #D4940A, 0 15px 32px var(--hp-shadow-gold);
+  animation-play-state: paused;
+}
+.hp-settings-btn:hover .hp-gear-icon {
+  animation-duration: 2s;
 }
 .hp-settings-btn:active {
-  transform: translate(2px, 2px);
-  box-shadow: 2px 2px 0 var(--hp-fg);
+  transform: translateY(2px) scale(0.95);
+  box-shadow: 0 2px 0 #D4940A, 0 3px 8px var(--hp-shadow-gold);
+  animation-play-state: paused;
+}
+
+.hp-settings-btn-shadow {
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 8px;
+  background: radial-gradient(ellipse, rgba(212,148,10,0.25), transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  transition: all 0.18s ease;
+  z-index: 0;
+}
+.hp-settings-btn:hover ~ .hp-settings-btn-shadow {
+  width: 40px;
+  opacity: 0.5;
+  bottom: -16px;
+}
+.hp-settings-btn:active ~ .hp-settings-btn-shadow {
+  width: 56px;
+  opacity: 0.8;
+  bottom: -6px;
 }
 
 /* ===== 响应式 ===== */
 @media (max-width: 560px) {
   .hp-btn-row { flex-direction: column; gap: 70px; }
+  .hp-settings-wrapper { bottom: 130px; right: 16px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

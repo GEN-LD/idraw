@@ -142,9 +142,12 @@ export default function HomePage() {
       </div>
 
       {/* 设置按钮 */}
-      <button className="hp-settings-btn" onClick={handleSettings} aria-label="设置">
-        <img src="/idraw/ic_settings.png" alt="设置" className="nav-icon-img" />
-      </button>
+      <div className="hp-settings-wrapper">
+        <button className="hp-settings-btn" onClick={handleSettings} aria-label="设置">
+          <span className="hp-gear-icon" />
+        </button>
+        <span className="hp-settings-btn-shadow" />
+      </div>
     </div>
   );
 }
