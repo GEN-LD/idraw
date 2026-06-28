@@ -217,7 +217,7 @@
 .hp-btn-row {
   display: flex;
   align-items: center;
-  gap: 100px;
+  gap: 200px;
   z-index: 5;
   position: relative;
 }
@@ -239,95 +239,95 @@
 /* ===== 喵喵按钮 ===== */
 .hp-cat-btn {
   position: relative;
-  width: 180px;
-  height: 72px;
+  width: 360px;
+  height: 144px;
   border: none;
-  border-radius: 36px;
+  border-radius: 72px;
   background: linear-gradient(135deg, #FFB8C6, #FF8BA7);
   color: #FFF;
   font-family: 'ZCOOL KuaiLe', cursive;
-  font-size: 22px;
-  letter-spacing: 3px;
+  font-size: 44px;
+  letter-spacing: 6px;
   cursor: pointer;
   outline: none;
-  box-shadow: 0 6px 0 #E0607A, 0 10px 25px var(--hp-shadow-pink);
+  box-shadow: 0 12px 0 #E0607A, 0 20px 50px var(--hp-shadow-pink);
   transition: transform 0.18s cubic-bezier(.34,1.56,.64,1), box-shadow 0.18s ease;
   z-index: 2;
   animation: hp-catIdle 3s ease-in-out infinite;
 }
-@keyframes hp-catIdle { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+@keyframes hp-catIdle { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
 
 .hp-cat-btn:hover {
-  transform: translateY(-6px) scale(1.06);
-  box-shadow: 0 10px 0 #E0607A, 0 16px 35px var(--hp-shadow-pink);
+  transform: translateY(-12px) scale(1.06);
+  box-shadow: 0 20px 0 #E0607A, 0 32px 70px var(--hp-shadow-pink);
   animation-play-state: paused;
 }
 .hp-cat-btn:active {
-  transform: translateY(3px) scale(0.97);
-  box-shadow: 0 2px 0 #E0607A, 0 4px 10px var(--hp-shadow-pink);
+  transform: translateY(6px) scale(0.97);
+  box-shadow: 0 4px 0 #E0607A, 0 8px 20px var(--hp-shadow-pink);
   animation-play-state: paused;
 }
 
 .hp-cat-btn::before, .hp-cat-btn::after {
   content: '';
   position: absolute;
-  top: -16px;
+  top: -32px;
   width: 0; height: 0;
-  border-left: 18px solid transparent;
-  border-right: 18px solid transparent;
-  border-bottom: 24px solid #FFB8C6;
+  border-left: 36px solid transparent;
+  border-right: 36px solid transparent;
+  border-bottom: 48px solid #FFB8C6;
   z-index: 1;
   transition: transform 0.25s ease;
 }
-.hp-cat-btn::before { left: 22px; transform: rotate(-8deg); }
-.hp-cat-btn::after  { right: 22px; transform: rotate(8deg); }
+.hp-cat-btn::before { left: 44px; transform: rotate(-8deg); }
+.hp-cat-btn::after  { right: 44px; transform: rotate(8deg); }
 
 .hp-cat-ear-inner-l, .hp-cat-ear-inner-r {
   position: absolute;
-  top: -10px;
+  top: -20px;
   width: 0; height: 0;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  border-bottom: 15px solid #FFD1DC;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-bottom: 30px solid #FFD1DC;
   z-index: 1;
   pointer-events: none;
 }
-.hp-cat-ear-inner-l { left: 30px; transform: rotate(-8deg); }
-.hp-cat-ear-inner-r { right: 30px; transform: rotate(8deg); }
+.hp-cat-ear-inner-l { left: 60px; transform: rotate(-8deg); }
+.hp-cat-ear-inner-r { right: 60px; transform: rotate(8deg); }
 
-.hp-cat-btn:hover::before { transform: rotate(-14deg) translateY(-3px); }
-.hp-cat-btn:hover::after  { transform: rotate(14deg) translateY(-3px); }
+.hp-cat-btn:hover::before { transform: rotate(-14deg) translateY(-6px); }
+.hp-cat-btn:hover::after  { transform: rotate(14deg) translateY(-6px); }
 
 .hp-cat-blush-l, .hp-cat-blush-r {
   position: absolute;
   top: 50%; transform: translateY(-50%);
-  width: 18px; height: 10px;
+  width: 36px; height: 20px;
   background: rgba(255, 107, 107, 0.45);
   border-radius: 50%;
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.3s ease;
 }
-.hp-cat-blush-l { left: 12px; }
-.hp-cat-blush-r { right: 12px; }
+.hp-cat-blush-l { left: 24px; }
+.hp-cat-blush-r { right: 24px; }
 .hp-cat-btn:hover .hp-cat-blush-l,
 .hp-cat-btn:hover .hp-cat-blush-r { opacity: 1; }
 
 /* ===== 糖果按钮 ===== */
 .hp-candy-btn {
   position: relative;
-  width: 200px;
-  height: 68px;
+  width: 400px;
+  height: 136px;
   border: none;
-  border-radius: 34px;
+  border-radius: 68px;
   background: linear-gradient(135deg, #A8E6CF, #7ECEC1);
   color: #FFF;
   font-family: 'ZCOOL KuaiLe', cursive;
-  font-size: 22px;
-  letter-spacing: 3px;
+  font-size: 44px;
+  letter-spacing: 6px;
   cursor: pointer;
   outline: none;
-  box-shadow: 0 6px 0 #5BA99A, 0 10px 25px var(--hp-shadow-mint);
+  box-shadow: 0 12px 0 #5BA99A, 0 20px 50px var(--hp-shadow-mint);
   transition: transform 0.18s cubic-bezier(.34,1.56,.64,1), box-shadow 0.18s ease;
   z-index: 2;
   animation: hp-candyIdle 3.5s ease-in-out infinite;
@@ -335,41 +335,41 @@
 }
 @keyframes hp-candyIdle {
   0%, 100% { transform: translateY(0) rotate(0deg); }
-  25%      { transform: translateY(-3px) rotate(0.8deg); }
-  75%      { transform: translateY(-3px) rotate(-0.8deg); }
+  25%      { transform: translateY(-6px) rotate(0.8deg); }
+  75%      { transform: translateY(-6px) rotate(-0.8deg); }
 }
 
 .hp-candy-btn:hover {
-  transform: translateY(-6px) scale(1.06) rotate(0deg);
-  box-shadow: 0 10px 0 #5BA99A, 0 16px 35px var(--hp-shadow-mint);
+  transform: translateY(-12px) scale(1.06) rotate(0deg);
+  box-shadow: 0 20px 0 #5BA99A, 0 32px 70px var(--hp-shadow-mint);
   animation-play-state: paused;
 }
 .hp-candy-btn:active {
-  transform: translateY(3px) scale(0.97) rotate(0deg);
-  box-shadow: 0 2px 0 #5BA99A, 0 4px 10px var(--hp-shadow-mint);
+  transform: translateY(6px) scale(0.97) rotate(0deg);
+  box-shadow: 0 4px 0 #5BA99A, 0 8px 20px var(--hp-shadow-mint);
   animation-play-state: paused;
 }
 
 .hp-candy-twist-l, .hp-candy-twist-r {
   position: absolute;
   top: 50%;
-  width: 22px; height: 28px;
+  width: 44px; height: 56px;
   transform: translateY(-50%);
   pointer-events: none;
   z-index: 1;
 }
 .hp-candy-twist-l {
-  left: -14px;
+  left: -28px;
   background: linear-gradient(135deg, #FFD666, #FFBF47);
   clip-path: polygon(100% 0%, 100% 100%, 30% 80%, 0% 50%, 30% 20%);
-  border-radius: 4px 0 0 4px;
+  border-radius: 8px 0 0 8px;
   animation: hp-twistLeft 2s ease-in-out infinite alternate;
 }
 .hp-candy-twist-r {
-  right: -14px;
+  right: -28px;
   background: linear-gradient(135deg, #FFBF47, #FFD666);
   clip-path: polygon(0% 0%, 0% 100%, 70% 80%, 100% 50%, 70% 20%);
-  border-radius: 0 4px 4px 0;
+  border-radius: 0 8px 8px 0;
   animation: hp-twistRight 2s ease-in-out infinite alternate;
 }
 @keyframes hp-twistLeft { 0% { transform: translateY(-50%) rotate(-5deg); } 100% { transform: translateY(-50%) rotate(5deg); } }
@@ -378,7 +378,7 @@
 .hp-candy-stripes {
   position: absolute;
   inset: 0;
-  border-radius: 34px;
+  border-radius: 68px;
   overflow: hidden;
   pointer-events: none;
 }
@@ -393,28 +393,28 @@
 
 .hp-candy-shine {
   position: absolute;
-  top: 8px; left: 20px;
-  width: 50px; height: 14px;
+  top: 16px; left: 40px;
+  width: 100px; height: 28px;
   background: rgba(255,255,255,0.35);
-  border-radius: 10px;
+  border-radius: 20px;
   pointer-events: none;
   transform: rotate(-6deg);
   transition: width 0.3s ease;
 }
-.hp-candy-btn:hover .hp-candy-shine { width: 70px; }
+.hp-candy-btn:hover .hp-candy-shine { width: 140px; }
 
 .hp-candy-shadow {
   position: absolute;
-  bottom: -14px; left: 50%;
+  bottom: -28px; left: 50%;
   transform: translateX(-50%);
-  width: 140px; height: 10px;
+  width: 280px; height: 20px;
   background: radial-gradient(ellipse, rgba(91,169,154,0.25), transparent 70%);
   border-radius: 50%;
   pointer-events: none;
   transition: all 0.18s ease;
 }
-.hp-candy-btn:hover .hp-candy-shadow { width: 120px; opacity: 0.6; bottom: -18px; }
-.hp-candy-btn:active .hp-candy-shadow { width: 160px; opacity: 0.8; bottom: -8px; }
+.hp-candy-btn:hover .hp-candy-shadow { width: 240px; opacity: 0.6; bottom: -36px; }
+.hp-candy-btn:active .hp-candy-shadow { width: 320px; opacity: 0.8; bottom: -16px; }
 
 /* ===== 设置按钮 ===== */
 .hp-settings-btn {
