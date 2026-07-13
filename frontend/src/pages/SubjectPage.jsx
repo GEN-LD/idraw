@@ -3,7 +3,7 @@ import { useEffect, useRef } from 'react';
 import { ROUTES } from '../routes.js';
 import { getSubjects, getCategoryTitle } from '../utils/subjectsRepository.js';
 import { COLORING_SUBJECTS } from './ColoringPage.jsx';
-import { ExcavatorIcon, FireTruckIcon, PoliceCarIcon, TrainIcon, CraneIcon } from '../assets/subject-icons/index.js';
+import { ExcavatorIcon, FireTruckIcon, PoliceCarIcon, TrainIcon, CraneIcon, RabbitIcon } from '../assets/subject-icons/index.js';
 import { playClick } from '../utils/soundUtils.js';
 import { animateClick } from '../utils/viewUtils.js';
 import './SubjectPage.css';
@@ -23,6 +23,7 @@ const SUBJECT_ICON_MAP = {
   police_car: PoliceCarIcon,
   train: TrainIcon,
   crane: CraneIcon,
+  rabbit: RabbitIcon,
 };
 
 export default function SubjectPage() {

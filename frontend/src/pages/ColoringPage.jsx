@@ -1,6 +1,6 @@
 import { useState, useCallback, useMemo, useRef, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { ExcavatorColoring, ExcavatorModules, FireTruckColoring, FireTruckModules, PoliceCarColoring, PoliceCarModules, TrainColoring, TrainModules, CraneColoring, CraneModules } from '../assets/coloring/index.js';
+import { ExcavatorColoring, ExcavatorModules, FireTruckColoring, FireTruckModules, PoliceCarColoring, PoliceCarModules, TrainColoring, TrainModules, CraneColoring, CraneModules, RabbitColoring, RabbitModules } from '../assets/coloring/index.js';
 import { getSubjectById } from '../utils/subjectsRepository.js';
 import { playClick } from '../utils/soundUtils.js';
 import './ColoringPage.css';
@@ -53,6 +53,11 @@ const SUBJECT_CONFIG = {
     name: '吊车',
     Component: CraneColoring,
     modules: CraneModules,
+  },
+  rabbit: {
+    name: '小兔子',
+    Component: RabbitColoring,
+    modules: RabbitModules,
   },
 };
 

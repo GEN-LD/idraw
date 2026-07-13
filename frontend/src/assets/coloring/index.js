@@ -3,3 +3,4 @@ export { default as FireTruckColoring, MODULES as FireTruckModules } from './Fir
 export { default as PoliceCarColoring, MODULES as PoliceCarModules } from './PoliceCarColoring.jsx';
 export { default as TrainColoring, MODULES as TrainModules } from './TrainColoring.jsx';
 export { default as CraneColoring, MODULES as CraneModules } from './CraneColoring.jsx';
+export { default as RabbitColoring, MODULES as RabbitModules } from './RabbitColoring.jsx';
