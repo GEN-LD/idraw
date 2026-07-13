@@ -69,9 +69,7 @@ export default function ColoringPage() {
   const [selectedColor, setSelectedColor] = useState(COLORS[1]);
   const [toast, setToast] = useState({ msg: '', celebrate: false, show: false });
   const [celebrated, setCelebrated] = useState(false);
-  const [isExiting, setIsExiting] = useState(false);
   const toastTimer = useRef(null);
-  const exitTimer = useRef(null);
 
   const totalModules = config?.modules?.length || 0;
   const paintedCount = useMemo(() => {
@@ -191,13 +189,9 @@ export default function ColoringPage() {
   }, [config?.name, showToast, fireConfetti]);
 
   const handleBack = useCallback(() => {
-    if (exitTimer.current) return;
-    setIsExiting(true);
     const subj = getSubjectById(subject);
     const category = subj?.category || 'vehicle';
-    exitTimer.current = setTimeout(() => {
-      navigate(`/subjects/${category}?coloring=true`);
-    }, 2000);
+    navigate(`/subjects/${category}?coloring=true`);
   }, [navigate, subject]);
 
   useEffect(() => {
@@ -229,7 +223,7 @@ export default function ColoringPage() {
   const { Component } = config;
 
   return (
-    <div className={`coloring-page${isExiting ? ' exiting' : ''}`}>
+    <div className="coloring-page">
       <header className="coloring-header">
         <button className="coloring-back-btn" onClick={handleBack} aria-label="返回">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">

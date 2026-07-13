@@ -120,11 +120,12 @@ export default function HomePage() {
       <div className="hp-btn-row">
         <div className="hp-btn-wrapper">
           <span className="hp-btn-label">涂色乐园</span>
-          <button className="hp-cat-btn" onClick={handleColoringMode} aria-label="涂色乐园">
-            <span className="hp-cat-ear-inner-l" />
-            <span className="hp-cat-ear-inner-r" />
-            <span className="hp-cat-blush-l" />
-            <span className="hp-cat-blush-r" />
+          <button className="hp-frog-btn" onClick={handleColoringMode} aria-label="涂色乐园">
+            <span className="hp-frog-eye hp-frog-eye-l"><span className="hp-frog-pupil" /></span>
+            <span className="hp-frog-eye hp-frog-eye-r"><span className="hp-frog-pupil" /></span>
+            <span className="hp-frog-blush-l" />
+            <span className="hp-frog-blush-r" />
+            <span className="hp-frog-shadow" />
             涂色乐园
           </button>
         </div>

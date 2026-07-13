@@ -21,22 +21,6 @@
   overflow: hidden;
   font-family: 'Nunito', sans-serif;
   box-sizing: border-box;
-  animation: coloring-slide-in 2s ease-out forwards;
-}
-
-.coloring-page.exiting {
-  animation: coloring-slide-out 2s ease-in forwards;
-  pointer-events: none;
-}
-
-@keyframes coloring-slide-in {
-  from { transform: translateX(100%); }
-  to   { transform: translateX(0); }
-}
-
-@keyframes coloring-slide-out {
-  from { transform: translateX(0); }
-  to   { transform: translateX(100%); }
 }
 
 .coloring-header {

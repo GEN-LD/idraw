@@ -112,3 +112,42 @@ button {
   display: block;
   object-fit: contain;
 }
+
+/* ===== 路由层叠过渡（主题页 <-> 涂色页/画画页） ===== */
+.route-stack {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.route-stack.transitioning .route-layer {
+  pointer-events: none;
+}
+.route-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.route-layer.static {
+  z-index: 1;
+}
+.route-layer.slide-in {
+  z-index: 2;
+  animation: rt-slide-in 1s ease-out forwards;
+}
+.route-layer.slide-out {
+  z-index: 2;
+  animation: rt-slide-out 1s ease-in forwards;
+}
+@keyframes rt-slide-in {
+  from { transform: translateX(100%); }
+  to   { transform: translateX(0); }
+}
+@keyframes rt-slide-out {
+  from { transform: translateX(0); }
+  to   { transform: translateX(100%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .route-layer { animation: none !important; }
+}

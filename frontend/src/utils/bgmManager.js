@@ -3,30 +3,33 @@ import { settingsManager } from './settingsManager.js';
 let bgmAudio = null;
 let currentSrc = null;
 
+function play(src) {
+  const volume = settingsManager.getVolume() / 100;
+
+  if (bgmAudio && currentSrc === src) {
+    bgmAudio.volume = volume;
+    if (bgmAudio.paused) {
+      bgmAudio.play().catch(() => {});
+    }
+    return;
+  }
+
+  if (bgmAudio) {
+    bgmAudio.pause();
+    bgmAudio = null;
+  }
+
+  bgmAudio = new Audio(src);
+  bgmAudio.loop = true;
+  bgmAudio.volume = volume;
+  currentSrc = src;
+  bgmAudio.play().catch(() => {});
+}
+
 export const bgmManager = {
   ensurePlaying(src) {
     if (!settingsManager.isBgMusicEnabled()) return;
-
-    const volume = settingsManager.getVolume() / 100;
-
-    if (bgmAudio && currentSrc === src) {
-      bgmAudio.volume = volume;
-      if (bgmAudio.paused) {
-        bgmAudio.play().catch(() => {});
-      }
-      return;
-    }
-
-    if (bgmAudio) {
-      bgmAudio.pause();
-      bgmAudio = null;
-    }
-
-    bgmAudio = new Audio(src);
-    bgmAudio.loop = true;
-    bgmAudio.volume = volume;
-    currentSrc = src;
-    bgmAudio.play().catch(() => {});
+    play(src);
   },
 
   pause() {

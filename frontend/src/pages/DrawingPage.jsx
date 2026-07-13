@@ -23,9 +23,12 @@ const LINEART_COMPONENTS = {
 export default function DrawingPage() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const subjectId = searchParams.get('subject') || '';
-  const isBlank = searchParams.get('blank') === 'true';
-  const coloringMode = searchParams.get('coloring') === 'true';
+  const [params] = useState(() => ({
+    subjectId: searchParams.get('subject') || '',
+    isBlank: searchParams.get('blank') === 'true',
+    coloringMode: searchParams.get('coloring') === 'true',
+  }));
+  const { subjectId, isBlank, coloringMode } = params;
 
   const [brushType, setBrushType] = useState(BrushType.PEN);
   const [sizeIndex, setSizeIndex] = useState(0);

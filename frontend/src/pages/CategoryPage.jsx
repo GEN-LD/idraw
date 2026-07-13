@@ -1,7 +1,6 @@
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useEffect, useRef } from 'react';
 import { ROUTES, getSubjectsPath } from '../routes.js';
-import { IcCategoryAnimal, IcCategoryVehicle, IcCategoryBlank } from '../assets/icons/index.js';
 import { playClick } from '../utils/soundUtils.js';
 import { animateClick } from '../utils/viewUtils.js';
 import { bgmManager } from '../utils/bgmManager.js';
@@ -11,25 +10,28 @@ const categories = [
   {
     id: 'animal',
     title: '动物',
-    icon: IcCategoryAnimal,
+    decoration: 'candy',
     bgColor: 'linear-gradient(135deg, #A8E6CF, #7ECEC1)',
     shadowColor: '#5BA99A',
+    glowColor: 'rgba(126, 206, 193, 0.35)',
     path: getSubjectsPath('animal'),
   },
   {
     id: 'vehicle',
     title: '交通工具',
-    icon: IcCategoryVehicle,
-    bgColor: 'linear-gradient(135deg, #FFB8C6, #FF8BA7)',
-    shadowColor: '#E0607A',
+    decoration: 'car',
+    bgColor: 'linear-gradient(135deg, #FFCC80, #FF9800)',
+    shadowColor: '#E65100',
+    glowColor: 'rgba(255, 152, 0, 0.35)',
     path: getSubjectsPath('vehicle'),
   },
   {
     id: 'blank',
     title: '空白画布',
-    icon: IcCategoryBlank,
+    decoration: 'star',
     bgColor: 'linear-gradient(135deg, #FFE066, #FFD666)',
     shadowColor: '#D4A017',
+    glowColor: 'rgba(255, 191, 71, 0.35)',
     path: `${ROUTES.DRAWING}?blank=true`,
   },
 ];
@@ -160,25 +162,59 @@ export default function CategoryPage() {
       </header>
 
       <div className="cp-cards">
-        {visibleCategories.map((category) => {
-          const Icon = category.icon;
-          return (
-            <button
-              key={category.id}
-              className="cp-card"
-              style={{
-                background: category.bgColor,
-                boxShadow: `0 6px 0 ${category.shadowColor}, 0 10px 25px rgba(0,0,0,0.1)`,
-              }}
-              onClick={() => handleCategoryClick(category.path)}
-            >
-              <div className="cp-card-icon-wrapper">
-                <Icon className="cp-card-icon" />
-              </div>
-              <span className="cp-card-title">{category.title}</span>
-            </button>
-          );
-        })}
+        {visibleCategories.map((category) => (
+          <button
+            key={category.id}
+            className={`cp-card cp-card-${category.decoration}`}
+            style={{
+              background: category.bgColor,
+              '--cp-card-shadow': category.shadowColor,
+              '--cp-card-glow': category.glowColor,
+            }}
+            onClick={() => handleCategoryClick(category.path)}
+          >
+            {category.decoration === 'car' && (
+              <>
+                <span className="cp-car-roof">
+                  <span className="cp-car-window cp-car-window-l" />
+                  <span className="cp-car-window cp-car-window-r" />
+                </span>
+                <span className="cp-car-headlight" />
+                <span className="cp-car-taillight" />
+                <span className="cp-car-wheel cp-car-wheel-l"><span className="cp-car-hubcap" /></span>
+                <span className="cp-car-wheel cp-car-wheel-r"><span className="cp-car-hubcap" /></span>
+                <span className="cp-car-exhaust">
+                  <span className="cp-exhaust-puff" />
+                  <span className="cp-exhaust-puff" />
+                  <span className="cp-exhaust-puff" />
+                </span>
+                <span className="cp-car-speed-line cp-car-speed-line-1" />
+                <span className="cp-car-speed-line cp-car-speed-line-2" />
+                <span className="cp-car-speed-line cp-car-speed-line-3" />
+                <span className="cp-candy-ground" />
+              </>
+            )}
+            {category.decoration === 'candy' && (
+              <>
+                <span className="cp-candy-twist-l" />
+                <span className="cp-candy-twist-r" />
+                <div className="cp-candy-stripes" />
+                <span className="cp-candy-shine" />
+                <span className="cp-candy-ground" />
+              </>
+            )}
+            {category.decoration === 'star' && (
+              <>
+                <span className="cp-star-deco-l" />
+                <span className="cp-star-deco-r" />
+                <div className="cp-candy-stripes" />
+                <span className="cp-candy-shine" />
+                <span className="cp-candy-ground" />
+              </>
+            )}
+            <span className="cp-card-title">{category.title}</span>
+          </button>
+        ))}
       </div>
     </div>
   );
